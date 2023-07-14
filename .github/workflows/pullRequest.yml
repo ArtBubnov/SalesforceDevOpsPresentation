@@ -47,6 +47,8 @@ jobs:
           echo $TEST
           chmod +x ./build/login_to_SF_org.sh
           ./build/login_to_SF_org.sh
+        env:
+            TEST: "TEST_VAR"
 
       #Deploy metadata to the target Salesforce org without saving
       #Apex tests execution
