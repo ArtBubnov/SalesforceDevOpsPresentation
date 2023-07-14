@@ -21,9 +21,9 @@ jobs:
           echo "Event is:"
           echo -e "Pull request\n"
           echo "Pull request source branch is:"
-          echo $GITHUB_HEAD_REF
+          echo ${{ github.event.pull_request.head.ref }}
           echo -e "\nPull request target branch is:"
-          echo $GITHUB_BASE_REF
+          echo ${{ github.event.pull_request.base.ref }}
           echo -e "\n--- Step 1 execution is finished ---"
         
           
