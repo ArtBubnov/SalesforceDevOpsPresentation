@@ -21,8 +21,10 @@ jobs:
           echo -e "Pull request\n"
           echo "Pull request source branch is:"
           echo ${{ github.event.pull_request.head.ref }}
+          echo $GITHUB_HEAD_REF
           echo -e "\nPull request target branch is:"
           echo ${{ github.event.pull_request.base.ref }}
+          echo $GITHUB_BASE_REF
         
           
       - uses: actions/checkout@v3
