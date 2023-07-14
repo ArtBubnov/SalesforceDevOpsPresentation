@@ -8,4 +8,4 @@ TARGET_BRANCH_NAME=$GITHUB_BASE_REF
 echo "Step 1 execution is finished"
 echo "Step 1 execution result:"
 echo "Target branch is:"
-echo $TARGET_BRANCH_NAME=$GITHUB_BASE_REF
+echo $TARGET_BRANCH_NAME
