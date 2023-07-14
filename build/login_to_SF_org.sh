@@ -22,5 +22,7 @@ echo "Source branch name is:"
 echo $SOURCE_BRANCH_NAME
 echo -e "\nTarget branch name is:"
 echo $TARGET_BRANCH_NAME
+echo "----"
+echo $TEST
 
 echo -e "\n--- Step 1 execution is finished ---"

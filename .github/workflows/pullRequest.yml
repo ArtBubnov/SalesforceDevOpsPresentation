@@ -43,6 +43,8 @@ jobs:
 
       - name: Global Step 2. Salesforce org login
         run: |
+          TEST="TEST_VAR"
+          echo $TEST
           chmod +x ./build/login_to_SF_org.sh
           ./build/login_to_SF_org.sh
 
