@@ -48,7 +48,8 @@ jobs:
           chmod +x ./build/login_to_SF_org.sh
           ./build/login_to_SF_org.sh
         env:
-            TEST: "TEST_VAR"
+            SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
 
       #Deploy metadata to the target Salesforce org without saving
       #Apex tests execution
