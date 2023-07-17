@@ -5,11 +5,7 @@ name: pull request approved logic
 on:
   pull_request_review:
     types: [submitted]
-#on:
-#  push:
-    #target branch is: 
-#    branches:
-#      - 'dev**'
+
 
 jobs:
   push_logic:
@@ -21,18 +17,9 @@ jobs:
           echo "Event is:"
           echo -e "Pull request\n"
           echo "Pull request source branch is:"
-          echo $GITHUB_HEAD_REF
+          echo ${{ github.event.pull_request.head.ref }}
           echo -e "\nPull request target branch is:"
-          echo $GITHUB_BASE_REF
-          echo -e "\n--- Step 1 execution is finished ---"
-#          echo "Event is:"
-#          echo -e "Pull request\n"
-#          echo "Pull request source branch is:"
-#          echo ${{ github.event.pull_request.head.ref }}
-#          echo $GITHUB_HEAD_REF
-#          echo -e "\nPull request target branch is:"
-#          echo ${{ github.event.pull_request.base.ref }}
-#          echo $GITHUB_BASE_REF
+          echo ${{ github.event.pull_request.base.ref }}
         
           
       - uses: actions/checkout@v3
@@ -50,10 +37,15 @@ jobs:
         run: |
           chmod +x ./build/login_to_SF_org.sh
           ./build/login_to_SF_org.sh
+        env:
+            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
 
 
-#      - name: Deploy metadata to Salesforce org
-#        run: |
-#          chmod +x ./build/deploy_metadata_to_sf_org.sh
-#          ./build/deploy_metadata_to_sf_org.sh
+      - name: Deploy metadata to Salesforce org
+        run: |
+          chmod +x ./build/deploy_metadata_to_sf_org.sh
+          ./build/deploy_metadata_to_sf_org.sh
+        env:
+            SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
          
