@@ -26,13 +26,14 @@ jobs:
         with:
           fetch-depth: 0
 
-
+      #Install SFDX
       - name: Global Step 1. SFDX CLI installation
         run: |
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
 
 
+      #Login to the target Salesforce org
       - name: Global Step 2. Salesforce org login
         run: |
           chmod +x ./build/login_to_SF_org.sh
@@ -40,7 +41,8 @@ jobs:
         env:
             TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
 
-
+      
+      #Deploy metadata to the target Salesforce org
       - name: Deploy metadata to Salesforce org
         run: |
           chmod +x ./build/deploy_metadata_to_sf_org.sh

@@ -34,13 +34,13 @@ jobs:
         with:
           fetch-depth: 0
 
-
+      #Install SFDX
       - name: Global Step 1. SFDX CLI installation
         run: |
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
 
-
+      #Login to the target Salesforce org
       - name: Global Step 2. Salesforce org login
         run: |
           chmod +x ./build/login_to_SF_org.sh
