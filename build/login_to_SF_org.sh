@@ -68,7 +68,8 @@ echo "Salesforce org to be used:"
 echo $CASE_LOG
 echo "Salesforce alias to be used: "
 echo $SALESFORCE_ORG_ALIAS
-
+echo "TESTS-------TESTS"
+echo $ACCESS_KEY_SF
 
 
 echo -e "\n\n\nStep 3. Login to the target Salesforce org"
