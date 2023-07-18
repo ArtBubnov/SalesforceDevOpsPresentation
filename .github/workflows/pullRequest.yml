@@ -34,6 +34,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.sfdx/repository
+          key: ${{ runner.os }}-sfdx
+          restore-keys: |
+            ${{ runner.os }}-sfdx
+
+
       #Install SFDX
       - name: Global Step 1. SFDX CLI installation
         run: |
