@@ -76,7 +76,7 @@ sfdx force:source:manifest:create --name destructiveChangesManifest --metadata "
 echo "********"
 echo "********"
 echo "********"
-sfdx force:source:deploy --manifest destructiveChangesManifest.xml
+sfdx force:source:deploy --manifest destructiveChangesManifest.xml -u ${SALESFORCE_TARGET_ORG_ALIAS} --loglevel WARN
 
 
 
