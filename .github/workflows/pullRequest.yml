@@ -66,7 +66,7 @@ jobs:
           ./build/login_to_SF_org.sh
         env:
             TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
-            ACCESS_KEY_SF_DEV: ${{ secrets.DEV_SALESFORCE_AUTH_GITHUB_SECRET_VALUE }}
+            ACCESS_KEY_SF_DEV: ${{ vars.PLATFORM_USERNAME_GITHUB_VARIABLE_VALUE }}
 
 
       #Deploy metadata to the target Salesforce org without saving

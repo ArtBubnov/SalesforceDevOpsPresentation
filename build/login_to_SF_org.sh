@@ -8,6 +8,8 @@ echo -e "Global variables display:\n"
 
 echo -e "\nTarget branch name is:"
 echo $TARGET_BRANCH_NAME
+echo "TESTS-------TESTS"
+echo $ACCESS_KEY_SF_DEV
 
 echo -e "\n\n--- Step 1 execution is finished ---"
 
