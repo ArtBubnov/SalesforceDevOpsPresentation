@@ -66,13 +66,16 @@ echo -e "Find the DESTRUCTIVE difference between organizations\n"
 DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
 
 GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default)
-echo $GET_DESTRUCTIVE_DIFF
+#echo $GET_DESTRUCTIVE_DIFF
 
 DESTRUCTIVE_FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
 
 #sfdx force:source:manifest:create --sourcepath force-app --manifestname destructiveChangesManifest --metadata "DESTRUCTIVE_FILES_TO_DEPLOY"
 sfdx force:source:manifest:create --manifestname destructiveChangesManifest --metadata "DESTRUCTIVE_FILES_TO_DEPLOY"
+echo "********"
+echo "********"
+echo "********"
 sfdx force:source:deploy --manifest destructiveChangesManifest.xml
 
 
