@@ -27,7 +27,7 @@ jobs:
           echo $GITHUB_HEAD_REF
           echo -e "\nPull request target branch is:"
           echo $GITHUB_BASE_REF
-          echo -e "\n--- Step 1 execution is finished ---"
+          echo -e "\n--- Step 1 execution is finished --- "
           
 
       - uses: actions/checkout@v3
