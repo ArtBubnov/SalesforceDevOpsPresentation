@@ -31,25 +31,25 @@ case $TARGET_BRANCH_NAME in
     "qa")
         CASE_LOG="qa"
         #ACCESS_KEY_SF_QA stored as GitHub secret variable
-        ACCESS_KEY_SF=$ACCESS_KEY_SF_QA
+        ACCESS_KEY_SF=$ACCESS_KEY_SF_DEV
         SALESFORCE_ORG_ALIAS="salesforce_qa.org"
         ;;
     "uat")
         CASE_LOG="uat"
         #ACCESS_KEY_SF_UAT stored as GitHub secret variable
-        ACCESS_KEY_SF=$ACCESS_KEY_SF_UAT
+        ACCESS_KEY_SF=$ACCESS_KEY_SF_DEV
         SALESFORCE_ORG_ALIAS="salesforce_uat.org"
         ;;
     "staging")
         CASE_LOG="staging"
         #ACCESS_KEY_SF_STAGING stored as GitHub secret variable
-        ACCESS_KEY_SF=$ACCESS_KEY_SF_STAGING
+        ACCESS_KEY_SF=$ACCESS_KEY_SF_DEV
         SALESFORCE_ORG_ALIAS="salesforce_staging.org"        
         ;;
     "prod")
         CASE_LOG="prod"
         #ACCESS_KEY_SF_PROD stored as GitHub secret variable
-        ACCESS_KEY_SF=$ACCESS_KEY_SF_PROD
+        ACCESS_KEY_SF=$ACCESS_KEY_SF_DEV
         SALESFORCE_ORG_ALIAS="salesforce_prod.org"
         ;;
     *)
