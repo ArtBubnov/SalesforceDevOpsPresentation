@@ -35,9 +35,9 @@ jobs:
           fetch-depth: 0
 
       - uses: sfdx-actions/setup-sfdx@v1
-        with:
-          cache: "sfdx"
-          cache-dependency-path: sfdx.lock
+#        with:
+#          cache: "sfdx"
+#          cache-dependency-path: sfdx.lock
 
 
 
@@ -57,6 +57,7 @@ jobs:
 #        run: |
 #          chmod +x ./build/install_dependencies.sh
 #          ./build/install_dependencies.sh
+
 
       #Login to the target Salesforce org
 #      - name: Global Step 2. Salesforce org login
