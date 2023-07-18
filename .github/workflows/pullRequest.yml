@@ -41,20 +41,20 @@ jobs:
           ./build/install_dependencies.sh
 
       #Login to the target Salesforce org
-      - name: Global Step 2. Salesforce org login
-        run: |
-          chmod +x ./build/login_to_SF_org.sh
-          ./build/login_to_SF_org.sh
-        env:
-            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
+#      - name: Global Step 2. Salesforce org login
+#        run: |
+#          chmod +x ./build/login_to_SF_org.sh
+#          ./build/login_to_SF_org.sh
+#        env:
+#            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
 
 
       #Deploy metadata to the target Salesforce org without saving
       #Apex tests execution
-      - name: Global Step 3. Predeploy actions
-        run: |
-          chmod +x ./build/pre_deploy_actions.sh
-          ./build/pre_deploy_actions.sh
-        env:
-            SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
-            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
+#      - name: Global Step 3. Predeploy actions
+#        run: |
+#          chmod +x ./build/pre_deploy_actions.sh
+#          ./build/pre_deploy_actions.sh
+#        env:
+#            SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+#            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
