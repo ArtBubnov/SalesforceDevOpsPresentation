@@ -71,8 +71,17 @@ GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force
 DESTRUCTIVE_FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
 
+
+
+echo "LS BEFORE"
+ls
+echo "********"
+echo "********"
+echo "********"
 #sfdx force:source:manifest:create --sourcepath force-app --manifestname destructiveChangesManifest --metadata "DESTRUCTIVE_FILES_TO_DEPLOY"
 sfdx force:source:manifest:create --name destructiveChangesManifest --metadata "$DESTRUCTIVE_FILES_TO_DEPLOY"
+echo "LS AFTER"
+ls
 echo "********"
 echo "********"
 echo "********"
