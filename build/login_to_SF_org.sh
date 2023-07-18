@@ -52,9 +52,6 @@ case $TARGET_BRANCH_NAME in
         ;;
     *)
         echo "Not valid"
-        echo "Target branch is not in the list (dev, qa, uat, staging, prod)
-        echo "Target branch name is:"
-        echo $TARGET_BRANCH_NAME
         ;;
 esac
 
