@@ -71,10 +71,17 @@ jobs:
 
       #Deploy metadata to the target Salesforce org without saving
       #Apex tests execution
-#      - name: Global Step 3. Predeploy actions
-#        run: |
-#          chmod +x ./build/pre_deploy_actions.sh
+      - name: Global Step 3. Predeploy actions
+        run: |
+          chmod +x ./build/deploy_metadata_to_sf_org.sh
+          ./build/deploy_metadata_to_sf_org.sh
+          
+        env:
+            SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
+
+
+
+
+            #          chmod +x ./build/pre_deploy_actions.sh
 #          ./build/pre_deploy_actions.sh
-#        env:
-#            SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
-#            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
