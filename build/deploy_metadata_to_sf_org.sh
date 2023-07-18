@@ -72,8 +72,8 @@ DESTRUCTIVE_FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=R ${DIFF_BRANCH
 
 
 #sfdx force:source:manifest:create --sourcepath force-app --manifestname destructiveChangesManifest --metadata "DESTRUCTIVE_FILES_TO_DEPLOY"
-sfdx force:source:manifest:create --manifestname destructiveChangesManifest --metadata "DESTRUCTIVE_FILES_TO_DEPLOY"
-sfdx force:source:deploy --manifest destructiveChangesManifest.xml --predestructivechanges manifest/destructiveChangesPre.xml --postdestructivechanges manifest/destructiveChangesPost.xml
+sfdx force:source:manifest:create --n destructiveChangesManifest --metadata "DESTRUCTIVE_FILES_TO_DEPLOY"
+sfdx force:source:deploy --manifest destructiveChangesManifest.xml
 
 
 
