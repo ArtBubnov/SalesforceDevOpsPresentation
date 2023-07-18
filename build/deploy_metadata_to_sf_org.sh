@@ -74,6 +74,7 @@ DESTRUCTIVE_FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH
 
 
 echo "LS BEFORE"
+pwd
 ls
 echo "********"
 echo "********"
