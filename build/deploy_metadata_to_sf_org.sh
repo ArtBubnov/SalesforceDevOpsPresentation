@@ -59,6 +59,53 @@ echo -e "\n--- Step 2 execution is finished ---"
 
 
 
+#-------------------------------
+echo -e "\n\n\n--- Step 3.1. Logic execution to define the list of files to be deleted from the Salesforce org ---\n"
+
+echo -e "Find the DISTRUCTIVE difference between organizations\n"
+DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
+
+GET_DISTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=R ${DIFF_BRANCH} force-app/main/default)
+echo $GET_DISTRUCTIVE_DIFF
+
+DISTRUCTIVE_FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=R ${DIFF_BRANCH} force-app/main/default | tr '\n' ',' | sed 's/\(.*\),/\1 /')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 echo -e "\n\n\n--- Step 3. Logic execution to define the list of files to be deployed to the Salesforce org ---\n"
 case $TARGET_BRANCH_NAME in
     "dev")
@@ -176,7 +223,7 @@ case $TARGET_BRANCH_NAME in
     "qa")
         #echo "--- PLACEHOLDER ---.Deployment to QA SF ENV has started"
         #TBD SHOULD BE UNCOMMENTED
-        sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_TARGET_ORG_ALIAS} --loglevel WARN
+        #sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_TARGET_ORG_ALIAS} --loglevel WARN
         ;;
     "staging")
         echo "--- PLACEHOLDER ---.Deployment to STAGING SF ENV has started"
