@@ -68,3 +68,15 @@ echo "Salesforce alias to be used: "
 echo $SALESFORCE_ORG_ALIAS
 
 
+
+echo -e "\n\n\nStep 3. Login to the target Salesforce org"
+echo "Creating .key file"
+touch access_pass.key
+
+echo -e "\nAdding access data to .key file"
+echo $ACCESS_KEY_SF > access_pass.key
+
+echo -e "\nTry SF login"
+sfdx force:auth:sfdxurl:store -f "access_pass.key" -a ${SALESFORCE_ORG_ALIAS} -d
+rm access_pass.key
+echo -e "--- Step 3.  execution is finished"
