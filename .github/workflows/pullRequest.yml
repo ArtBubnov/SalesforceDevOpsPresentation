@@ -34,20 +34,29 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Checking Cache
-        uses: actions/cache@v3
+      - uses: sfdx-actions/setup-sfdx@v1
         with:
-          path: ~/.sfdx/repository
-          key: ${{ runner.os }}-sfdx
-          restore-keys: |
-            ${{ runner.os }}-sfdx
+          cache: "sfdx"
+          cache-dependency-path: sfdx.lock
+
+
+
+
+
+#      - name: Checking Cache
+#        uses: actions/cache@v3
+#        with:
+#          path: ~/.sfdx/repository
+#          key: ${{ runner.os }}-sfdx
+#          restore-keys: |
+#            ${{ runner.os }}-sfdx
 
 
       #Install SFDX
-      - name: Global Step 1. SFDX CLI installation
-        run: |
-          chmod +x ./build/install_dependencies.sh
-          ./build/install_dependencies.sh
+#      - name: Global Step 1. SFDX CLI installation
+#        run: |
+#          chmod +x ./build/install_dependencies.sh
+#          ./build/install_dependencies.sh
 
       #Login to the target Salesforce org
 #      - name: Global Step 2. Salesforce org login
