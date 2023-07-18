@@ -80,4 +80,4 @@ echo $ACCESS_KEY_SF > access_pass.key
 echo -e "\nTry SF login"
 sfdx force:auth:sfdxurl:store -f "access_pass.key" -a ${SALESFORCE_ORG_ALIAS} -d
 rm access_pass.key
-echo "Step 3 execution is finished"
+echo -e "--- Step 3.  execution is finished"
