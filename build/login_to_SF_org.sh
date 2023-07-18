@@ -52,6 +52,9 @@ case $TARGET_BRANCH_NAME in
         ;;
     *)
         echo "Not valid"
+        echo "Target branch is not in the list (dev, qa, uat, staging, prod)"
+        echo "Target branch name is:"
+        echo $TARGET_BRANCH_NAME
         ;;
 esac
 
@@ -63,3 +66,5 @@ echo "Salesforce org to be used:"
 echo $CASE_LOG
 echo "Salesforce alias to be used: "
 echo $SALESFORCE_ORG_ALIAS
+
+
