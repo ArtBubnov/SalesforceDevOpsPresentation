@@ -62,17 +62,18 @@ echo -e "\n--- Step 2 execution is finished ---"
 #-------------------------------
 echo -e "\n\n\n--- Step 3.1. Logic execution to define the list of files to be deleted from the Salesforce org ---\n"
 
-echo -e "Find the DISTRUCTIVE difference between organizations\n"
+echo -e "Find the DESTRUCTIVE difference between organizations\n"
 DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
 
-GET_DISTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=R ${DIFF_BRANCH} force-app/main/default)
-echo $GET_DISTRUCTIVE_DIFF
+GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=R ${DIFF_BRANCH} force-app/main/default)
+echo $GET_DESTRUCTIVE_DIFF
 
-DISTRUCTIVE_FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=R ${DIFF_BRANCH} force-app/main/default | tr '\n' ',' | sed 's/\(.*\),/\1 /')
-
-
+DESTRUCTIVE_FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=R ${DIFF_BRANCH} force-app/main/default | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
 
+#sfdx force:source:manifest:create --sourcepath force-app --manifestname destructiveChangesManifest --metadata "DESTRUCTIVE_FILES_TO_DEPLOY"
+sfdx force:source:manifest:create --manifestname destructiveChangesManifest --metadata "DESTRUCTIVE_FILES_TO_DEPLOY"
+sfdx force:source:deploy --manifest destructiveChangesManifest.xml --predestructivechanges manifest/destructiveChangesPre.xml --postdestructivechanges manifest/destructiveChangesPost.xml
 
 
 
