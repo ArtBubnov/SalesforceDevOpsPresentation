@@ -35,21 +35,7 @@ jobs:
           fetch-depth: 0
 
       - uses: sfdx-actions/setup-sfdx@v1
-#        with:
-#          cache: "sfdx"
-#          cache-dependency-path: sfdx.lock
 
-
-
-
-
-#      - name: Checking Cache
-#        uses: actions/cache@v3
-#        with:
-#          path: ~/.sfdx/repository
-#          key: ${{ runner.os }}-sfdx
-#          restore-keys: |
-#            ${{ runner.os }}-sfdx
 
 
       #Install SFDX

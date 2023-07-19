@@ -81,7 +81,7 @@ echo "********"
 echo "********"
 #sfdx force:source:manifest:create --sourcepath force-app --manifestname destructiveChangesManifest --metadata "DESTRUCTIVE_FILES_TO_DEPLOY"
 #sfdx force:source:manifest:create --name destructiveChangesManifest --metadata "$DESTRUCTIVE_FILES_TO_DEPLOY" -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
-sfdx force:source:manifest:create --name destructiveChangesManifest --metadata "SVOCUpdateFields.fieldSet-meta.xml,TACTUpdateFields.fieldSet-meta.xml" -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
+sfdx force:source:manifest:create --name destructiveChangesManifest --metadata "DLT_CaseBatch.cls,DLT_SubscriptionBatch.cls" -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
 echo "LS AFTER"
 ls
 echo "********"
