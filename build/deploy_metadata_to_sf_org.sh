@@ -82,7 +82,7 @@ echo "********"
 
 #sfdx force:source:manifest:create --name destructiveChangesManifest --metadata "DLT_CaseBatch.cls,DLT_SubscriptionBatch.cls" -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
 #sfdx force:source:manifest:create --name destructiveChangesManifest --metadata --array-flag DLT_CaseBatch.cls -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
-sf project generate manifest --name destructiveChangesManifest --metadata "ApexClass:DLT_CaseBatch.cls-meta.xml" --metadata "DLT_SubscriptionBatch.cls-meta.xml" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
+sf project generate manifest --name destructiveChangesManifest --metadata "ApexClass:DLT_CaseBatch.cls-meta.xml" --metadata "ApexClass:DLT_SubscriptionBatch.cls-meta.xml" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
 
 
 echo "LS AFTER"
