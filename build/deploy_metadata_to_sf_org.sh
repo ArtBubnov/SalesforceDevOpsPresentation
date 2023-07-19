@@ -79,9 +79,12 @@ ls
 echo "********"
 echo "********"
 echo "********"
-#sfdx force:source:manifest:create --sourcepath force-app --manifestname destructiveChangesManifest --metadata "DESTRUCTIVE_FILES_TO_DEPLOY"
-#sfdx force:source:manifest:create --name destructiveChangesManifest --metadata "$DESTRUCTIVE_FILES_TO_DEPLOY" -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
-sfdx force:source:manifest:create --name destructiveChangesManifest --metadata "DLT_CaseBatch.cls,DLT_SubscriptionBatch.cls" -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
+
+#sfdx force:source:manifest:create --name destructiveChangesManifest --metadata "DLT_CaseBatch.cls,DLT_SubscriptionBatch.cls" -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
+sfdx force:source:manifest:create --name destructiveChangesManifest --metadata --array-flag DLT_CaseBatch.cls --array-flag DLT_SubscriptionBatch.cls -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
+
+
+
 echo "LS AFTER"
 ls
 echo "********"
