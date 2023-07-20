@@ -59,8 +59,8 @@ jobs:
       #Apex tests execution
       - name: Global Step 3. Predeploy actions
         run: |
-          chmod +x ./build/deploy_metadata_to_sf_org.sh
-          ./build/deploy_metadata_to_sf_org.sh
+          chmod +x ./build/deploy_destructive_changes_to_sf_org.sh
+          ./build/deploy_destructive_changes_to_sf_org.sh
           
         env:
             SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
