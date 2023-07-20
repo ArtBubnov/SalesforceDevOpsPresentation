@@ -71,19 +71,19 @@ mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} 
 
 COUNT=0
 ARRAY_LEN=${#files_array[@]}
-echo "what is the len"
 LOOP_LEN=$( expr $ARRAY_LEN - 1)
 SF_COMMAND_META_STRING=""
 
 while [ $COUNT -le $LOOP_LEN ]
 do
-    CURRENT_ARRAY_PIECE=${files_array[$COUNT]}
-    SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_PIECE}'" '
+    CURRENT_ARRAY_NODE=${files_array[$COUNT]}
+    SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" '
     COUNT=$(( $COUNT +1))
 
 done
 
+
 echo "Step 3 execution result:"
-echo -e "\nList of desteuctive changes metadata"
+echo -e "\nList of desteuctive changes metadata\n"
 echo $SF_COMMAND_META_STRING
 echo -e "\n--- Step 3 execution is finished ---"
