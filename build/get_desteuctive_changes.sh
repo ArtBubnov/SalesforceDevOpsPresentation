@@ -1,6 +1,6 @@
-#mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
+DIFF_BRANCH="origin\qa"
+mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
 
-files_array=$ENV_DESTRUCTIVE_DIFF
 
 COUNT=0
 ARRAY_LEN=${#files_array[@]}
