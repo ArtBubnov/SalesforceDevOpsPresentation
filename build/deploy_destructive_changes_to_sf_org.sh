@@ -94,4 +94,4 @@ echo -e "\n\n\n--- Step 4. Define the list of desteuctive changes metadata---\n"
 sf project generate manifest --name destructiveChangesManifest $SF_COMMAND_META_STRING --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
 
 
-echo "----------TEST------------22"
+echo "----------TEST------------"
