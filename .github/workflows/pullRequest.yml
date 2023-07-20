@@ -30,9 +30,9 @@ jobs:
           echo -e "\n--- Step 1 execution is finished --- "
           
 
-#      - uses: actions/checkout@v3
-#        with:
-#          fetch-depth: 0
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - uses: sfdx-actions/setup-sfdx@v1
 
