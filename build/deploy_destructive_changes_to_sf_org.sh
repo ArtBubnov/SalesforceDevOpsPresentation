@@ -69,6 +69,8 @@ mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} 
 
 COUNT=0
 ARRAY_LEN=${#files_array[@]}
+echo "what is the len"
+echo $ARRAY_LEN
 LOOP_LEN=$( expr $ARRAY_LEN - 1)
 SF_COMMAND_META_STRING=""
 #--source-dir
