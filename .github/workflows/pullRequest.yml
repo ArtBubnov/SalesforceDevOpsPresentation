@@ -30,9 +30,16 @@ jobs:
           echo -e "\n--- Step 1 execution is finished --- "
           
 
+#      - uses: actions/checkout@v3
+#        with:
+#          fetch-depth: 0
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+
+
+
+
 
       - uses: sfdx-actions/setup-sfdx@v1
 
@@ -55,20 +62,9 @@ jobs:
             ACCESS_KEY_SF_DEV: ${{ vars.PLATFORM_USERNAME_GITHUB_VARIABLE_VALUE }}
 
 
-#      - uses: actions/checkout@v3
-#        with:
-#          ref: ${{ github.event.pull_request.base.ref }}
-
-
-
-
-
-
-
-
-
-
-
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
 
 
       #Deploy metadata to the target Salesforce org without saving

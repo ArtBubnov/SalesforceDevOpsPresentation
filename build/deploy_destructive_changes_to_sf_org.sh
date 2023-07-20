@@ -87,3 +87,8 @@ echo "Step 3 execution result:"
 echo -e "\nList of desteuctive changes metadata\n"
 echo $SF_COMMAND_META_STRING
 echo -e "\n--- Step 3 execution is finished ---"
+
+
+
+echo -e "\n\n\n--- Step 4. Generate desteuctive changes metadata manifest---\n"
+sf project generate manifest --name destructiveChangesManifest $SF_COMMAND_META_STRING --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
