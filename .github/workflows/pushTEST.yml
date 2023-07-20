@@ -1,0 +1,22 @@
+#this scenario will be executed in case of creation of a Pull Request 
+name: pull request logic
+
+#depends on the target branch one of the following scenarios:  
+on:
+  push:
+    #PR target branch is: 
+    branches:
+      - 'dev**'
+      - 'qa**'
+      - 'staging**'
+      - 'uat**'
+      - 'prod**'
+
+
+jobs:
+  pre_deploy_logic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Global Step 0. Logger
+        run: |
+          echo -e "--- Step 1. Output global info for the current pipeline ---\n"
