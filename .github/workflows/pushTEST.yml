@@ -36,7 +36,7 @@ jobs:
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
         env:
-          ENV_TEST: echo $TEST
+          ENV_TEST: ${{ TEST }}
 
       - uses: actions/checkout@v3
         with:
