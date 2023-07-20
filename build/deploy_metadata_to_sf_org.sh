@@ -66,7 +66,7 @@ echo -e "Find the DESTRUCTIVE difference between organizations\n"
 DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
 
 GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default)
-#echo $GET_DESTRUCTIVE_DIFF
+echo $GET_DESTRUCTIVE_DIFF
 
 DESTRUCTIVE_FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
@@ -82,7 +82,7 @@ echo "********"
 
 #sfdx force:source:manifest:create --name destructiveChangesManifest --metadata "DLT_CaseBatch.cls,DLT_SubscriptionBatch.cls" -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
 #sfdx force:source:manifest:create --name destructiveChangesManifest --metadata --array-flag DLT_CaseBatch.cls -d "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
-sf project generate manifest --name destructiveChangesManifest --metadata "ApexClass:DLT_CaseBatch.cls-meta.xml" --metadata "ApexClass:DLT_SubscriptionBatch.cls-meta.xml" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
+sf project generate manifest --name destructiveChangesManifest --source-dir "" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
 
 
 echo "LS AFTER"
