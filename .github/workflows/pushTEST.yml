@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: test
+    - name: Global Step 1. SFDX CLI installation
       run: |
-        GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=D qa force-app/main/default)
-        echo $GET_DESTRUCTIVE_DIFF
+        chmod +x ./build/get_desteuctive_changes.sh
+        ./build/get_desteuctive_changes.sh
 
 
 
