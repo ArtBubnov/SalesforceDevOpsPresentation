@@ -18,6 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+
     - name: Global Step 1. GET DIFF
       run: |
         chmod +x ./build/get_desteuctive_changes.sh
