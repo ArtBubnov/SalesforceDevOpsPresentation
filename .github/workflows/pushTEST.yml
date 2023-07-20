@@ -21,3 +21,26 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: dev
+
+      - uses: sfdx-actions/setup-sfdx@v1
+
+      #Check SFDX version
+      - name: Global Step 1. SFDX CLI installation
+        run: |
+          chmod +x ./build/install_dependencies.sh
+          ./build/install_dependencies.sh
+
+      - uses: actions/checkout@v3
+        with:
+          ref: qa
+
+      #Deploy metadata to the target Salesforce org without saving
+      #Apex tests execution
+      - name: Global Step 3. Predeploy actions
+        run: |
+          chmod +x ./build/deploy_destructive_changes_to_sf_org.sh
+          ./build/deploy_destructive_changes_to_sf_org.sh
+          
+        env:
+            SOURCE_BRANCH_NAME: "dev"
+            TARGET_BRANCH_NAME: "qa"
