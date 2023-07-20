@@ -26,14 +26,12 @@ jobs:
 
 
       - name: TEST 01
-        run: |
-          TEST="TEST"
-          echo $TEST
+        run: 
+          echo "{IN_TEST}={TEST_value}" >> "$GITHUB_ENV"
 
       #Check SFDX version
       - name: Global Step 1. SFDX CLI installation
         run: |
-          IN_TEST="TEST_in"
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
 
