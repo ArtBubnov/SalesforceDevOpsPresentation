@@ -78,7 +78,7 @@ SF_COMMAND_META_STRING=""
 while [ $COUNT -le $LOOP_LEN ]
 do
     CURRENT_ARRAY_PIECE=${files_array[$COUNT]}
-    SF_COMMAND_META_STRING="--source-dir "'"'${CURRENT_ARRAY_PIECE}'" '
+    SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_PIECE}'" '
     COUNT=$(( $COUNT +1))
 
 done
