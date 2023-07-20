@@ -63,7 +63,8 @@ echo -e "\n--- Step 2 execution is finished ---"
 
 
 echo -e "\n\n\n--- Step 3. Define the list of desteuctive changes metadata---\n"
-DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
+#DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
+DIFF_BRANCH="origin/"$SOURCE_BRANCH_NAME
 GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default)
 
 mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
