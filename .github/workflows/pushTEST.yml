@@ -29,12 +29,13 @@ jobs:
         DIFF_BRANCH="origin/qa"
         mapfile -t GET_DESTRUCTIVE_DIFF_ARRAY < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
         echo "ENV_DESTRUCTIVE_DIFF=$GET_DESTRUCTIVE_DIFF_ARRAY" >> "$GITHUB_ENV"
-#        chmod +x ./build/get_desteuctive_changes.sh
-#        ./build/get_desteuctive_changes.sh
+
 
     - name: GLOB 2. TEST VAR
       run: |
         echo "${{ env.ENV_DESTRUCTIVE_DIFF }}" # This will output 'yellow'
+        chmod +x ./build/get_desteuctive_changes.sh
+        ./build/get_desteuctive_changes.sh
 
 
 
