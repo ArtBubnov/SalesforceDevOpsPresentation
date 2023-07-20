@@ -29,9 +29,13 @@ jobs:
         DIFF_BRANCH="origin/qa"
         GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default)
         echo $GET_DESTRUCTIVE_DIFF
+        echo "ENV_DESTRUCTIVE_DIFF=$GET_DESTRUCTIVE_DIFF" >> "$GITHUB_ENV"
 #        chmod +x ./build/get_desteuctive_changes.sh
 #        ./build/get_desteuctive_changes.sh
 
+    - name: GLOB 2. TEST VAR
+      run: |
+        echo "${{ env.ENV_DESTRUCTIVE_DIFF }}" # This will output 'yellow'
 
 
 
