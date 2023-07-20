@@ -62,9 +62,9 @@ echo -e "\n--- Step 2 execution is finished ---"
 echo "-----------TEST--------"
 DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
 GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default)
-#echo $GET_DESTRUCTIVE_DIFF
+echo $GET_DESTRUCTIVE_DIFF
 
-mapfile -t files_array < <( git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} force-app/main/default )
+mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
 
 
 COUNT=0
