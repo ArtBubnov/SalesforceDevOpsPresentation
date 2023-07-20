@@ -61,3 +61,4 @@ echo -e "\n--- Step 2 execution is finished ---"
 
 echo "-----------TEST--------"
 pwd
+git checkout origin qa
