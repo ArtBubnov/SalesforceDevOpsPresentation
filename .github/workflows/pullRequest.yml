@@ -1,7 +1,7 @@
 #this scenario will be executed in case of creation of a Pull Request 
 name: pull request logic
 
-#depends on the target branch one of the following scenarios: 
+#depends on the target branch one of the following scenarios:  
 on:
   pull_request:
     #PR target branch is: 
