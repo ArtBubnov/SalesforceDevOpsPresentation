@@ -27,23 +27,11 @@ jobs:
           fetch-depth: 0
 
 
-      - name: TEST 01
-        run:
-          TEST="TEST"
-
-
-
-
-
-
-
       #Install SFDX
       - name: Global Step 1. SFDX CLI installation
         run: |
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
-        env:
-          TEST: $TEST
 
 
       #Login to the target Salesforce org

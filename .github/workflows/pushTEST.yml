@@ -24,11 +24,18 @@ jobs:
 
       - uses: sfdx-actions/setup-sfdx@v1
 
+
+      - name: TEST 01
+        run:
+          TEST="TEST"
+
       #Check SFDX version
       - name: Global Step 1. SFDX CLI installation
         run: |
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
+        env:
+          TEST: $TEST
 
       - uses: actions/checkout@v3
         with:
