@@ -62,17 +62,42 @@ echo -e "\n--- Step 2 execution is finished ---"
 #-------------------------------
 echo -e "\n\n\n--- Step 3.1. Logic execution to define the list of files to be deleted from the Salesforce org ---\n"
 
-echo -e "Find the DISTRUCTIVE difference between organizations\n"
+echo -e "Find the DESTRUCTIVE difference between organizations\n"
 DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
 
-GET_DISTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=R ${DIFF_BRANCH} force-app/main/default)
-echo $GET_DISTRUCTIVE_DIFF
+GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default)
+#echo $GET_DESTRUCTIVE_DIFF
 
-DISTRUCTIVE_FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=R ${DIFF_BRANCH} force-app/main/default | tr '\n' ',' | sed 's/\(.*\),/\1 /')
-
-
+DESTRUCTIVE_FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
 
+
+
+echo "LS BEFORE"
+pwd
+ls
+echo "********"
+echo "********"
+echo "********"
+
+
+
+
+
+
+
+
+SF_TEST="--source-dir "force-app/main/default/classes/batches/DLT_CaseBatch.cls-meta.xml" --source-dir "force-app/main/default/classes/batches/DLT_SubscriptionBatch.cls-meta.xml""
+
+sf project generate manifest --name destructiveChangesManifest $SF_TEST --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
+
+
+echo "LS AFTER"
+ls
+echo "********"
+echo "********"
+echo "********"
+#sfdx force:source:deploy --manifest destructiveChangesManifest.xml -u ${SALESFORCE_TARGET_ORG_ALIAS} --loglevel WARN
 
 
 
