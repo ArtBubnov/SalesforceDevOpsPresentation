@@ -59,10 +59,12 @@ echo -e "\n--- Step 2 execution is finished ---"
 
 
 
-echo "-----------TEST--------"
+
+
+
+echo -e "\n\n\n--- Step 3. Define the list of desteuctive changes metadata---\n"
 DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
 GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default)
-echo $GET_DESTRUCTIVE_DIFF
 
 mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
 
@@ -70,10 +72,8 @@ mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} 
 COUNT=0
 ARRAY_LEN=${#files_array[@]}
 echo "what is the len"
-echo $ARRAY_LEN
 LOOP_LEN=$( expr $ARRAY_LEN - 1)
 SF_COMMAND_META_STRING=""
-#--source-dir
 
 while [ $COUNT -le $LOOP_LEN ]
 do
@@ -82,23 +82,8 @@ do
     COUNT=$(( $COUNT +1))
 
 done
-echo "-----------SF_COMMAND_META_STRING----------"
+
+echo "Step 3 execution result:"
+echo -e "\nList of desteuctive changes metadata"
 echo $SF_COMMAND_META_STRING
-
-
-
-#while [ $COUNT -le $LOOP_LEN ]
-#do
-#    CURRENT_ARRAY_PIECE=${files_array[$COUNT]}
-#    mapfile -t currentArrayPiece_array < <( echo $CURRENT_ARRAY_PIECE| tr '/' '\n' )
-#    currentArrayPiece_array_len=${#currentArrayPiece_array[@]}
-#    LAST_ARRAY_PIECE=$((currentArrayPiece_array_len - 1))
-#    BEFORE_LAST_ARRAY_PIECE=$((currentArrayPiece_array_len - 2))
-#
-#    folder=$(echo ${currentArrayPiece_array[$BEFORE_LAST_ARRAY_PIECE]})
-#    file=$(echo ${currentArrayPiece_array[$LAST_ARRAY_PIECE]})
-
-#    echo -e "$folder: $file"
-#    echo -e "\n"
-#    COUNT=$(( $COUNT +1))
-#done
+echo -e "\n--- Step 3 execution is finished ---"
