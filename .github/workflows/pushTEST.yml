@@ -26,7 +26,7 @@ jobs:
 
 
       - name: TEST 01
-        run:
+        run: |
           TEST="TEST"
           echo $TEST
 
