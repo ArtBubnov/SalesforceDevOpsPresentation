@@ -60,4 +60,4 @@ echo -e "\n--- Step 2 execution is finished ---"
 
 
 echo "-----------TEST--------"
-git checkout qa
+pwd
