@@ -1,4 +1,4 @@
-DIFF_BRANCH="origin\qa"
+DIFF_BRANCH="origin/qa"
 mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
 
 
