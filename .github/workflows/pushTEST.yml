@@ -28,6 +28,7 @@ jobs:
       - name: TEST 01
         run:
           TEST="TEST"
+          echo $TEST
 
       #Check SFDX version
       - name: Global Step 1. SFDX CLI installation
@@ -35,7 +36,7 @@ jobs:
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
         env:
-          TEST: $TEST
+          ENV_TEST: $TEST
 
       - uses: actions/checkout@v3
         with:
