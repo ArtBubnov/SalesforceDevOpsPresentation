@@ -1,3 +1,4 @@
+echo "---------- TEST QA-----------------"
 echo -e "--- Deploy destructive changes to Salesforce org script executions start ---\n\n\n"
 
 
