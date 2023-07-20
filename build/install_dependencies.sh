@@ -5,3 +5,6 @@
 
 echo -e "\n\n\nSalesforce CLI version check\n"
 sudo npm install sfdx --version
+
+echo "----test-----"
+echo $TEST
