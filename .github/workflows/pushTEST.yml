@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Global Step 1. SFDX CLI installation
+    - name: Global Step 1. GET DIFF
       run: |
         chmod +x ./build/get_desteuctive_changes.sh
         ./build/get_desteuctive_changes.sh
