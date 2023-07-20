@@ -34,6 +34,8 @@ jobs:
         run: |
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
+        env:
+          IN_TEST: ${{ vars.IN_TEST }}
 
       - uses: actions/checkout@v3
         with:
