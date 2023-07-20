@@ -33,10 +33,9 @@ jobs:
       #Check SFDX version
       - name: Global Step 1. SFDX CLI installation
         run: |
+          TEST="TEST_in"
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
-        env:
-          ENV_TEST: ${{ vars.TEST }}
 
       - uses: actions/checkout@v3
         with:
