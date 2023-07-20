@@ -18,36 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/checkout@v3
-        with:
-          ref: dev
+    - name: Set the value
+      id: step_one
+      run: |
+        echo "action_state=yellow" >> "$GITHUB_ENV"
+    - name: Use the value
+      id: step_two
+      run: |
 
-      - uses: sfdx-actions/setup-sfdx@v1
-
-
-      - name: TEST 01
-        run: 
-          echo "{IN_TEST}={TEST_value}" >> "$GITHUB_ENV"
-
-      #Check SFDX version
-      - name: Global Step 1. SFDX CLI installation
-        run: |
-          chmod +x ./build/install_dependencies.sh
-          ./build/install_dependencies.sh
-        env:
-          IN_TEST: ${{ vars.IN_TEST }}
-
-      - uses: actions/checkout@v3
-        with:
-          ref: qa
-
-      #Deploy metadata to the target Salesforce org without saving
-      #Apex tests execution
-      - name: Global Step 3. Predeploy actions
-        run: |
-          chmod +x ./build/deploy_destructive_changes_to_sf_org.sh
-          ./build/deploy_destructive_changes_to_sf_org.sh
-          
-        env:
-            SOURCE_BRANCH_NAME: "dev"
-            TARGET_BRANCH_NAME: "qa"
+        echo "${{ env.action_state }}" # This will output 'yellow'
