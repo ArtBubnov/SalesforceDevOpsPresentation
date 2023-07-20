@@ -17,6 +17,7 @@ jobs:
   pre_deploy_logic:
     runs-on: ubuntu-latest
     steps:
-      - name: Global Step 0. Logger
-        run: |
-          echo -e "--- Step 1. Output global info for the current pipeline ---\n"
+
+      - uses: actions/checkout@v3
+        with:
+          ref: dev
