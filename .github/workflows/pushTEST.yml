@@ -27,9 +27,8 @@ jobs:
     - name: Global Step 1. GET DIFF
       run: |
         DIFF_BRANCH="origin/qa"
-        GET_DESTRUCTIVE_DIFF=$(git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default)
-        echo $GET_DESTRUCTIVE_DIFF
-        echo "ENV_DESTRUCTIVE_DIFF=$GET_DESTRUCTIVE_DIFF" >> "$GITHUB_ENV"
+        mapfile -t GET_DESTRUCTIVE_DIFF_ARRAY < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
+        echo "ENV_DESTRUCTIVE_DIFF=$GET_DESTRUCTIVE_DIFF_ARRAY" >> "$GITHUB_ENV"
 #        chmod +x ./build/get_desteuctive_changes.sh
 #        ./build/get_desteuctive_changes.sh
 
