@@ -18,3 +18,5 @@ done
 
 echo "-----------TEST--------------"
 echo $SF_COMMAND_META_STRING
+
+echo "ENV_DESTRUCTIVE_DIFF=$SF_COMMAND_META_STRING" >> "$GITHUB_ENV"
