@@ -33,7 +33,7 @@ jobs:
       #Check SFDX version
       - name: Global Step 1. SFDX CLI installation
         run: |
-          TEST="TEST_in"
+          IN_TEST="TEST_in"
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
 
