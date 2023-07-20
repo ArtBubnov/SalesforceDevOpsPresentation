@@ -1,0 +1,84 @@
+#this scenario will be executed in case of creation of a Pull Request 
+name: pull request logic
+
+#depends on the target branch one of the following scenarios:  
+on:
+  push:
+    #PR target branch is: 
+    branches:
+      - 'dev**'
+      - 'qa**'
+      - 'staging**'
+      - 'uat**'
+      - 'prod**'
+
+
+jobs:
+  pre_deploy_logic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Global Step 0. Logger
+        run: |
+          echo -e "--- Step 1. Output global info for the current pipeline ---\n"
+          echo "Event is:"
+          echo -e "Pull request\n"
+          echo "Pull request source branch is:"
+          echo $GITHUB_HEAD_REF
+          echo -e "\nPull request target branch is:"
+          echo $GITHUB_BASE_REF
+          echo -e "\n--- Step 1 execution is finished --- "
+          
+
+#      - uses: actions/checkout@v3
+#        with:
+#          fetch-depth: 0
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+
+
+
+
+      - uses: sfdx-actions/setup-sfdx@v1
+
+
+
+      #Install SFDX
+      - name: Global Step 1. SFDX CLI installation
+        run: |
+          chmod +x ./build/install_dependencies.sh
+          ./build/install_dependencies.sh
+
+
+      #Login to the target Salesforce org
+      - name: Global Step 2. Salesforce org login
+        run: |
+          chmod +x ./build/login_to_SF_org.sh
+          ./build/login_to_SF_org.sh
+        env:
+            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
+            ACCESS_KEY_SF_DEV: ${{ vars.PLATFORM_USERNAME_GITHUB_VARIABLE_VALUE }}
+
+
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+
+
+      #Deploy metadata to the target Salesforce org without saving
+      #Apex tests execution
+      - name: Global Step 3. Predeploy actions
+        run: |
+          chmod +x ./build/deploy_destructive_changes_to_sf_org.sh
+          ./build/deploy_destructive_changes_to_sf_org.sh
+          
+        env:
+            SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
+
+
+
+
+            #          chmod +x ./build/pre_deploy_actions.sh
+#          ./build/pre_deploy_actions.sh
