@@ -21,7 +21,16 @@ jobs:
 
     - uses: actions/checkout@v3
       with:
-        fetch-depth: 0
+        ref: dev
+
+    - name: Global Step 1. GET DIFF
+      run: |
+        chmod +x ./build/get_desteuctive_changes.sh
+        ./build/get_desteuctive_changes.sh
+
+    - name: GLOB 2. TEST VAR
+      run: |
+        echo "${{ env.ENV_DESTRUCTIVE_DIFF }}"
 
 
 #    - name: Global Step 1. GET DIFF
@@ -36,14 +45,3 @@ jobs:
 #        echo "${{ env.ENV_DESTRUCTIVE_DIFF }}" # This will output 'yellow'
 #        chmod +x ./build/get_desteuctive_changes.sh
 #        ./build/get_desteuctive_changes.sh
-
-
-
-    - name: Global Step 1. GET DIFF
-      run: |
-        chmod +x ./build/get_desteuctive_changes.sh
-        ./build/get_desteuctive_changes.sh
-
-    - name: GLOB 2. TEST VAR
-      run: |
-        echo "${{ env.ENV_DESTRUCTIVE_DIFF }}" # This will output 'yellow'

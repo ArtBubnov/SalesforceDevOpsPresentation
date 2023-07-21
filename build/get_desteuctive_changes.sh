@@ -1,3 +1,7 @@
+echo -e "--- Get destructive changes script executions start ---\n\n\n"
+
+echo -e "--- Step 1. Define destructive changes ---\n"
+
 DIFF_BRANCH="origin/qa"
 mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
 
@@ -15,8 +19,10 @@ do
 
 done
 
-
-echo "-----------TEST--------------"
-echo $SF_COMMAND_META_STRING
-
 echo "ENV_DESTRUCTIVE_DIFF=$SF_COMMAND_META_STRING" >> "$GITHUB_ENV"
+
+
+echo -e "\nStep 1 execution result"
+echo "destructive changes list is: "
+echo $SF_COMMAND_META_STRING
+echo -e "\n--- Step 1 execution is finished ---"
