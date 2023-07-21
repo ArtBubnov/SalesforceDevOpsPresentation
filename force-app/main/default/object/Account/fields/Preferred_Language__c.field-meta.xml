@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Preferred_Language__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Preferred_Language__pc ,
+&quot;English&quot;, IMAGE(&quot;/resource/1668529526000/Flag_GB?&quot;, &quot;Preferred Language = English&quot;) &amp; &quot;English&quot;,
+&quot;Dutch&quot;, IMAGE(&quot;/resource/1668529478000/Flag_NL?&quot;, &quot;Preferred Language = Dutch&quot;)&amp; &quot;Dutch&quot;,
+&quot;French&quot;, IMAGE(&quot;/resource/1668529603000/Flag_FR?&quot;, &quot;Preferred Language = French&quot;)&amp; &quot;French&quot;,
+&quot;German&quot;, IMAGE(&quot;/resource/1668529563000/Flag_DE?&quot;, &quot;Preferred Language = German&quot;) &amp; &quot;German&quot;,
+&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Preferred Language</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
