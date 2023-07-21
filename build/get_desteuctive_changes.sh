@@ -1,5 +1,6 @@
 echo -e "--- Get destructive changes script executions start ---\n\n\n"
 
+
 echo -e "--- Step 1. Define destructive changes ---\n"
 
 DIFF_BRANCH="origin/qa"

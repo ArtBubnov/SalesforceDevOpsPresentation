@@ -21,16 +21,19 @@ jobs:
 
     - uses: actions/checkout@v3
       with:
-        ref: dev
+        ref: ${{ github.event.pull_request.head.ref }}
+
 
     - name: Global Step 1. GET DIFF
       run: |
         chmod +x ./build/get_desteuctive_changes.sh
         ./build/get_desteuctive_changes.sh
 
+        
     - name: GLOB 2. TEST VAR
       run: |
         echo "${{ env.ENV_DESTRUCTIVE_DIFF }}"
+
 
 
 #    - name: Global Step 1. GET DIFF
