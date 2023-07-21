@@ -33,4 +33,4 @@ echo -e "\n--- Step 1 execution is finished ---"
 
 echo "----------TEST---------------"
 
-sf project generate manifest --name destructiveChangesManifest --source-dir "force-app/main/default" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
+sf project generate manifest --name destructiveChangesManifest --source-dir "force-app/main/default/objects/Account/fields/Business_Account__c.field-meta.xml" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
