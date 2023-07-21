@@ -41,9 +41,9 @@ jobs:
         ./build/get_desteuctive_changes.sh
 
 
-#    - uses: actions/checkout@v3
-#      with:
-#        ref: qa
+    - uses: actions/checkout@v3
+      with:
+        ref: qa
 
 
     - name: Global Step 4. Destructive changes predeploy actions
