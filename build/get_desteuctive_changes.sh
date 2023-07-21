@@ -27,3 +27,10 @@ echo -e "\nStep 1 execution result"
 echo "destructive changes list is: "
 echo $SF_COMMAND_META_STRING
 echo -e "\n--- Step 1 execution is finished ---"
+
+
+
+
+echo "----------TEST---------------"
+
+sf project generate manifest --name destructiveChangesManifest --source-dir "force-app/main/default" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
