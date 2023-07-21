@@ -1,4 +1,3 @@
-
 echo -e "--- Predeploy actions script executions start ---\n\n\n"
 
 
