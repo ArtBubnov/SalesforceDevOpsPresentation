@@ -1,0 +1,92 @@
+#this scenario will be executed in case of creation of a Pull Request 
+name: pull request logic
+
+#depends on the target branch one of the following scenarios:  
+on:
+  push:
+    #PR target branch is: 
+    branches:
+      - 'dev**'
+      - 'qa**'
+      - 'staging**'
+      - 'uat**'
+      - 'prod**'
+
+
+jobs:
+  pre_deploy_logic:
+    runs-on: ubuntu-latest
+    steps:
+
+
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Global Step 1. SFDX CLI version check
+      run: |
+          chmod +x ./build/install_dependencies.sh
+          ./build/install_dependencies.sh
+
+
+#    - name: Global Step 2. Salesforce org login
+#      run: |
+#          chmod +x ./build/login_to_SF_org.sh
+#          ./build/login_to_SF_org.sh
+
+
+    - name: Global Step 3. Define destructive changes
+      run: |
+        chmod +x ./build/get_desteuctive_changes.sh
+        ./build/get_desteuctive_changes.sh
+
+
+    - uses: actions/checkout@v3
+      with:
+        ref: qa
+
+
+    - name: Global Step 4. Destructive changes predeploy actions
+      run: |
+        chmod +x ./build/desteuctive_changes_pre_deploy_actions.sh
+        ./build/desteuctive_changes_pre_deploy_actions.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#    - name: Global Step 1. GET DIFF
+#      run: |
+#        DIFF_BRANCH="origin/qa"
+#        mapfile -t GET_DESTRUCTIVE_DIFF_ARRAY < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
+#        echo "ENV_DESTRUCTIVE_DIFF=$GET_DESTRUCTIVE_DIFF_ARRAY" >> "$GITHUB_ENV"
+
+
+#    - name: GLOB 2. TEST VAR
+#      run: |
+#        echo "${{ env.ENV_DESTRUCTIVE_DIFF }}" # This will output 'yellow'
+#        chmod +x ./build/get_desteuctive_changes.sh
+#        ./build/get_desteuctive_changes.sh

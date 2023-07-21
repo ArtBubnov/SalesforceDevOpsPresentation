@@ -1,4 +1,4 @@
-#this scenario will be executed if a Pull Request has been approved
+#this scenario will be executed if a Pull Request has been approved 
 name: pull request approved logic
 
 #depends on the target branch one of the following scenarios will be executed:
@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
 
       #Install SFDX
       - name: Global Step 1. SFDX CLI installation
