@@ -18,6 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      
+    - uses: sfdx-actions/setup-sfdx@v1
+
 
     - uses: actions/checkout@v3
       with:
