@@ -101,4 +101,4 @@ jobs:
 #      run: |
 #        echo "${{ env.ENV_DESTRUCTIVE_DIFF }}" # This will output 'yellow'
 #        chmod +x ./build/get_desteuctive_changes.sh
-#        ./build/get_desteuctive_changes.sh
+#        ./build/get_desteuctive_changes.sh 
