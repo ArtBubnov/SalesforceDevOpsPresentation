@@ -1,4 +1,4 @@
-echo "---------TEST-----------"
+
 echo $ENV_DESTRUCTIVE_DIFF_SF
 #echo $ENV_DESTRUCTIVE_DIFF_SFDX
 
@@ -13,7 +13,18 @@ ls
 #
 
 #sf project generate manifest --name destructiveChangesManifest $ENV_DESTRUCTIVE_DIFF_SF --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
+echo "---------TEST-----------"
+echo "Creating .key file"
+touch access_pass.key
+
+echo -e "\nAdding access data to .key file"
+echo $DEV_SALESFORCE_AUTH_GITHUB_SECRET_VALUE > access_pass.key
+SALESFORCE_ORG_ALIAS="salesforce_dev.org"
+
+echo -e "\nTry SF login"
+sfdx force:auth:sfdxurl:store -f "access_pass.key" -a ${SALESFORCE_ORG_ALIAS} -d
+rm access_pass.key
+
 sf project delete source $ENV_DESTRUCTIVE_DIFF_SF -c  --target-org ${SALESFORCE_ORG_ALIAS}
 
-echo "-----LS after-----"
-ls
+
