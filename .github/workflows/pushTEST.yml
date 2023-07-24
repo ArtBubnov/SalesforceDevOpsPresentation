@@ -1,7 +1,9 @@
-#this scenario will be executed in case of creation of a Pull Request  
+#this scenario will be executed in case of creation of a Pull Request   
 name: pull request logic
 
-#depends on the target branch one of the following scenarios:  
+env:
+  ENV_DESTRUCTIVE_DIFF: ${{ vars.SF_COMMAND_META_STRING}}
+#depends on the target branch one of the following scenarios:   
 on:
   push:
     #PR target branch is: 
@@ -19,6 +21,9 @@ jobs:
     steps:
 
 
+    - uses: sfdx-actions/setup-sfdx@v1
+
+
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
@@ -29,10 +34,10 @@ jobs:
           ./build/install_dependencies.sh
 
 
-#    - name: Global Step 2. Salesforce org login
-#      run: |
-#          chmod +x ./build/login_to_SF_org.sh
-#          ./build/login_to_SF_org.sh
+    - name: Global Step 2. Salesforce org login
+      run: |
+          chmod +x ./build/login_to_SF_org.sh
+          ./build/login_to_SF_org.sh
 
 
     - name: Global Step 3. Define destructive changes
