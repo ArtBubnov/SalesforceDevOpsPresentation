@@ -23,6 +23,11 @@ do
 done
 
 echo "$SF_COMMAND_META_STRING" >> "$GITHUB_ENV"
+echo "------------"
+echo "------------"
+echo "------------"
+echo "------------"
+echo "------------"
 echo "$SFDX_COMMAND_META_STRING" >> "$GITHUB_ENV"
 
 
