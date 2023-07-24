@@ -10,7 +10,7 @@ ls
 
 
 #sfdx force:source:manifest:create $ENV_DESTRUCTIVE_DIFF_SFDX --manifestname zhopaManifest
-#
+# 
 
 #sf project generate manifest --name destructiveChangesManifest $ENV_DESTRUCTIVE_DIFF_SF --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
 echo "---------TEST-----------"
