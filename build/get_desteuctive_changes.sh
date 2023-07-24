@@ -15,7 +15,8 @@ SF_COMMAND_META_STRING=""
 while [ $COUNT -le $LOOP_LEN ]
 do
     CURRENT_ARRAY_NODE=${files_array[$COUNT]}
-    SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" '
+#    SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" '
+    SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--sourcepath "'"'${CURRENT_ARRAY_NODE}'" '
     COUNT=$(( $COUNT +1))
 
 done
@@ -35,5 +36,5 @@ echo "----------TEST---------------"
 
 #sf project generate manifest --name destructiveChangesManifest --source-dir "force-app/main/default" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
 #sf project generate manifest --name destructiveChangesManifest --source-dir "force-app/main/default/objects/Account/fields/Business_Account__c.field-meta.xml" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
-sfdx force:source:manifest:create --sourcepath "force-app/main/default/objects/Account/fieldSets/SVOCUpdateFields.fieldSet-meta.xml" --manifestname zhopaManifest
+sfdx force:source:manifest:create $SF_COMMAND_META_STRING --manifestname zhopaManifest
 
