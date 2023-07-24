@@ -1,5 +1,5 @@
 echo "---------TEST-----------"
-echo $SF_COMMAND_META_STRING
+echo $ENV_DESTRUCTIVE_DIFF
 
 echo "-----LS before-----"
 ls
