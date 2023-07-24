@@ -8,7 +8,7 @@ ls
 #sf project generate manifest --name destructiveChangesManifest --source-dir "force-app/main/default/object/Account/fields/Business_Account__c.field-meta.xml" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
 
 
-sfdx force:source:manifest:create $SF_COMMAND_META_STRING --manifestname zhopaManifest
+sfdx force:source:manifest:create $ENV_DESTRUCTIVE_DIFF --manifestname zhopaManifest
 
 echo "-----LS after-----"
 ls
