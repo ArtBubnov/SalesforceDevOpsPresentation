@@ -1,4 +1,3 @@
-#11
 echo -e "--- Get destructive changes script executions start ---\n\n\n"
 
 
@@ -22,28 +21,17 @@ do
 
 done
 
-echo "$SF_COMMAND_META_STRING" >> "$GITHUB_ENV"
-echo "------------"
-echo "------------"
-echo "------------"
-echo "------------"
-echo "------------"
-echo "$SFDX_COMMAND_META_STRING" >> "$GITHUB_ENV"
+echo "ENV_DESTRUCTIVE_DIFF_SF=$SF_COMMAND_META_STRING" >> "$GITHUB_ENV"
+echo "ENV_DESTRUCTIVE_DIFF_SFDX=$SFDX_COMMAND_META_STRING" >> "$GITHUB_ENV"
 
 
 echo -e "\nStep 1 execution result"
 echo "destructive changes list is: "
 echo $SF_COMMAND_META_STRING
+echo "------------"
+echo "------------"
+echo "------------"
+echo "------------"
+echo "------------"
+echo $SFDX_COMMAND_META_STRING
 echo -e "\n--- Step 1 execution is finished ---"
-
-
-
-
-#echo "----------TEST---------------"
-
-#sf project generate manifest --name destructiveChangesManifest --source-dir "force-app/main/default" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
-#sf project generate manifest --name destructiveChangesManifest --source-dir "force-app/main/default/objects/Account/fields/Business_Account__c.field-meta.xml" --output-dir "/home/runner/work/SalesforceDevOpsPresentation/SalesforceDevOpsPresentation"
-
-
-#sfdx force:source:manifest:create $SF_COMMAND_META_STRING --manifestname zhopaManifest
-
