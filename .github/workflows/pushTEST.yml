@@ -3,6 +3,8 @@ name: pull request logic
 
 env:
   ENV_DESTRUCTIVE_DIFF_SF: ${{ vars.SF_COMMAND_META_STRING }}
+  TARGET_BRANCH_NAME: "qa"
+  SOURCE_BRANCH_NAME: "dev"
 #  ENV_DESTRUCTIVE_DIFF_SFDX: ${{ vars.SFDX_COMMAND_META_STRING }}
 #depends on the target branch one of the following scenarios:   
 on:
