@@ -1,6 +1,11 @@
 #this scenario will be executed if a Pull Request has been approved 
 name: pull request approved logic
 
+
+env:
+  SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+  TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
+  ACCESS_KEY_SF_DEV: ${{ vars.PLATFORM_USERNAME_GITHUB_VARIABLE_VALUE }}
 #depends on the target branch one of the following scenarios will be executed:
 on:
   pull_request_review:
@@ -20,6 +25,8 @@ jobs:
           echo ${{ github.event.pull_request.head.ref }}
           echo -e "\nPull request target branch is:"
           echo ${{ github.event.pull_request.base.ref }}
+          echo "TEST"
+          echo $ACCESS_KEY_SF_DEV
         
           
       - uses: actions/checkout@v3
@@ -27,7 +34,9 @@ jobs:
           fetch-depth: 0
 
 
-      #Install SFDX
+      - uses: sfdx-actions/setup-sfdx@v1
+
+
       - name: Global Step 1. SFDX CLI installation
         run: |
           chmod +x ./build/install_dependencies.sh
@@ -39,8 +48,6 @@ jobs:
         run: |
           chmod +x ./build/login_to_SF_org.sh
           ./build/login_to_SF_org.sh
-        env:
-            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
 
       
       #Deploy metadata to the target Salesforce org
@@ -48,6 +55,3 @@ jobs:
         run: |
           chmod +x ./build/deploy_metadata_to_sf_org.sh
           ./build/deploy_metadata_to_sf_org.sh
-        env:
-            SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
-            TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
