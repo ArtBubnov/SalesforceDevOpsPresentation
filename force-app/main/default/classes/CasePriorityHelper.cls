@@ -1,3 +1,1 @@
-public class MyHelloWorld {
-    system.debug('Hello World');
- }
+system.debug('Hello World');
