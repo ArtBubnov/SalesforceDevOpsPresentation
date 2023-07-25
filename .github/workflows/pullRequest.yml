@@ -39,21 +39,23 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: sfdx-actions/setup-sfdx@v1
+
+      - name: Global Step 1. Salesforce CLI version check
+        run: |
+          chmod +x ./build/install_dependencies.sh
+          ./build/install_dependencies.sh
 
 #      - uses: actions/checkout@v3
 #        with:
 #          ref: ${{ github.event.pull_request.head.ref }}
 
 
-      - uses: sfdx-actions/setup-sfdx@v1
 
 
 
-      #Install SFDX
-      - name: Global Step 1. Salesforce CLI version check
-        run: |
-          chmod +x ./build/install_dependencies.sh
-          ./build/install_dependencies.sh
+
+
 
 
       #Login to the target Salesforce org
