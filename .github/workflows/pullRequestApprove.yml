@@ -25,6 +25,8 @@ jobs:
           echo ${{ github.event.pull_request.head.ref }}
           echo -e "\nPull request target branch is:"
           echo ${{ github.event.pull_request.base.ref }}
+          echo "TEST"
+          echo $ACCESS_KEY_SF_DEV
         
           
       - uses: actions/checkout@v3
