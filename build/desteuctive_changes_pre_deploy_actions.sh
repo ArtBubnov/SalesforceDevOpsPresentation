@@ -25,6 +25,4 @@ echo -e "\nTry SF login"
 sfdx force:auth:sfdxurl:store -f "access_pass.key" -a ${SALESFORCE_ORG_ALIAS} -d
 rm access_pass.key
 
-sf project delete source $ENV_DESTRUCTIVE_DIFF_SF -c  --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
-
-
+sf project delete source $ENV_DESTRUCTIVE_DIFF_SF --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
