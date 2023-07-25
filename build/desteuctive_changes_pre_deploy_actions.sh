@@ -1,6 +1,6 @@
 
 echo $ENV_DESTRUCTIVE_DIFF_SF
-#echo $ENV_DESTRUCTIVE_DIFF_SFDX
+#echo $ENV_DESTRUCTIVE_DIFF_SFDX 
 
 echo "-----LS before-----"
 ls
