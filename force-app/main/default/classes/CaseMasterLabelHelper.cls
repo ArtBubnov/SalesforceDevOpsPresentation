@@ -1,1 +1,1 @@
-system.debug('Hello World');
+'Hello World'
