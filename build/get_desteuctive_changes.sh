@@ -34,3 +34,4 @@ echo $SF_COMMAND_META_STRING
 #echo "------------"
 #echo "------------"
 #echo $SFDX_COMMAND_META_STRING
+echo -e "\n--- Step 1 execution is finished ---"
