@@ -35,6 +35,14 @@ jobs:
       with:
         fetch-depth: 0
 
+        
+    - name: TEST
+      run: |
+        sudo npm sfdx --version
+
+
+
+
     - name: Global Step 1. SFDX CLI version check
       run: |
           chmod +x ./build/install_dependencies.sh
