@@ -170,12 +170,15 @@ cd /home/runner/work/presentation/presentation
 case $TARGET_BRANCH_NAME in
     "dev")
         echo "--- PLACEHOLDER ---.Deployment to DEV SF ENV has started"
+        #TBD SHOULD BE UNCOMMENTED
+        sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_TARGET_ORG_ALIAS} --loglevel WARN
         #TBD SHOULD BE UNCOMMENTED 
         sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_TARGET_ORG_ALIAS} --loglevel WARN
         ;;
     "qa")
         #echo "--- PLACEHOLDER ---.Deployment to QA SF ENV has started"
         #TBD SHOULD BE UNCOMMENTED
+        sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_TARGET_ORG_ALIAS} --loglevel WARN
         sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_TARGET_ORG_ALIAS} --loglevel WARN
         ;;
     "staging")
