@@ -8,6 +8,7 @@ echo -e "Global variables display:\n"
 
 echo -e "\nTarget branch name is:"
 echo $TARGET_BRANCH_NAME
+echo $ACCESS_KEY_SF_DEV
 
 echo -e "\n\n--- Step 1 execution is finished ---"
 
@@ -23,31 +24,31 @@ case $TARGET_BRANCH_NAME in
     "dev")
         CASE_LOG="dev"
         #ACCESS_KEY_SF_DEV stored as GitHub secret variable
-        ACCESS_KEY_SF=$DEV_SALESFORCE_AUTH_GITHUB_SECRET_VALUE
+        ACCESS_KEY_SF=$ACCESS_KEY_SF_DEV
         SALESFORCE_ORG_ALIAS="salesforce_dev.org"
         ;;
     "qa")
         CASE_LOG="qa"
         #ACCESS_KEY_SF_QA stored as GitHub secret variable
-        ACCESS_KEY_SF=$DEV_SALESFORCE_AUTH_GITHUB_SECRET_VALUE
+        ACCESS_KEY_SF=$ACCESS_KEY_SF_DEV
         SALESFORCE_ORG_ALIAS="salesforce_qa.org"
         ;;
     "uat")
         CASE_LOG="uat"
         #ACCESS_KEY_SF_UAT stored as GitHub secret variable
-        ACCESS_KEY_SF=$DEV_SALESFORCE_AUTH_GITHUB_SECRET_VALUE
+        ACCESS_KEY_SF=$ACCESS_KEY_SF_DEV
         SALESFORCE_ORG_ALIAS="salesforce_uat.org"
         ;;
     "staging")
         CASE_LOG="staging"
         #ACCESS_KEY_SF_STAGING stored as GitHub secret variable
-        ACCESS_KEY_SF=$DEV_SALESFORCE_AUTH_GITHUB_SECRET_VALUE
+        ACCESS_KEY_SF=$ACCESS_KEY_SF_DEV
         SALESFORCE_ORG_ALIAS="salesforce_staging.org"        
         ;;
     "prod")
         CASE_LOG="prod"
         #ACCESS_KEY_SF_PROD stored as GitHub secret variable
-        ACCESS_KEY_SF=$DEV_SALESFORCE_AUTH_GITHUB_SECRET_VALUE
+        ACCESS_KEY_SF=$ACCESS_KEY_SF_DEV
         SALESFORCE_ORG_ALIAS="salesforce_prod.org"
         ;;
     *)
@@ -78,6 +79,8 @@ echo -e "\nAdding access data to .key file"
 echo $ACCESS_KEY_SF > access_pass.key
 
 echo -e "\nTry SF login"
+echo "-----TEST----"
 sfdx force:auth:sfdxurl:store -f "access_pass.key" -a ${SALESFORCE_ORG_ALIAS} -d
+#sf org login sfdx-url --sfdx-url-file "access_pass.key" --alias ${SALESFORCE_ORG_ALIAS}
 rm access_pass.key
 echo -e "--- Step 3.  execution is finished"
