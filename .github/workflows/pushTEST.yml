@@ -61,14 +61,12 @@ jobs:
         ./build/get_destructive_changes.sh
 
 
-    - name: Global Step TEST. SFDX CLI version check
-      run: |
-          chmod +x ./build/install_dependencies.sh
-          ./build/install_dependencies.sh
+    - uses: actions/checkout@v3
+      if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED }} == true
+      with:
+        ref: qa
 
-    - name: Global Step TEST2. Global var test
-      run: |
-        echo $DESTRUCTIVE_CHANGES_PRESENTED
+
 
     - name: Global Step 4. Define destructive changes
       run: |
