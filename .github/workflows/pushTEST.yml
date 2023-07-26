@@ -66,6 +66,10 @@ jobs:
           chmod +x ./build/install_dependencies.sh
           ./build/install_dependencies.sh
 
+    - name: Global Step TEST2. Global var test
+      run: |
+        echo $DESTRUCTIVE_CHANGES_PRESENTED
+
 
 #    - uses: actions/checkout@v3
 #      with:

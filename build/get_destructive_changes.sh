@@ -23,7 +23,7 @@ if [[ $ARRAY_LEN != 0 ]]
         done
 
         echo "ENV_DESTRUCTIVE_DIFF_SF=$SF_COMMAND_META_STRING" >> "$GITHUB_ENV"
-
+        echo "DESTRUCTIVE_CHANGES_PRESENTED=true" >> "$GITHUB_ENV"
 
         echo -e "\nStep 1 execution result"
         echo "destructive changes list is: "
@@ -34,5 +34,6 @@ if [[ $ARRAY_LEN != 0 ]]
         echo -e "Script exection will be finished with 0 code status\n"
         echo "The workflow execution will be proceeded"
         echo -e "\n--- Step 1 execution is finished ---"
+        echo "DESTRUCTIVE_CHANGES_PRESENTED=false" >> "$GITHUB_ENV"
         exit 0
 fi
