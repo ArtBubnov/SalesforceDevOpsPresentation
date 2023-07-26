@@ -16,22 +16,14 @@ while [ $COUNT -le $LOOP_LEN ]
 do
     CURRENT_ARRAY_NODE=${files_array[$COUNT]}
     SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" '    
-#    SFDX_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--sourcepath "'"'${CURRENT_ARRAY_NODE}'" '
     COUNT=$(( $COUNT +1))
 
 done
 
 echo "ENV_DESTRUCTIVE_DIFF_SF=$SF_COMMAND_META_STRING" >> "$GITHUB_ENV"
-#echo "ENV_DESTRUCTIVE_DIFF_SFDX=$SFDX_COMMAND_META_STRING" >> "$GITHUB_ENV"
 
 
 echo -e "\nStep 1 execution result"
 echo "destructive changes list is: "
 echo $SF_COMMAND_META_STRING
-#echo "------------"
-#echo "------------"
-#echo "------------"
-#echo "------------"
-#echo "------------"
-#echo $SFDX_COMMAND_META_STRING
 echo -e "\n--- Step 1 execution is finished ---"

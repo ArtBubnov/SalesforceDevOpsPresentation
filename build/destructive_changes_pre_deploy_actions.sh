@@ -1,6 +1,10 @@
+echo -e "--- Get destructive changes script executions start ---\n\n\n"
+
+
+echo -e "--- Step 1. Define destructive changes ---\n"
 
 echo $ENV_DESTRUCTIVE_DIFF_SF
-#echo $ENV_DESTRUCTIVE_DIFF_SFDX
+#echo $ENV_DESTRUCTIVE_DIFF_SFDX 
 
 echo "-----LS before-----"
 ls
