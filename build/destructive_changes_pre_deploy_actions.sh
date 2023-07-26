@@ -5,7 +5,7 @@ echo -e "--- Step 1. Define destructive changes ---\n"
 #echo "---------TEST-----------"
 #echo "Creating .key file"
 #touch access_pass.key
-
+#
 #echo -e "\nAdding access data to .key file"
 #echo $DEV_SALESFORCE_AUTH_GITHUB_SECRET_VALUE > access_pass.key
 #SALESFORCE_ORG_ALIAS="salesforce_dev.org"
