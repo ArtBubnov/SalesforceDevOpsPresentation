@@ -1,4 +1,4 @@
-#this scenario will be executed in case of creation of a Pull Request         
+#this scenario will be executed in case of creation of a Pull Request          
 name: pull request logic
 
 env:
@@ -30,13 +30,17 @@ jobs:
 
     - uses: sfdx-actions/setup-sfdx@v1
 
+
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
+        
     - name: TEST
       run: |
         sudo npm sfdx --version
+
+
 
 
     - name: Global Step 1. SFDX CLI version check
