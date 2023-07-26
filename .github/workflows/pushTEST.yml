@@ -70,6 +70,10 @@ jobs:
       run: |
         echo $DESTRUCTIVE_CHANGES_PRESENTED
 
+    - name: Global Step 4. Define destructive changes
+      run: |
+        chmod +x ./build/destructive_changes_pre_deploy_actions.sh
+        ./build/destructive_changes_pre_deploy_actions.sh
 
 #    - uses: actions/checkout@v3
 #      with:

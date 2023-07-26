@@ -16,4 +16,14 @@ echo -e "--- Step 1. Define destructive changes ---\n"
 
 sf project delete source $ENV_DESTRUCTIVE_DIFF_SF -с --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
 
+
+if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
+    then
+        echo "TRUE"
+    else
+        echo "FALSE"
+fi
+
+
+
 echo -e "\n\n--- Step 1 execution is finished ---"
