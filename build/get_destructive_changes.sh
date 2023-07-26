@@ -9,6 +9,11 @@ mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} 
 
 COUNT=0
 ARRAY_LEN=${#files_array[@]}
+echo "---------TEST---------"
+echo $ARRAY_LEN
+
+
+echo "---------TEST---------"
 LOOP_LEN=$( expr $ARRAY_LEN - 1)
 SF_COMMAND_META_STRING=""
 
