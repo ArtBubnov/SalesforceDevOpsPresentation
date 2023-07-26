@@ -1,4 +1,4 @@
-echo -e "--- Get destructive changes script executions start ---\n\n\n"
+echo -e "--- Define destructive changes script executions start ---\n\n\n"
 
 
 echo -e "--- Step 1. Define destructive changes ---\n"
