@@ -13,6 +13,14 @@ echo "---------TEST---------"
 echo $ARRAY_LEN
 
 
+if [[ $ARRAY_LEN != 0 ]]
+then
+  echo "TRUE"
+else
+  echo "FALSE"
+fi
+
+
 echo "---------TEST---------"
 LOOP_LEN=$( expr $ARRAY_LEN - 1)
 SF_COMMAND_META_STRING=""
