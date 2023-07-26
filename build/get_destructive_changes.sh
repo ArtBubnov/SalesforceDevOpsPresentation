@@ -18,6 +18,7 @@ then
   echo "TRUE"
 else
   echo "FALSE"
+  exit 0
 fi
 
 
