@@ -1,4 +1,4 @@
-echo -e "--- Define destructive changes script executions start ---\n\n\n"
+echo -e "--- Define destructive changes script executions start ---\n"
 
 
 echo -e "--- Step 1. Define destructive changes ---\n"
@@ -30,8 +30,9 @@ if [[ $ARRAY_LEN != 0 ]]
         echo $SF_COMMAND_META_STRING
         echo -e "\n--- Step 1 execution is finished ---"
     else
-        echo "Due to there are no destructive changes"
-        echo "Script exection will be finished with 0 code status"
+        echo "Due to there are no destructive changes detected"
+        echo -e "Script exection will be finished with 0 code status\n"
+        echo "The workflow execution will be procided"
         echo -e "\n--- Step 1 execution is finished ---"
         exit 0
 fi
