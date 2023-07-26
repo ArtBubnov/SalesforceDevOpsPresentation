@@ -73,6 +73,11 @@ jobs:
             chmod +x ./build/login_to_SF_org.sh
             ./build/login_to_SF_org.sh
 
+      - name: Global Step 4. Salesforce org login
+        run: |
+          chmod +x ./build/destructive_changes_pre_deploy_actions.sh
+          ./build/destructive_changes_pre_deploy_actions.sh
+
 
       - uses: actions/checkout@v3
         with:
@@ -82,10 +87,7 @@ jobs:
 
 
           
-      #- name: Global Step 4. Salesforce org login
-      #  run: |
-      #    chmod +x ./build/destructive_changes_pre_deploy_actions.sh
-      #    ./build/destructive_changes_pre_deploy_actions.sh
+
 
 
 
