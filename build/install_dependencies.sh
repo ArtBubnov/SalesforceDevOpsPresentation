@@ -13,6 +13,6 @@ TEST="force-app/main/default"
 echo $TEST
 cd $TEST
 #cd -- "$TEST"
-#ls
+ls
 
 #cd -- "$dirName"
