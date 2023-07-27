@@ -11,6 +11,7 @@ ls
 echo "---------LS-2-----------"
 TEST="force-app/main/default"
 echo $TEST
+echo "---------LS-2-----------"
 cd $TEST
 #cd -- "$TEST"
 ls
