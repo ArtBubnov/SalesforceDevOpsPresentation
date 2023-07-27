@@ -4,7 +4,7 @@ sudo npm sfdx --version
 echo "---------TEST----------"
 echo "---------PWD-----------"
 pwd
-TEST2=$( echo pwd )
+TEST2=$(pwd)
 
 echo "---------LS-----------"
 ls
