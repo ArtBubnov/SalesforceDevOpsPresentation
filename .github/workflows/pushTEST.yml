@@ -32,10 +32,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: CD TEST
-      run: |
-        chmod +x ./build/install_dependencies.sh
-        ./build/install_dependencies.sh
 
     - uses: sfdx-actions/setup-sfdx@v1
 
