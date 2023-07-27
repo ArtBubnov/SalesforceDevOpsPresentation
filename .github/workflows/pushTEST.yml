@@ -25,7 +25,7 @@ on:
 jobs:
   pre_deploy_logic:
     name: pre_deploy_logic
-    environment: uat
+    environment: $TARGET_BRANCH_NAME
     runs-on: ubuntu-latest
     steps:
 
