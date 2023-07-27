@@ -9,8 +9,9 @@ echo "---------LS-----------"
 ls
 
 echo "---------LS-2-----------"
-$TEST=force-app/main/default
-cd -- "$TEST"
+$TEST="force-app/main/default"
+cd "$TEST"
+#cd -- "$TEST"
 ls
 
 #cd -- "$dirName"
