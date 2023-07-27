@@ -9,7 +9,7 @@ echo "---------LS-----------"
 ls
 
 echo "---------LS-2-----------"
-TEST="test"
+TEST="force-app/main/default"
 echo $TEST
 #cd "$TEST"
 #cd -- "$TEST"
