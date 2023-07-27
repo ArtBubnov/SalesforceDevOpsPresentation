@@ -9,5 +9,6 @@ echo "---------LS-----------"
 ls
 
 echo "---------LS-2-----------"
-cd force-app/main/default
+$TEST="force-app/main/default"
+cd $TEST
 ls
