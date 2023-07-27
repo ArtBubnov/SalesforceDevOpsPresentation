@@ -36,9 +36,11 @@ jobs:
         fetch-depth: 0
 
         
-    - name: TEST
+    - name: TEST        
       run: |
-        sudo npm sfdx --version
+        echo ${{ env.TEST_ENVIRONMENTS_VAR_DEV }}
+      env:
+          name: dev
 
 
 
@@ -62,16 +64,16 @@ jobs:
 
 
     - uses: actions/checkout@v3
-      if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == false }} 
+      if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
       with:
         ref: qa
 
 
 
-    - name: Global Step 4. Define destructive changes
-      run: |
-        chmod +x ./build/destructive_changes_pre_deploy_actions.sh
-        ./build/destructive_changes_pre_deploy_actions.sh
+#    - name: Global Step 4. Define destructive changes
+#      run: |
+#        chmod +x ./build/destructive_changes_pre_deploy_actions.sh
+#        ./build/destructive_changes_pre_deploy_actions.sh
 
 #    - uses: actions/checkout@v3
 #      with:
