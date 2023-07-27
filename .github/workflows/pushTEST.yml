@@ -24,6 +24,9 @@ on:
 
 jobs:
   pre_deploy_logic:
+    name: pre_deploy_logic
+    environment:
+      name: dev
     runs-on: ubuntu-latest
     steps:
 
@@ -39,8 +42,6 @@ jobs:
     - name: TEST        
       run: |
         echo ${{ env.TEST_ENVIRONMENTS_VAR_DEV }}
-      env:
-          name: dev
 
 
 
