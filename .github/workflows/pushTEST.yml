@@ -42,6 +42,7 @@ jobs:
       run: |
         echo "ENV TEST ECHO"
         echo ${{ vars.TEST_ENVIRONMENTS_VAR }}
+        echo $TARGET_BRANCH_NAME
 
 
 
