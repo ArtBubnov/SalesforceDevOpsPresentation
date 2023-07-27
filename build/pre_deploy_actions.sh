@@ -12,6 +12,7 @@ echo "Source branch name is:"
 echo $SOURCE_BRANCH_NAME
 echo -e "\nTarget branch name is:"
 echo $TARGET_BRANCH_NAME
+HOME_DIR=$(pwd)
 
 echo -e "\n--- Step 1 execution is finished ---"
 
@@ -44,7 +45,7 @@ echo -e "\n--- Step 2 execution is finished ---"
 echo -e "\n\n\n--- Step 3. Logic execution to define the list of apex tests to be executed during deployment to the Salesforce org ---"
 
 #get to classes directory to define the list of tests to be executed
-cd force-app/main/default/classes/tests
+cd $APEX_TESTS_DIRECTORY
 
 #add all the files in the folder into array
 mapfile -t classes_files_array < <( ls )
@@ -82,7 +83,7 @@ LIST_OF_FILES_TO_TEST_TRUNC=$((echo ${LIST_OF_FILES_TO_TEST}) | cut -c 1-$NUMBER
 echo -e "\nStep 3 execution result:"
 echo -e "\nList of apex tests to be executed:"
 echo $LIST_OF_FILES_TO_TEST_TRUNC
-cd /home/runner/work/presentation/presentation
+cd $HOME_DIR
 
 echo -e "\n--- Step 3 execution is finished ---"
 
