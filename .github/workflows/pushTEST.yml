@@ -8,6 +8,7 @@ env:
   DEV_SALESFORCE_AUTH_GITHUB_SECRET_VALUE: ${{ vars.PLATFORM_USERNAME_GITHUB_VARIABLE_VALUE}}
   SALESFORCE_ORG_ALIAS: ${{ vars.SALESFORCE_ORG_ALIAS }}
   ACCESS_KEY_SF: ${{ secrets.ACCESS_KEY_SF }}
+  SALESFORCE_META_DIRECTORY: "force-app/main/default"
 
 
   
@@ -31,7 +32,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-
+    - name: CD TEST
+      run: |
+        pwd
+        ls
 
     - uses: sfdx-actions/setup-sfdx@v1
 
