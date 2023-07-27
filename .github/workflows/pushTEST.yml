@@ -41,7 +41,7 @@ jobs:
     - name: ENV TEST        
       run: |
         echo "ENV TEST ECHO"
-        echo ${{ env.TEST_ENVIRONMENTS_VAR_DEV }}
+        echo ${{ vars.TEST_ENVIRONMENTS_VAR_DEV }}
 
 
 
