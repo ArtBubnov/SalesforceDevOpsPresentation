@@ -25,8 +25,7 @@ on:
 jobs:
   pre_deploy_logic:
     name: pre_deploy_logic
-    environment:
-      name: dev
+    environment: dev
     runs-on: ubuntu-latest
     steps:
 
