@@ -49,22 +49,22 @@ jobs:
           ./build/install_dependencies.sh
 
 
-    - name: Global Step 2. Salesforce org login
-      run: |
-          chmod +x ./build/login_to_SF_org.sh
-          ./build/login_to_SF_org.sh
+#    - name: Global Step 2. Salesforce org login
+#      run: |
+#          chmod +x ./build/login_to_SF_org.sh
+#          ./build/login_to_SF_org.sh
 
 
-    - name: Global Step 3. Define destructive changes
-      run: |
-        chmod +x ./build/get_destructive_changes.sh
-        ./build/get_destructive_changes.sh
+#    - name: Global Step 3. Define destructive changes
+#      run: |
+#        chmod +x ./build/get_destructive_changes.sh
+#        ./build/get_destructive_changes.sh
 
 
-    - uses: actions/checkout@v3
-      if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
-      with:
-        ref: qa
+#    - uses: actions/checkout@v3
+#      if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
+#      with:
+#        ref: qa
 
 
 
