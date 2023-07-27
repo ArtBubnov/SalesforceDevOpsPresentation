@@ -1,4 +1,4 @@
-echo -e "Logging into Salesforce Org\n\n\n"
+echo -e "--- Logging into Salesforce Org ---\n\n\n"
 
 
 
