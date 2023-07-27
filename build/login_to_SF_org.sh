@@ -9,6 +9,7 @@ echo -e "Global variables display:"
 
 echo -e "\nTarget branch name is:"
 echo $TARGET_BRANCH_NAME
+echo -e "\nSalesforce org alias is:"
 echo $SALESFORCE_ORG_ALIAS
 
 echo -e "\n\n--- Step 1 execution is finished ---"
