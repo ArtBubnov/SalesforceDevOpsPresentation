@@ -7,3 +7,7 @@ pwd
 
 echo "---------LS-----------"
 ls
+
+echo "---------LS-2-----------"
+cd force-app
+ls
