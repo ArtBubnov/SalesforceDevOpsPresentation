@@ -53,7 +53,10 @@ jobs:
           ./build/install_dependencies.sh
 
 
-
+    - name: Global Step 2. Salesforce org login
+      run: |
+          chmod +x ./build/login_to_SF_org.sh
+          ./build/login_to_SF_org.sh
 
 
 #    - name: Global Step 3. Define destructive changes
