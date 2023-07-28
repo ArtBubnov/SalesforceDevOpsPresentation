@@ -12,6 +12,9 @@ echo "Source branch name is:"
 echo $SOURCE_BRANCH_NAME
 echo -e "\nTarget branch name is:"
 echo $TARGET_BRANCH_NAME
+echo -e "\nSalesforce org alias is:"
+echo $SALESFORCE_ORG_ALIAS
+
 HOME_DIR=$(pwd)
 
 echo -e "\n--- Step 1 execution is finished ---"

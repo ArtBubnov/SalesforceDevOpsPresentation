@@ -2,23 +2,7 @@ echo -e "\n\n\nSalesforce CLI version check\n"
 sudo npm sfdx --version
 
 echo "---------TEST----------"
-echo "---------PWD-----------"
-pwd
-TEST2=$(pwd)
 
-echo "---------LS-----------"
-ls
-
-echo "---------LS-2-----------"
-TEST="force-app/main/default"
-echo $TEST
-echo "---------LS-2-----------"
-cd $TEST
-#cd -- "$TEST"
-ls
-
-echo "---------LS-3-----------"
-cd $TEST2
-ls
+sf project delete source --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml" -с --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
 
 #cd -- "$dirName"

@@ -5,6 +5,11 @@ name: pull request approved logic
 env:
   SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
   TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
+  SALESFORCE_ORG_ALIAS: ${{ vars.SALESFORCE_ORG_ALIAS }}
+
+
+
+
   ACCESS_KEY_SF_DEV: ${{ vars.PLATFORM_USERNAME_GITHUB_VARIABLE_VALUE }}
 #depends on the target branch one of the following scenarios will be executed:
 on:
@@ -25,33 +30,67 @@ jobs:
           echo ${{ github.event.pull_request.head.ref }}
           echo -e "\nPull request target branch is:"
           echo ${{ github.event.pull_request.base.ref }}
-          echo "TEST"
-          echo $ACCESS_KEY_SF_DEV
         
           
+
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
 
+
       - uses: sfdx-actions/setup-sfdx@v1
 
 
-      - name: Global Step 1. SFDX CLI installation
+
+      - name: Global step 1. Salesforce CLI version check
         run: |
-          chmod +x ./build/install_dependencies.sh
-          ./build/install_dependencies.sh
+          sudo npm sfdx --version
 
 
-      #Login to the target Salesforce org
+
       - name: Global Step 2. Salesforce org login
         run: |
-          chmod +x ./build/login_to_SF_org.sh
-          ./build/login_to_SF_org.sh
+            chmod +x ./build/login_to_SF_org.sh
+            ./build/login_to_SF_org.sh
 
-      
-      #Deploy metadata to the target Salesforce org
-      - name: Deploy metadata to Salesforce org
+
+
+      - name: Global Step 3. Define destructive changes
+        run: |
+          chmod +x ./build/get_destructive_changes.sh
+          ./build/get_destructive_changes.sh
+
+
+
+      #Due to the destructive metadata is represented only on the tharget branch
+      #workflow will swith to the target branch
+      #to perform destructive changes actions
+
+      - uses: actions/checkout@v3
+        if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+
+
+
+      - name: Global Step 4. Deploy destructive changes without saving
+        run: |
+          chmod +x ./build/deploy_destructive_changes_actions.sh
+          ./build/deploy_destructive_changes_actions.sh
+
+
+
+      #After the destructive changes activities workflow should
+      #get back to the source branch to perform following steps    
+      - uses: actions/checkout@v3
+        if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+
+  
+      - name: Global Step 5. Deploy metadata to Salesforce org
         run: |
           chmod +x ./build/deploy_metadata_to_sf_org.sh
           ./build/deploy_metadata_to_sf_org.sh
