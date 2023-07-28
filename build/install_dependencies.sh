@@ -3,6 +3,6 @@ sudo npm sfdx --version
 
 echo "---------TEST----------"
 
-sf project delete source --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml" -с --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
+sf project delete source --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml" --check-only --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
 
 #cd -- "$dirName"
