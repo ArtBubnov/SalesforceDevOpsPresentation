@@ -43,6 +43,7 @@ LOOP_LEN=$( expr $ARRAY_LEN - 1)
 
 while [ $COUNT -le $LOOP_LEN ]
 do
+    echo "----"${SALESFORCE_DEPLOY_LOG[$COUNT]}"----"
     if [[ ${SALESFORCE_DEPLOY_LOG[$COUNT]} == *"ID:"* ]];
     then
         echo "TRUE"
