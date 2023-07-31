@@ -21,16 +21,34 @@ echo "---------TEST----------"
 
 #--dry-run - test run without saving
 TEST=$(sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml" --dry-run --test-level NoTestRun --target-org ${SALESFORCE_ORG_ALIAS})
-mapfile -t SALESFORCE_DEPLOY_LOG < < ( echo $TEST )
+
+#mapfile -t SALESFORCE_DEPLOY_LOG < < ( echo $TEST )
 
 echo "--------- DEPLOY TEST ------------"
 echo $TEST
-echo ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG[@]}
+#echo ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG[@]}
 
-echo "--------- ARRAY TEST ---------"
-echo $ARRAY_LEN
-echo "--------- ARRAY ITEM TEST ---------"
-echo ${SALESFORCE_DEPLOY_LOG[0]}
+#echo "--------- ARRAY TEST ---------"
+#echo $ARRAY_LEN
+#echo "--------- ARRAY ITEM TEST ---------"
+#echo ${SALESFORCE_DEPLOY_LOG[0]}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #--source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml"
 
 
