@@ -12,7 +12,7 @@ echo "---------TEST----------"
 #sf project deploy report --job-id $deploy_id --dev-debug
 
 #sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS}
-TEST=$(sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS})
+TEST=$(sfdx force:mdapi:deploy:report --jobid "0Af5j00000SwqOb" -u ${SALESFORCE_ORG_ALIAS})
 
 echo "-----------------SFDX-------------"
 echo $TEST
