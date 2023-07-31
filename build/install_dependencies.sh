@@ -20,24 +20,58 @@ echo "---------TEST----------"
 
 
 #--dry-run - test run without saving 
-TEST=$(sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml" --dry-run --test-level NoTestRun --target-org ${SALESFORCE_ORG_ALIAS})
+SALESFORCE_DEPLOY_LOG=$(sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml" --dry-run --test-level NoTestRun --target-org ${SALESFORCE_ORG_ALIAS})
 
-mapfile -t SALESFORCE_DEPLOY_LOG < <( echo $TEST | tr ' ' '\n' | sed 's/\(.*\),/\1 /' )
+
+mapfile -t SALESFORCE_DEPLOY_LOG_ARRAY < <( echo $SALESFORCE_DEPLOY_LOG | tr ' ' '\n' | sed 's/\(.*\),/\1 /' )
 
 echo "--------- DEPLOY TEST ------------"
 echo $TEST
-echo ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG[@]}
+echo ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG_ARRAY[@]}
 
 echo "--------- ARRAY TEST ---------"
 echo $ARRAY_LEN
 echo "--------- ARRAY ITEM TEST ---------"
-echo ${SALESFORCE_DEPLOY_LOG[0]}
+echo ${SALESFORCE_DEPLOY_LOG_ARRAY[0]}
+
+
+
+COUNT=0
+ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG[@]}
+SALESFORCE_DEPLOY_ID=""
+LOOP_LEN=$( expr $ARRAY_LEN - 1)
+
+while [ $COUNT -le $LOOP_LEN ]
+do
+    if [[ ${SALESFORCE_DEPLOY_LOG[$COUNT]} == *"ID:"* ]];
+    then
+        SALESFORCE_DEPLOY_ID_ARRAY_POSITION=$(( $COUNT +1))
+        SALESFORCE_DEPLOY_ID=${SALESFORCE_DEPLOY_LOG[$SALESFORCE_DEPLOY_ID_ARRAY_POSITION]}
+    fi
+COUNT=$(( $COUNT +1))
+done
+
+echo "--------- SALESFORCE_DEPLOY_ID ------------"
+echo $SALESFORCE_DEPLOY_ID
 
 
 
 
+#    if [[ ${classes_files_array[$COUNT]} == *"Test.cls"* ]];
+#    then
 
+#        if [[ ${classes_files_array[$COUNT]} == *"cls-meta.xml"* ]];
+#        then
+#            LIST_OF_XML_FILES=$LIST_OF_XML_FILES{classes_files_array[$COUNT]}","
+#        else
+#            LEN_OF_FILE_NAME=${#classes_files_array[$COUNT]}
+#            NUMBER_OF_SYMBOLS_TO_TRUNCATE=$( expr $LEN_OF_FILE_NAME - 4 )
+#            FILE_NAME_TRUNC=$((echo ${classes_files_array[$COUNT]}) | cut -c 1-$NUMBER_OF_SYMBOLS_TO_TRUNCATE )
+#            LIST_OF_FILES_TO_TEST=$LIST_OF_FILES_TO_TEST$FILE_NAME_TRUNC","
+#        fi#
 
+#    fi 
+#    COUNT=$(( $COUNT +1))
 
 
 
