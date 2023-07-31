@@ -22,7 +22,7 @@ echo $SALESFORCE_DEPLOYMENT_STATUS_INFO
 
 
 
-if [[ $SALESFORCE_DEPLOYMENT_STATUS_INFO == *"Succeeded Deployed"* ]];
+if [[ ${SALESFORCE_DEPLOYMENT_STATUS_INFO} == *"Succeeded Deployed"* ]];
 then
    echo "DEPLOY PASSED" 
 else
