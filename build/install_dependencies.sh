@@ -8,7 +8,7 @@ echo "---------TEST----------"
 
 #sf project deploy report --use-most-recent
 #sf project deploy report --job-id "0Af5j00000TcKLhCAN"
-sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN"
+sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS}
 
 #0Af5j00000TcKLhCAN
 #0Af0x000017yLUFCA2
