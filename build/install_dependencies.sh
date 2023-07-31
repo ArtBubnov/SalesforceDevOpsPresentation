@@ -10,9 +10,9 @@ echo "---------TEST----------"
 #sf project deploy report --job-id "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS}
 #deploy_id="0Af5j00000TcKLhCAN"
 #sf project deploy report --job-id $deploy_id --dev-debug
-TEST=""
-sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS} > $TEST
 
+#sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS}
+TEST=$(sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS})
 
 echo "-----------------SFDX-------------"
 echo $TEST
