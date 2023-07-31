@@ -35,7 +35,7 @@ echo "--------- ARRAY ITEM TEST ---------"
 echo ${SALESFORCE_DEPLOY_LOG_ARRAY[0]}
 
 
-
+echo -e "\n\n\n LOOPS START----\n"
 COUNT=0
 ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG[@]}
 SALESFORCE_DEPLOY_ID=""
@@ -52,7 +52,7 @@ do
     else   
         echo "FALSE"
     fi
-COUNT=$(( $COUNT +1))
+    COUNT=$(( $COUNT +1))
 done
 
 echo "--------- SALESFORCE_DEPLOY_ID ------------"
