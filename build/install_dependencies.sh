@@ -37,21 +37,13 @@ echo ${SALESFORCE_DEPLOY_LOG_ARRAY[0]}
 
 echo -e "\n\n\n LOOPS START----\n"
 COUNT=0
-ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG[@]}
+ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG_ARRAY[@]}
 SALESFORCE_DEPLOY_ID=""
 LOOP_LEN=$( expr $ARRAY_LEN - 1)
 
 while [ $COUNT -le $LOOP_LEN ]
 do
-    echo "----"${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]}"----"
-    if [[ ${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]} == *"ID:"* ]];
-    then
-        echo "TRUE"
-        SALESFORCE_DEPLOY_ID_ARRAY_POSITION=$(( $COUNT +1))
-        SALESFORCE_DEPLOY_ID=${SALESFORCE_DEPLOY_LOG_ARRAY[$SALESFORCE_DEPLOY_ID_ARRAY_POSITION]}
-    else   
-        echo "FALSE"
-    fi
+    echo ${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]}
     COUNT=$(( $COUNT +1))
 done
 
@@ -61,6 +53,36 @@ echo $SALESFORCE_DEPLOY_ID
 
 
 
+
+
+
+
+
+
+
+
+
+
+# echo "----"${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]}"----"
+#    if [[ ${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]} == *"ID:"* ]];
+#    then
+#        echo "TRUE"
+#        SALESFORCE_DEPLOY_ID_ARRAY_POSITION=$(( $COUNT +1))
+#        SALESFORCE_DEPLOY_ID=${SALESFORCE_DEPLOY_LOG_ARRAY[$SALESFORCE_DEPLOY_ID_ARRAY_POSITION]}
+#    else   
+#        echo "FALSE"
+#    fi
+
+
+
+
+
+
+
+
+
+
+#---------------------------------------------------------
 #    if [[ ${classes_files_array[$COUNT]} == *"Test.cls"* ]];
 #    then
 
