@@ -16,5 +16,14 @@ echo "---------TEST----------"
 #0Af5j00000SwqOb - bad
 #0Af5j00000TcKLhCAN - good
 
-sf project deploy start 
+
+
+
+#--dry-run - test run without saving
+sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml" --dry-run --test-level NoTestRun --target-org ${SALESFORCE_ORG_ALIAS}
+
+
+--source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml"
+
+
 #sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l RunSpecifiedTests -r "$LIST_OF_FILES_TO_TEST_TRUNC" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
