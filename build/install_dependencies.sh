@@ -43,8 +43,15 @@ LOOP_LEN=$( expr $ARRAY_LEN - 1)
 
 while [ $COUNT -le $LOOP_LEN ]
 do
-    echo ${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]}
-    COUNT=$(( $COUNT +1))
+    if [[ ${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]} == *"ID:"* ]];
+    then
+        echo "TRUE"
+        SALESFORCE_DEPLOY_ID_ARRAY_POSITION=$(( $COUNT +1))
+        SALESFORCE_DEPLOY_ID=${SALESFORCE_DEPLOY_LOG_ARRAY[$SALESFORCE_DEPLOY_ID_ARRAY_POSITION]}
+    else   
+        echo "FALSE"
+        COUNT=$(( $COUNT +1))
+    fi
 done
 
 echo "--------- SALESFORCE_DEPLOY_ID ------------"
