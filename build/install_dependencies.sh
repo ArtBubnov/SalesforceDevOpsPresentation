@@ -28,10 +28,10 @@ echo "--------- DEPLOY TEST ------------"
 echo $TEST
 echo ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG[@]}
 
-#echo "--------- ARRAY TEST ---------"
-#echo $ARRAY_LEN
-#echo "--------- ARRAY ITEM TEST ---------"
-#echo ${SALESFORCE_DEPLOY_LOG[0]}
+echo "--------- ARRAY TEST ---------"
+echo $ARRAY_LEN
+echo "--------- ARRAY ITEM TEST ---------"
+echo ${SALESFORCE_DEPLOY_LOG[0]}
 
 
 
