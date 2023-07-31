@@ -48,6 +48,7 @@ do
         echo "TRUE"
         SALESFORCE_DEPLOY_ID_ARRAY_POSITION=$(( $COUNT +1))
         SALESFORCE_DEPLOY_ID=${SALESFORCE_DEPLOY_LOG_ARRAY[$SALESFORCE_DEPLOY_ID_ARRAY_POSITION]}
+        COUNT=$(( $COUNT +1))
     else   
         echo "FALSE"
         COUNT=$(( $COUNT +1))
