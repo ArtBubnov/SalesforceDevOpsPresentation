@@ -21,21 +21,11 @@ echo "---------TEST----------"
 
 #--dry-run - test run without saving 
 SALESFORCE_DEPLOY_LOG=$(sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml" --dry-run --test-level NoTestRun --target-org ${SALESFORCE_ORG_ALIAS})
-
+echo SALESFORCE_DEPLOY_LOG
 
 mapfile -t SALESFORCE_DEPLOY_LOG_ARRAY < <( echo $SALESFORCE_DEPLOY_LOG | tr ' ' '\n' | sed 's/\(.*\),/\1 /' )
 
-echo "--------- DEPLOY TEST ------------"
-echo $TEST
-echo ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG_ARRAY[@]}
 
-echo "--------- ARRAY TEST ---------"
-echo $ARRAY_LEN
-echo "--------- ARRAY ITEM TEST ---------"
-echo ${SALESFORCE_DEPLOY_LOG_ARRAY[0]}
-
-
-echo -e "\n\n\n LOOPS START----\n"
 COUNT=0
 ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG_ARRAY[@]}
 SALESFORCE_DEPLOY_ID=""
@@ -45,12 +35,10 @@ while [ $COUNT -le $LOOP_LEN ]
 do
     if [[ ${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]} == *"ID:"* ]];
     then
-        echo "TRUE"
         SALESFORCE_DEPLOY_ID_ARRAY_POSITION=$(( $COUNT +1))
         SALESFORCE_DEPLOY_ID=${SALESFORCE_DEPLOY_LOG_ARRAY[$SALESFORCE_DEPLOY_ID_ARRAY_POSITION]}
         COUNT=$(( $COUNT +1))
     else   
-        echo "FALSE"
         COUNT=$(( $COUNT +1))
     fi
 done
@@ -59,53 +47,9 @@ echo "--------- SALESFORCE_DEPLOY_ID ------------"
 echo $SALESFORCE_DEPLOY_ID
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-# echo "----"${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]}"----"
-#    if [[ ${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]} == *"ID:"* ]];
-#    then
-#        echo "TRUE"
-#        SALESFORCE_DEPLOY_ID_ARRAY_POSITION=$(( $COUNT +1))
-#        SALESFORCE_DEPLOY_ID=${SALESFORCE_DEPLOY_LOG_ARRAY[$SALESFORCE_DEPLOY_ID_ARRAY_POSITION]}
-#    else   
-#        echo "FALSE"
-#    fi
-
-
-
-
-
-
-
-
-
-
-#---------------------------------------------------------
-#    if [[ ${classes_files_array[$COUNT]} == *"Test.cls"* ]];
-#    then
-
-#        if [[ ${classes_files_array[$COUNT]} == *"cls-meta.xml"* ]];
-#        then
-#            LIST_OF_XML_FILES=$LIST_OF_XML_FILES{classes_files_array[$COUNT]}","
-#        else
-#            LEN_OF_FILE_NAME=${#classes_files_array[$COUNT]}
-#            NUMBER_OF_SYMBOLS_TO_TRUNCATE=$( expr $LEN_OF_FILE_NAME - 4 )
-#            FILE_NAME_TRUNC=$((echo ${classes_files_array[$COUNT]}) | cut -c 1-$NUMBER_OF_SYMBOLS_TO_TRUNCATE )
-#            LIST_OF_FILES_TO_TEST=$LIST_OF_FILES_TO_TEST$FILE_NAME_TRUNC","
-#        fi#
-
-#    fi 
-#    COUNT=$(( $COUNT +1))
+echo "--------- SALESFORCE_DEPLOYMENT_STATUS_INFO ------------"
+SALESFORCE_DEPLOYMENT_STATUS_INFO=$(sfdx force:mdapi:deploy:report --jobid ${SALESFORCE_DEPLOY_ID} -u ${SALESFORCE_ORG_ALIAS})
+echo $SALESFORCE_DEPLOYMENT_STATUS_INFO
 
 
 
