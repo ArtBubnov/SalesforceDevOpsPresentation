@@ -12,10 +12,19 @@ echo "---------TEST----------"
 #sf project deploy report --job-id $deploy_id --dev-debug
 
 #sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS}
-TEST=$(sfdx force:mdapi:deploy:report --jobid "0Af5j00000SwqOb" -u ${SALESFORCE_ORG_ALIAS})
+
+#0Af5j00000SwqOb - bad
+#0Af5j00000TcKLhCAN - good
+SALESFORCE_DEPLOYMENT_STATUS_INFO=$(sfdx force:mdapi:deploy:report --jobid "0Af5j00000SwqOb" -u ${SALESFORCE_ORG_ALIAS})
 
 echo "-----------------SFDX-------------"
-echo $TEST
-#0Af5j00000TcKLhCAN
-#0Af0x000017yLUFCA2
-#0Af5j00000TcEze
+echo $SALESFORCE_DEPLOYMENT_STATUS_INFO
+
+
+
+if [[ $SALESFORCE_DEPLOYMENT_STATUS_INFO == *"Succeeded Deployed"* ]];
+then
+   echo "DEPLOY PASSED" 
+else
+    echo "DEPLOY FAILED"
+fi
