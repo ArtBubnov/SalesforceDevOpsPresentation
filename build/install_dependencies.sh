@@ -21,7 +21,7 @@ echo "---------TEST----------"
 
 #--dry-run - test run without saving 
 SALESFORCE_DEPLOY_LOG=$(sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount1.cls-meta.xml" --dry-run --test-level NoTestRun --target-org ${SALESFORCE_ORG_ALIAS})
-echo SALESFORCE_DEPLOY_LOG
+echo $SALESFORCE_DEPLOY_LOG
 
 mapfile -t SALESFORCE_DEPLOY_LOG_ARRAY < <( echo $SALESFORCE_DEPLOY_LOG | tr ' ' '\n' | sed 's/\(.*\),/\1 /' )
 
