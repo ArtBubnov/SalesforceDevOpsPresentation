@@ -26,7 +26,7 @@ mapfile -t SALESFORCE_DEPLOY_LOG < <( echo $TEST )
 
 echo "--------- DEPLOY TEST ------------"
 echo $TEST
-#echo ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG[@]}
+echo ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG[@]}
 
 #echo "--------- ARRAY TEST ---------"
 #echo $ARRAY_LEN
