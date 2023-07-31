@@ -15,24 +15,6 @@ echo "---------TEST----------"
 
 #0Af5j00000SwqOb - bad
 #0Af5j00000TcKLhCAN - good
-SALESFORCE_DEPLOYMENT_STATUS_INFO=$(sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS})
 
-echo "-----------------SFDX-------------"
-echo $SALESFORCE_DEPLOYMENT_STATUS_INFO
-$SALESFORCE_DEPLOYMENT_STATUS_SUCCESS_INFO="Succeeded Deployed"
-
-
-
-if [[ "$SALESFORCE_DEPLOYMENT_STATUS_INFO" == *"$SALESFORCE_DEPLOYMENT_STATUS_SUCCESS_INFO"* ]];
-then
-   echo "DEPLOY PASSED" 
-else
-    echo "DEPLOY FAILED"
-fi
-
-
-STR='GNU/Linux is an operating system'
-SUB='Linux'
-if [[ "$STR" == *"$SUB"* ]]; then
-  echo "It's there."
-fi
+sf project deploy start 
+#sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l RunSpecifiedTests -r "$LIST_OF_FILES_TO_TEST_TRUNC" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN

@@ -5,7 +5,11 @@ name: pull request approved logic
 env:
   SOURCE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
   TARGET_BRANCH_NAME: ${{ github.event.pull_request.base.ref }}
+  ENV_DESTRUCTIVE_DIFF_SF: ${{ vars.SF_COMMAND_META_STRING }}
   SALESFORCE_ORG_ALIAS: ${{ vars.SALESFORCE_ORG_ALIAS }}
+  ACCESS_KEY_SF: ${{ secrets.ACCESS_KEY_SF }}
+  SALESFORCE_META_DIRECTORY: "force-app/main/default"
+  APEX_TESTS_DIRECTORY: "force-app/main/default/classes/tests"
   PR_NUMBER: ${{ github.event.number }}
 
 
