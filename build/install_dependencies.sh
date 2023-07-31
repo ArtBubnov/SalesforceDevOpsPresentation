@@ -19,10 +19,11 @@ SALESFORCE_DEPLOYMENT_STATUS_INFO=$(sfdx force:mdapi:deploy:report --jobid "0Af5
 
 echo "-----------------SFDX-------------"
 echo $SALESFORCE_DEPLOYMENT_STATUS_INFO
+$SALESFORCE_DEPLOYMENT_STATUS_SUCCESS_INFO="Succeeded Deployed"
 
 
 
-if [[ "$SALESFORCE_DEPLOYMENT_STATUS_INFO" == *"Succeeded Deployed"* ]];
+if [[ "$SALESFORCE_DEPLOYMENT_STATUS_INFO" == *"$SALESFORCE_DEPLOYMENT_STATUS_SUCCESS_INFO"* ]];
 then
    echo "DEPLOY PASSED" 
 else
