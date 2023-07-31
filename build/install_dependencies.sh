@@ -15,7 +15,7 @@ echo "---------TEST----------"
 
 #0Af5j00000SwqOb - bad
 #0Af5j00000TcKLhCAN - good
-SALESFORCE_DEPLOYMENT_STATUS_INFO=$(sfdx force:mdapi:deploy:report --jobid "0Af5j00000SwqOb" -u ${SALESFORCE_ORG_ALIAS})
+SALESFORCE_DEPLOYMENT_STATUS_INFO=$(sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS})
 
 echo "-----------------SFDX-------------"
 echo $SALESFORCE_DEPLOYMENT_STATUS_INFO
