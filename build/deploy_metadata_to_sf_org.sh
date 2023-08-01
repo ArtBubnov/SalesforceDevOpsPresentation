@@ -33,7 +33,7 @@ echo $GET_DIFF
 FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
 
-echo -e "\nStep 2 execution is finished"
+echo -e "\nStep 2 execution result"
 echo "Step 3 execution result:"
 echo -e "\nFiles to deploy"
 echo $FILES_TO_DEPLOY
@@ -46,8 +46,16 @@ echo -e "\n--- Step 2 execution is finished ---"
 echo -e "\n\n\n--- Step 3. Deploy data to the target Salesforce org ----"
 
 SALESFORCE_DEPLOY_LOG=$(sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN)
+
+echo -e "\n--- Step 3 execution result ---"
+echo "Step 3 execution result:"
+echo "Salesforce deploy result is:"
 echo $SALESFORCE_DEPLOY_LOG
 
+echo -e "\n--- Step 3 execution is finished ---"
+
+
+echo -e "\n\n\n--- Step 4. Define Salesforce org deploy ID ----"
 mapfile -t SALESFORCE_DEPLOY_LOG_ARRAY < <( echo $SALESFORCE_DEPLOY_LOG | tr ' ' '\n' | sed 's/\(.*\),/\1 /' )
 
 
@@ -68,7 +76,11 @@ do
     fi
 done
 
-echo $SALESFORCE_DEPLOY_ID
+
 echo "POSITIVE_CHANGES_SALESFORCE_DEPLOY_ID=$SALESFORCE_DEPLOY_ID" >> "$GITHUB_ENV"
 
-echo "--- Step 3 execution is finished ---"
+echo -e "\n--- Step 4 execution result ---"
+echo "Step 4 execution result:"
+echo "Salesforce org deploy ID is :"
+echo $SALESFORCE_DEPLOY_ID
+echo "--- Step 4 execution is finished ---"
