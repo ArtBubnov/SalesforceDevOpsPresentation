@@ -45,6 +45,30 @@ echo -e "\n--- Step 2 execution is finished ---"
 
 echo -e "\n\n\n--- Step 3. Deploy data to the target Salesforce org ----"
 
-sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
+SALESFORCE_DEPLOY_LOG=$(sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN)
+echo $SALESFORCE_DEPLOY_LOG
+
+mapfile -t SALESFORCE_DEPLOY_LOG_ARRAY < <( echo $SALESFORCE_DEPLOY_LOG | tr ' ' '\n' | sed 's/\(.*\),/\1 /' )
+
+
+COUNT=0
+ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG_ARRAY[@]}
+SALESFORCE_DEPLOY_ID=""
+LOOP_LEN=$( expr $ARRAY_LEN - 1)
+
+while [ $COUNT -le $LOOP_LEN ]
+do
+    if [[ ${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]} == *"ID:"* ]];
+    then
+        SALESFORCE_DEPLOY_ID_ARRAY_POSITION=$(( $COUNT +1))
+        SALESFORCE_DEPLOY_ID=${SALESFORCE_DEPLOY_LOG_ARRAY[$SALESFORCE_DEPLOY_ID_ARRAY_POSITION]}
+        COUNT=$(( $COUNT +1))
+    else   
+        COUNT=$(( $COUNT +1))
+    fi
+done
+
+echo $SALESFORCE_DEPLOY_ID
+echo "POSITIVE_CHANGES_SALESFORCE_DEPLOY_ID=$SALESFORCE_DEPLOY_ID" >> "$GITHUB_ENV"
 
 echo "--- Step 3 execution is finished ---"

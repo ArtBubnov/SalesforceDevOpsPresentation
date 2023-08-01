@@ -6,7 +6,14 @@ echo -e "\n\n\nMerge PR\n"
 #echo -e "--- Step 1. Define Salesforce deployment status ---\n"
 
 
-#SALESFORCE_DEPLOYMENT_STATUS_INFO=$(sfdx force:mdapi:deploy:report --jobid "0Af5j00000TcKLhCAN" -u ${SALESFORCE_ORG_ALIAS})
+#if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
+#    then
+#        DESTRUCTIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO=$(sfdx force:mdapi:deploy:report --jobid ${$DESTRUCTIVE_CHANGES_SALESFORCE_DEPLOY_ID} -u ${SALESFORCE_ORG_ALIAS})
+#    else
+#        DESTRUCTIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO="Skiped"
+#fi
+
+#POSITIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO=$(sfdx force:mdapi:deploy:report --jobid ${$POSITIVE_CHANGES_SALESFORCE_DEPLOY_ID} -u ${SALESFORCE_ORG_ALIAS})
 
 
 #echo -e "\nStep 1 execution result:"
