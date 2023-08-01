@@ -55,16 +55,16 @@ jobs:
 
 
 
-      - name: Global step 1. Salesforce CLI version check
-        run: |
-          sudo npm sfdx --version
+#      - name: Global step 1. Salesforce CLI version check
+#        run: |
+#          sudo npm sfdx --version
 
 
 
-      - name: Global Step TEST. TEST
-        run: |
-            chmod +x ./build/install_dependencies.sh
-            ./build/install_dependencies.sh
+#      - name: Global Step TEST. TEST
+#        run: |
+#            chmod +x ./build/install_dependencies.sh
+#            ./build/install_dependencies.sh
 
 
 

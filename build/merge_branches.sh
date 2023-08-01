@@ -3,8 +3,7 @@ echo -e "\n\n\nMerge PR\n"
 
 
 
-#echo -e "--- Step 1. Define Salesforce deployment status ---\n"
-
+echo -e "--- Step 1. Define Salesforce deployment status ---\n"
 
 #if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
 #    then
@@ -13,12 +12,42 @@ echo -e "\n\n\nMerge PR\n"
 #        DESTRUCTIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO="Skiped"
 #fi
 
+
+
+#if [[ $DESTRUCTIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO == *"Succeeded Deployed"* || $DESTRUCTIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO == *"Skiped"* ]];
+#    then
+#        DESTRUCTIVE_DEPLOYMENT_PASSED=true
+#    else
+#        DESTRUCTIVE_DEPLOYMENT_PASSED=false
+#fi
+
+
+
 #POSITIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO=$(sfdx force:mdapi:deploy:report --jobid ${$POSITIVE_CHANGES_SALESFORCE_DEPLOY_ID} -u ${SALESFORCE_ORG_ALIAS})
 
+#if [[ $POSITIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO == *"Succeeded Deployed"* ]]
+#    then
+#        POSITIVE_DEPLOYMENT_PASSED=true
+#    else
+#        POSITIVE_DEPLOYMENT_PASSED=false
+#fi
+
+
+
+#if [[ $POSITIVE_DEPLOYMENT_PASSED == true && $DESTRUCTIVE_DEPLOYMENT_PASSED == true ]]
+#    then
+#        PR_MERGE=true
+#    else
+#        PR_MERGE=false
+#fi
 
 #echo -e "\nStep 1 execution result:"
-#echo -e "\nSalesforce deployment status is:"
-#echo $SALESFORCE_DEPLOYMENT_STATUS_INFO
+#echo -e "\nSalesforce destructive deployment passed:"
+#echo $DESTRUCTIVE_DEPLOYMENT_PASSED
+#echo -e "\nSalesforce positive deployment passed:"
+#echo $POSITIVE_DEPLOYMENT_PASSED
+#echo -e "\nShould the PR be merged"
+#echo $PR_MERGE
 #echo -e "\n--- Step 1 execution is finished ---"
 
 
@@ -27,9 +56,7 @@ echo -e "\n\n\nMerge PR\n"
 #echo -e "--- Step 2. Define if PR should be merged ---\n"
 
 
-#$SALESFORCE_DEPLOYMENT_STATUS_SUCCESS_INFO="Succeeded Deployed"
-
-#if [[ "$SALESFORCE_DEPLOYMENT_STATUS_INFO" == *"$SALESFORCE_DEPLOYMENT_STATUS_SUCCESS_INFO"* ]];
+#if [[ $PR_MERGE == true ]];
 #then
 #    echo "Due to the Salesforce deploymen has been successful"
 #    echo "PR should be merget"
