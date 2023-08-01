@@ -4,6 +4,7 @@ echo -e "--- Define destructive changes script execution start ---\n"
 echo -e "--- Step 1. Define destructive changes ---\n"
 
 DIFF_BRANCH="origin/$TARGET_BRANCH_NAME"
+
 mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} )
 
 

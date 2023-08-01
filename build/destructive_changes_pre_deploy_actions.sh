@@ -1,7 +1,7 @@
-echo -e "--- Get destructive changes script executions start ---\n\n\n"
+echo -e "--- Deploy destructive changes script executions start ---\n\n\n"
 
 
-echo -e "--- Step 1. Define destructive changes ---\n"
+echo -e "--- Step 1. Deploy destructive changes without saving ---\n"
 
 if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
     then
