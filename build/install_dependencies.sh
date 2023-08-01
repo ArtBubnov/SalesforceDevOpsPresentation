@@ -69,9 +69,15 @@ echo $POSITIVE_DEPLOYMENT_PASSED
 echo "------ DESTRUCTIVE_DEPLOYMENT_PASSED ----"
 echo $DESTRUCTIVE_DEPLOYMENT_PASSED
 
+if [[ $POSITIVE_DEPLOYMENT_PASSED == true || $DESTRUCTIVE_DEPLOYMENT_PASSED=true ]]
+    then
+        PR_MERGE=true
+    else
+        PR_MERGE=false
+fi
 
-
-
+echo "------ PR_MERGE ----"
+echo $PR_MERGE
 
 
 
