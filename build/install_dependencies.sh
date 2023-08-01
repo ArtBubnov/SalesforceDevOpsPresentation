@@ -27,7 +27,7 @@ echo "---------TEST----------"
 
 
 #--------------
-DESTRUCTIVE_CHANGES_PRESENTED=true
+DESTRUCTIVE_CHANGES_PRESENTED=false
 #
 
 if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
