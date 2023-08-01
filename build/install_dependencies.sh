@@ -42,7 +42,7 @@ fi
 echo "---------- TEST -----------"
 echo $DESTRUCTIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO
 
-if [[ $DESTRUCTIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO == *"Succeeded Deployed"* ]]
+if [[ $DESTRUCTIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO == *"Succeeded Deployed"* ] || [ $DESTRUCTIVE_SALESFORCE_DEPLOYMENT_STATUS_INFO == *"Skiped"*] ]
     then
         echo TRUE
     else
