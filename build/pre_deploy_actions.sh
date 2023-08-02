@@ -64,10 +64,10 @@ echo "Step 3 execution result:"
 echo -e "\nFiles to deploy"
 echo $FILES_TO_DEPLOY
 
-echo "TEST=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
+echo "TEST_FILES_TO_DEPLOY=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
 
 echo "-----test-----"
-echo $TEST
+echo $TEST_FILES_TO_DEPLOY
 
 echo -e "\n--- Step 2 execution is finished ---"
 
