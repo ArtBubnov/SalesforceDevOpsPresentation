@@ -64,6 +64,8 @@ echo "Step 3 execution result:"
 echo -e "\nFiles to deploy"
 echo $FILES_TO_DEPLOY
 
+echo "TEST=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
+
 echo -e "\n--- Step 2 execution is finished ---"
 
 
@@ -127,7 +129,7 @@ echo -e "\n\n\n--- Step 4. Test deploy to the Salesforce org ---\n"
 #sf project deploy start --dry-run $FILES_TO_DEPLOY --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun
 #sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount2.cls" --source-dir "force-app/main/default/classes/CreatingAccount2.cls-meta.xml" --source-dir "force-app/main/default/classes/CreatingAccount3.cls" --source-dir "force-app/main/default/classes/CreatingAccount3.cls-meta.xml" --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun --dry-run
 #sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" "force-app/main/default/classes/CreatingAccount2.cls" --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun --dry-run
-sf project deploy start --source-dir ${FILES_TO_DEPLOY} --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun --dry-run
+sf project deploy start --source-dir $TEST --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun --dry-run
 
 
 
