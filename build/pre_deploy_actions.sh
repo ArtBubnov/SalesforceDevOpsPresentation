@@ -121,5 +121,9 @@ echo -e "\n\n\n--- Step 4. Test deploy to the Salesforce org ---\n"
 
 #sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l RunSpecifiedTests -r "$LIST_OF_FILES_TO_TEST_TRUNC" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
 #sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
-sf project deploy start --dry-run $FILES_TO_DEPLOY --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun
+
+
+
+#sf project deploy start --dry-run $FILES_TO_DEPLOY --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun
+sf project deploy start $FILES_TO_DEPLOY --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun --dry-run
 echo -e "\n--- Step 4 execution is finished ---"
