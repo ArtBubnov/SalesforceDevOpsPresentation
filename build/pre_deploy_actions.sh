@@ -66,6 +66,9 @@ echo $FILES_TO_DEPLOY
 
 echo "TEST=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
 
+echo "-----test-----"
+echo $TEST
+
 echo -e "\n--- Step 2 execution is finished ---"
 
 
