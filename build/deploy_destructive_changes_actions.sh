@@ -5,7 +5,7 @@ echo -e "--- Step 1. Deploy destructive changes without saving ---\n"
 
 if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
     then
-        SALESFORCE_DEPLOY_LOG=$(sf project delete source $ENV_DESTRUCTIVE_DIFF_SF --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt)
+        SALESFORCE_DEPLOY_LOG=$(sf project delete source $ENV_DESTRUCTIVE_DIFF_SF -c --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt)
         echo $SALESFORCE_DEPLOY_LOG
 
         
