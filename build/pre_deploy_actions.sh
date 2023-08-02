@@ -4,7 +4,7 @@ echo "-------- test-----"
 HOME_DIR=$(pwd)
 ls
 cd force-app/main/default/classes
-echo "----------"
+echo "-----------"
 ls
 cd $HOME_DIR
 echo "-------- test-----"
