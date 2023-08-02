@@ -38,37 +38,3 @@ if [[ $ARRAY_LEN != 0 ]]
         echo "DESTRUCTIVE_CHANGES_PRESENTED=false" >> "$GITHUB_ENV"
         exit 0
 fi
-
-
-
-
-echo "------------- TEST ------------"
-mapfile -t POSITIVE_DIFF_ARRAY < <( git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} )
-
-
-
-COUNT=0
-ARRAY_LEN=${#POSITIVE_DIFF_ARRAY[@]}
-LOOP_LEN=$( expr $ARRAY_LEN - 1)
-SF_COMMAND_META_STRING=""
-
-
-while [ $COUNT -le $LOOP_LEN ]
-do
-    CURRENT_ARRAY_NODE=${POSITIVE_DIFF_ARRAY[$COUNT]}
-    FILES_TO_DEPLOY=${FILES_TO_DEPLOY}'"'${CURRENT_ARRAY_NODE}'" '  
-    COUNT=$(( $COUNT +1))
-done
-
-
-echo -e "\nStep 2 execution is finished"
-echo "Step 2 execution result:"
-echo -e "\nFiles to deploy"
-echo $FILES_TO_DEPLOY
-
-echo "TEST_FILES_TO_DEPLOY=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
-
-echo "-----test-----"
-echo $TEST_FILES_TO_DEPLOY
-
-echo -e "\n--- Step 2 execution is finished ---"
