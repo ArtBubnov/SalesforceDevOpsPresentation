@@ -27,7 +27,7 @@ on:
 
 
 jobs:
-  pre_deploy_logic:
+  Salesforce_CLI_installation:
     environment: ${{ github.event.pull_request.base.ref }}
     runs-on: ubuntu-latest
 
@@ -61,12 +61,27 @@ jobs:
 
 
 
+
+  Salesforce_target_org_login:
+    needs: Salesforce_CLI_installation
+    environment: ${{ github.event.pull_request.base.ref }}
+    runs-on: ubuntu-latest
+
+    steps:
+
       - name: Global Step 2. Salesforce org login
         run: |
             chmod +x ./build/login_to_SF_org.sh
             ./build/login_to_SF_org.sh
 
 
+
+
+  Salesforce_destructive_changes_predeploy_actions:
+    environment: ${{ github.event.pull_request.base.ref }}
+    runs-on: ubuntu-latest
+
+    steps:            
 
       - name: Global Step 3. Define destructive changes
         run: |
@@ -102,6 +117,13 @@ jobs:
 
 
 
+
+
+  Salesforce_positive_canges_predeploy_actions:
+    environment: ${{ github.event.pull_request.base.ref }}
+    runs-on: ubuntu-latest
+
+    steps:  
       - name: Global Step 5. Predeploy actions
         run: |
           chmod +x ./build/pre_deploy_actions.sh
