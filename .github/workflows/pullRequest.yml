@@ -1,4 +1,4 @@
-#this scenario will be executed in case of creation of a Pull Request 
+#this scenario will be executed in case of creation of a Pull Request -
 name: pull request logic
 
 #workflow global variables
@@ -60,8 +60,9 @@ jobs:
           sudo npm sfdx --version
 
 
+#--------------------------------------------------------------------------------------------
 
-
+  
   Salesforce_target_org_login:
     needs: Salesforce_CLI_installation
     environment: ${{ github.event.pull_request.base.ref }}
@@ -75,9 +76,11 @@ jobs:
             ./build/login_to_SF_org.sh
 
 
+#--------------------------------------------------------------------------------------------            
 
 
   Salesforce_destructive_changes_predeploy_actions:
+    needs: Salesforce_target_org_login
     environment: ${{ github.event.pull_request.base.ref }}
     runs-on: ubuntu-latest
 
@@ -117,9 +120,10 @@ jobs:
 
 
 
-
+#--------------------------------------------------------------------------------------------
 
   Salesforce_positive_canges_predeploy_actions:
+    needs: Salesforce_destructive_changes_predeploy_actions
     environment: ${{ github.event.pull_request.base.ref }}
     runs-on: ubuntu-latest
 
