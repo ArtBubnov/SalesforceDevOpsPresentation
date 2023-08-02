@@ -1,10 +1,12 @@
 echo -e "--- Predeploy actions script executions start ---\n\n\n"
 
 echo "-------- test-----"
+HOME_DIR=$(pwd)
 ls
 cd force-app/main/default/classes
 echo "----------"
 ls
+cd $HOME_DIR
 echo "-------- test-----"
 
 echo -e "--- Step 1. Define global variables for the current pipeline ---\n"
