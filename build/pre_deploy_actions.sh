@@ -35,7 +35,7 @@ echo $GET_DIFF_LOGGER
 
 
 #mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} )
-mapfile -t POSITIVE_DIFF_ARRAY < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} )
+mapfile -t POSITIVE_DIFF_ARRAY < <( git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} )
 
 
 
