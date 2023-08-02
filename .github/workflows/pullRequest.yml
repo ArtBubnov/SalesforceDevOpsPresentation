@@ -98,10 +98,9 @@ jobs:
 
       #After the destructive changes activities workflow should
       #get back to the source branch to perform following steps    
-#      - uses: actions/checkout@v3
-#        if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
-#        with:
-#          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
 
 
