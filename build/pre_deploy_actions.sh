@@ -60,7 +60,7 @@ done
 
 
 echo -e "\nStep 2 execution is finished"
-echo "Step 3 execution result:"
+echo "Step 2 execution result:"
 echo -e "\nFiles to deploy"
 echo $FILES_TO_DEPLOY
 
