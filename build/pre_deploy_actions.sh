@@ -53,26 +53,6 @@ do
 done
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
-
-
 echo -e "\nStep 2 execution is finished"
 echo "Step 3 execution result:"
 echo -e "\nFiles to deploy"
@@ -131,9 +111,9 @@ echo -e "\n--- Step 2 execution is finished ---"
 
 
 
-#echo -e "\n\n\n--- Step 4. Test deploy to the Salesforce org ---\n"
+echo -e "\n\n\n--- Step 4. Test deploy to the Salesforce org ---\n"
 
 #sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l RunSpecifiedTests -r "$LIST_OF_FILES_TO_TEST_TRUNC" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
 #sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
-        
-#echo -e "\n--- Step 4 execution is finished ---"
+sf project deploy start --dry-run $FILES_TO_DEPLOY --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun
+echo -e "\n--- Step 4 execution is finished ---"
