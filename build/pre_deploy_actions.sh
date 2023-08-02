@@ -29,10 +29,48 @@ echo -e "\nFind the difference between organizations"
 DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
 
 echo -e "\nDiff logic execution result:"
-GET_DIFF=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
+GET_DIFF_LOGGER=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
 
-echo $GET_DIFF
-FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
+echo $GET_DIFF_LOGGER
+
+
+#mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} )
+mapfile -t POSITIVE_DIFF_ARRAY < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} )
+
+
+
+COUNT=0
+ARRAY_LEN=${#POSITIVE_DIFF_ARRAY[@]}
+LOOP_LEN=$( expr $ARRAY_LEN - 1)
+SF_COMMAND_META_STRING=""
+
+
+while [ $COUNT -le $LOOP_LEN ]
+do
+    CURRENT_ARRAY_NODE=${POSITIVE_DIFF_ARRAY[$COUNT]}
+    FILES_TO_DEPLOY=${FILES_TO_DEPLOY}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" '    
+    COUNT=$(( $COUNT +1))
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
 
 echo -e "\nStep 2 execution is finished"
@@ -93,9 +131,9 @@ echo -e "\n--- Step 2 execution is finished ---"
 
 
 
-echo -e "\n\n\n--- Step 4. Test deploy to the Salesforce org ---\n"
+#echo -e "\n\n\n--- Step 4. Test deploy to the Salesforce org ---\n"
 
 #sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l RunSpecifiedTests -r "$LIST_OF_FILES_TO_TEST_TRUNC" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
-sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
+#sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
         
-echo -e "\n--- Step 4 execution is finished ---"
+#echo -e "\n--- Step 4 execution is finished ---"
