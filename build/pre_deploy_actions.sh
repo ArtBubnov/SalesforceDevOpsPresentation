@@ -54,7 +54,6 @@ SF_COMMAND_META_STRING=""
 while [ $COUNT -le $LOOP_LEN ]
 do
     CURRENT_ARRAY_NODE=${POSITIVE_DIFF_ARRAY[$COUNT]}
-    #FILES_TO_DEPLOY=${FILES_TO_DEPLOY}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" '  
     FILES_TO_DEPLOY=${FILES_TO_DEPLOY}'"'${CURRENT_ARRAY_NODE}'" '  
     COUNT=$(( $COUNT +1))
 done
@@ -127,7 +126,8 @@ echo -e "\n\n\n--- Step 4. Test deploy to the Salesforce org ---\n"
 #TEST="force-app/main/default/classes/CreatingAccount1.cls"
 #sf project deploy start --dry-run $FILES_TO_DEPLOY --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun
 #sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" --source-dir "force-app/main/default/classes/CreatingAccount2.cls" --source-dir "force-app/main/default/classes/CreatingAccount2.cls-meta.xml" --source-dir "force-app/main/default/classes/CreatingAccount3.cls" --source-dir "force-app/main/default/classes/CreatingAccount3.cls-meta.xml" --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun --dry-run
-sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" "force-app/main/default/classes/CreatingAccount2.cls" --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun --dry-run
+#sf project deploy start --source-dir "force-app/main/default/classes/CreatingAccount1.cls" "force-app/main/default/classes/CreatingAccount2.cls" --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun --dry-run
+sf project deploy start --source-dir $FILES_TO_DEPLOY --target-org ${SALESFORCE_ORG_ALIAS} --test-level NoTestRun --dry-run
 
 
 
