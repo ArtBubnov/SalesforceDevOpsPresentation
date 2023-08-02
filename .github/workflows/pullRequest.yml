@@ -58,9 +58,6 @@ jobs:
       - name: Global step 1. Salesforce CLI version check
         run: |
           sudo npm sfdx --version
-          TEST=$(git branch)
-          echo "--- TEST ---"
-          echo $TEST
 
 
 
