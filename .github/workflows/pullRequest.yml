@@ -68,10 +68,10 @@ jobs:
 
 
 
-      - name: Global Step 3. Define destructive changes
-        run: |
-          chmod +x ./build/get_destructive_changes.sh
-          ./build/get_destructive_changes.sh
+#      - name: Global Step 3. Define destructive changes
+#        run: |
+#          chmod +x ./build/get_destructive_changes.sh
+#          ./build/get_destructive_changes.sh
 
 
 
@@ -79,26 +79,26 @@ jobs:
       #workflow will swith to the target branch
       #to perform destructive changes actions
 
-      - uses: actions/checkout@v3
-        if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
-        with:
-          ref: ${{ github.event.pull_request.base.ref }}
+#      - uses: actions/checkout@v3
+#        if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
+#        with:
+#          ref: ${{ github.event.pull_request.base.ref }}
 
 
 
-      - name: Global Step 4. Deploy destructive changes without saving
-        run: |
-          chmod +x ./build/destructive_changes_pre_deploy_actions.sh
-          ./build/destructive_changes_pre_deploy_actions.sh
+#      - name: Global Step 4. Deploy destructive changes without saving
+#        run: |
+#          chmod +x ./build/destructive_changes_pre_deploy_actions.sh
+#          ./build/destructive_changes_pre_deploy_actions.sh
 
 
 
       #After the destructive changes activities workflow should
       #get back to the source branch to perform following steps    
-      - uses: actions/checkout@v3
-        if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
+#      - uses: actions/checkout@v3
+#        if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
+#        with:
+#          ref: ${{ github.event.pull_request.head.ref }}
 
 
 
