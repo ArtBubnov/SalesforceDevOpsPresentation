@@ -1,6 +1,6 @@
 echo -e "--- Predeploy actions script executions start ---\n\n\n"
 
-echo "-------- test------"
+echo "-------- test-------"
 HOME_DIR=$(pwd)
 ls
 cd force-app/main/default/classes
