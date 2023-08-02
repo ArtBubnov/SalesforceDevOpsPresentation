@@ -1,7 +1,8 @@
 echo -e "--- Predeploy actions script executions start ---\n\n\n"
 
-
-
+echo "-------- test-----"
+ls
+echo "-------- test-----"
 
 echo -e "--- Step 1. Define global variables for the current pipeline ---\n"
 
