@@ -95,6 +95,7 @@ echo -e "\n--- Step 2 execution is finished ---"
 
 echo -e "\n\n\n--- Step 4. Test deploy to the Salesforce org ---\n"
 
-sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l NoTestRun -r "$LIST_OF_FILES_TO_TEST_TRUNC" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
+#sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l RunSpecifiedTests -r "$LIST_OF_FILES_TO_TEST_TRUNC" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
+sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
         
 echo -e "\n--- Step 4 execution is finished ---"
