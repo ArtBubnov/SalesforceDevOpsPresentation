@@ -4,6 +4,7 @@ echo -e "--- Define destructive changes script execution start ---\n"
 echo -e "--- Step 1. Define destructive changes ---\n"
 
 echo "-+----------T0EST ------------"
+DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
 
 GET_DIFF_LOGGER=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
 
