@@ -44,37 +44,40 @@ jobs:
           echo -e "\n--- Step 1 execution is finished --- "
           
 
-      - name: Global Step X. TEST
+
+      - name: Global Step 2. Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
 
 
-      - uses: sfdx-actions/setup-sfdx@v1
+      - name: Global Step 3. Salesforce CLI install
+        uses: sfdx-actions/setup-sfdx@v1
 
 
 
-      - name: Global step 1. Salesforce CLI version check
+      - name: Global step 4. Salesforce CLI version check
         run: |
           sudo npm sfdx --version
 
 
 
-      - name: Global Step 2. Salesforce org login
+      - name: Global Step 5. Salesforce org login
         run: |
             chmod +x ./build/login_to_SF_org.sh
             ./build/login_to_SF_org.sh
 
 
 
-      - uses: actions/checkout@v3
+      - name: Global Step 6. Source branch checkout
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
 
           
-      - name: Global Step 3. Define destructive changes
+      - name: Global Step 7. Define destructive changes
         run: |
           chmod +x ./build/get_destructive_changes.sh
           ./build/get_destructive_changes.sh
@@ -85,14 +88,15 @@ jobs:
       #workflow will swith to the target branch
       #to perform destructive changes actions
 
-      - uses: actions/checkout@v3
+      - name: Global Step 8. Target branch checkout
+        uses: actions/checkout@v3
         if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
         with:
           ref: ${{ github.event.pull_request.base.ref }}
 
 
 
-      - name: Global Step 4. Deploy destructive changes without saving
+      - name: Global Step 9. Deploy destructive changes without saving
         run: |
           chmod +x ./build/destructive_changes_pre_deploy_actions.sh
           ./build/destructive_changes_pre_deploy_actions.sh
@@ -100,14 +104,16 @@ jobs:
 
 
       #After the destructive changes activities workflow should
-      #get back to the source branch to perform following steps    
-      - uses: actions/checkout@v3
+      #get back to the source branch to perform following steps
+      
+      - name: Global Step 10. Source branch checkout
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
 
 
-      - name: Global Step 5. Predeploy actions
+      - name: Global Step 11. Predeploy actions
         run: |
           chmod +x ./build/pre_deploy_actions.sh
           ./build/pre_deploy_actions.sh
