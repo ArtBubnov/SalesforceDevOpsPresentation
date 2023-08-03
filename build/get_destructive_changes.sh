@@ -3,58 +3,6 @@ echo -e "--- Define destructive changes script execution start ---\n"
 
 echo -e "--- Step 1. Define destructive changes ---\n"
 
-echo "-+----------T0EST ------------"
-echo -e "\n\n\n--- Step 2. Logic execution to define the list of files to be deployed to the Salesforce org ---"
-
-echo -e "\nFind the difference between organizations"
-DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
-
-echo -e "\nDiff logic execution result:"
-GET_DIFF_LOGGER=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
-
-echo $GET_DIFF_LOGGER
-
-
-#mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} )
-mapfile -t POSITIVE_DIFF_ARRAY < <( git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} )
-
-
-
-COUNT=0
-ARRAY_LEN=${#POSITIVE_DIFF_ARRAY[@]}
-LOOP_LEN=$( expr $ARRAY_LEN - 1)
-SF_COMMAND_META_STRING=""
-
-
-while [ $COUNT -le $LOOP_LEN ]
-do
-    CURRENT_ARRAY_NODE=${POSITIVE_DIFF_ARRAY[$COUNT]}
-    FILES_TO_DEPLOY=${FILES_TO_DEPLOY}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" ' 
-    #FILES_TO_DEPLOY=${FILES_TO_DEPLOY}'"'${CURRENT_ARRAY_NODE}'" '  
-    COUNT=$(( $COUNT +1))
-done
-#"--source-dir "'"'${CURRENT_ARRAY_NODE}'" ' 
-
-echo -e "\nStep 2 execution is finished"
-echo "Step 2 execution result:"
-echo -e "\nFiles to deploy"
-echo $FILES_TO_DEPLOY
-
-echo "TEST_FILES_TO_DEPLOY=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
-
-echo "-----test-----"
-echo $TEST_FILES_TO_DEPLOY
-
-echo -e "\n--- Step 2 execution is finished ---"
-
-echo "-+----------T0EST ------------"
-
-
-
-
-
-
-
 DIFF_BRANCH="origin/$TARGET_BRANCH_NAME"
 
 mapfile -t files_array < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} )
