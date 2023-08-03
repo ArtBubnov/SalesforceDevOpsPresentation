@@ -68,6 +68,12 @@ jobs:
 
 
 
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+
+          
       - name: Global Step 3. Define destructive changes
         run: |
           chmod +x ./build/get_destructive_changes.sh
