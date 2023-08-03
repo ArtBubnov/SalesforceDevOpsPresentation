@@ -28,29 +28,6 @@ echo -e "\n--- Step 1 execution is finished ---"
 
 
 
-
-echo -e "\n\n\n--- Step 2. Logic execution to define the list of files to be deployed to the Salesforce org ---"
-
-echo -e "\nFind the difference between organizations"
-DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
-
-echo -e "\nDiff logic execution result:"
-GET_DIFF=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
-
-echo $GET_DIFF
-FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
-
-
-echo -e "\nStep 2 execution is finished"
-echo "Step 3 execution result:"
-echo -e "\nFiles to deploy"
-echo $FILES_TO_DEPLOY
-
-echo -e "\n--- Step 2 execution is finished ---"
-
-
-
-
 echo -e "\n\n\n--- Step 3. Logic execution to define the list of apex tests to be executed during deployment to the Salesforce org ---"
 
 #get to classes directory to define the list of tests to be executed
