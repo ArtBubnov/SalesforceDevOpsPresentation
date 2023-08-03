@@ -49,6 +49,10 @@ jobs:
 #        with:
 #          fetch-depth: 0
 
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
 
 
       - uses: sfdx-actions/setup-sfdx@v1
@@ -67,13 +71,7 @@ jobs:
             ./build/login_to_SF_org.sh
 
 
-
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-
-
-
+            
       - name: Global Step 3. Define destructive changes
         run: |
           chmod +x ./build/get_destructive_changes.sh
