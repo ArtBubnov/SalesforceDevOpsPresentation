@@ -1,6 +1,32 @@
 echo -e "--- Define destructive changes script execution start ---\n"
 
 
+
+echo -e "\n\n\n--- Step 2. Logic execution to define the list of files to be deployed to the Salesforce org ---"
+
+echo -e "\nFind the difference between organizations"
+DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
+
+echo -e "\nDiff logic execution result:"
+GET_DIFF=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
+
+echo $GET_DIFF
+FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
+
+
+echo -e "\nStep 2 execution is finished"
+echo "Step 3 execution result:"
+echo -e "\nFiles to deploy"
+echo $FILES_TO_DEPLOY
+
+echo -e "\n--- Step 2 execution is finished ---"
+
+
+
+
+
+
+
 echo -e "--- Step 1. Define destructive changes ---\n"
 
 DIFF_BRANCH="origin/$TARGET_BRANCH_NAME"
