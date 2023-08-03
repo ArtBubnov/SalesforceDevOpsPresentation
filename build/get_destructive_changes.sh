@@ -18,6 +18,7 @@ echo -e "\nStep 2 execution is finished"
 echo "Step 3 execution result:"
 echo -e "\nFiles to deploy"
 echo $FILES_TO_DEPLOY
+echo "ENV_POSITIVE_DIFF_SF=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
 
 echo -e "\n--- Step 2 execution is finished ---"
 
