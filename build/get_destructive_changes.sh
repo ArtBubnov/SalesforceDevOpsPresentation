@@ -38,3 +38,11 @@ if [[ $ARRAY_LEN != 0 ]]
         echo "DESTRUCTIVE_CHANGES_PRESENTED=false" >> "$GITHUB_ENV"
         exit 0
 fi
+
+
+
+echo "-+----------T0EST ------------"
+
+GET_DIFF_LOGGER=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
+
+echo $GET_DIFF_LOGGER
