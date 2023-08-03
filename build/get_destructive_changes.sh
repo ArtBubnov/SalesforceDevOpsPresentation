@@ -1,7 +1,7 @@
 echo "--- Define positive and destructive changes script execution start ---\n"
 
 
-echo -e "\n\n\n--- Step 1. Logic execution to define the list of files to be deployed to the Salesforce org ---"
+echo -e "\n\n\n--- Step 1. Logic execution to define the list POSITIVE of files to be deployed to the Salesforce org ---"
 
 echo -e "\nFind the difference between organizations"
 DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
@@ -19,7 +19,7 @@ echo -e "\nFiles to deploy"
 echo $FILES_TO_DEPLOY
 echo "ENV_POSITIVE_DIFF_SF=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
 
-echo -e "\n--- Step 1 execution is finished ---"
+echo -e "\n--- Step 1 execution is finished ---\n\n\n"
 
 
 
@@ -59,6 +59,3 @@ if [[ $ARRAY_LEN != 0 ]]
         echo "DESTRUCTIVE_CHANGES_PRESENTED=false" >> "$GITHUB_ENV"
         exit 0
 fi
-
-
-
