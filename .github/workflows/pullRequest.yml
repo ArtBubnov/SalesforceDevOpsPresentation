@@ -77,7 +77,7 @@ jobs:
 
 
           
-      - name: Global Step 6. Define destructive changes
+      - name: Global Step 6. Define positive and destructive changes
         run: |
           chmod +x ./build/get_destructive_changes.sh
           ./build/get_destructive_changes.sh
@@ -108,6 +108,7 @@ jobs:
       
       - name: Global Step 9. Source branch checkout
         uses: actions/checkout@v3
+        if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
