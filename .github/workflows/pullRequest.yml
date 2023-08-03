@@ -45,19 +45,19 @@ jobs:
           
 
 
-      - name: System Step 0. Checkout repo
+      - name: --- System Step 0 ---. Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
 
 
-      - name: System Step 1. Salesforce CLI install
+      - name: --- System Step 1 ---. Salesforce CLI install
         uses: sfdx-actions/setup-sfdx@v1
 
 
 
-      - name: System step 2. Salesforce CLI version check
+      - name: --- System step 2 ---. Salesforce CLI version check
         run: |
           sudo npm sfdx --version
 
@@ -70,7 +70,7 @@ jobs:
 
 
 
-      - name: System Step 3. Source branch checkout
+      - name: --- System Step 3 ---. Source branch checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
@@ -88,7 +88,7 @@ jobs:
       #workflow will swith to the target branch
       #to perform destructive changes actions
 
-      - name: System Step 4. Target branch checkout
+      - name: --- System Step 4 ---. Target branch checkout
         uses: actions/checkout@v3
         if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
         with:
@@ -106,7 +106,7 @@ jobs:
       #After the destructive changes activities workflow should
       #get back to the source branch to perform following steps
       
-      - name: System Step 5. Source branch checkout
+      - name: --- System Step 5 ---. Source branch checkout
         uses: actions/checkout@v3
         if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
         with:
