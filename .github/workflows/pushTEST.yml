@@ -45,4 +45,5 @@ jobs:
           echo -e "--- Step 1. Output global info for the current pipeline ---\n"
           chmod +x ./build/global_script.sh
           source ./build/global_script.sh && login_to_SF_org_full_version
+          source ./build/global_script.sh && test_01
          

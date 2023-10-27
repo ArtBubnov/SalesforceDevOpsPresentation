@@ -43,9 +43,9 @@ login_to_SF_org_full_version () {
 
 
 
-#test_01 () {
-#   echo -e "TEST_01"
-#}
+test_01 () {
+   echo -e "TEST_01"
+}
 
 
 #test_02 () {
