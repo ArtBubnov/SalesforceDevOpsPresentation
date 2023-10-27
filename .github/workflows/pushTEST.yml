@@ -38,4 +38,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: sfdx-actions/setup-sfdx@v1
+      - name: TEST_01
+        run: |
+          echo -e "--- Step 1. Output global info for the current pipeline ---\n"
