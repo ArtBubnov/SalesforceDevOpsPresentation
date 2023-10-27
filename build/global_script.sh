@@ -1,8 +1,4 @@
-function test_0 {
-    echo -e "GLOBAL FUNCTION TEST 01"
-}
-
-
-function test_02 {
-    echo -e "GLOBAL FUNCTION TEST 02"
+function f1 {
+        echo Hello I\'m function 1
+        echo Bye!
 }
