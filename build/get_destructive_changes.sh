@@ -1,7 +1,7 @@
 echo "--- Define positive and destructive changes script execution start ---\n"
 
 
-echo -e "\n\n\n--- Step 1. Logic execution to define the list POSITIVE of files to be deployed to the Salesforce org ---"
+echo -e "\n\n\n--- Step 1. Logic execution to define the list of POSITIVE files to be deployed to the Salesforce org ---"
 
 echo -e "\nFind the difference between organizations"
 DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME

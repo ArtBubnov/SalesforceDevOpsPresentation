@@ -36,31 +36,38 @@ jobs:
           echo ${{ github.event.pull_request.base.ref }}
         
           
-
-      - uses: actions/checkout@v3
+      - name: --- System Step 0 ---. Checkout repo
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
 
+      - name: --- System Step 1 ---. Salesforce CLI install
+        uses: sfdx-actions/setup-sfdx@v1
 
-      - uses: sfdx-actions/setup-sfdx@v1
 
 
-
-      - name: Global step 1. Salesforce CLI version check
+      - name: --- System Step 2 ---. Salesforce CLI version check
         run: |
           sudo npm sfdx --version
 
 
 
-      - name: Global Step 2. Salesforce org login
+      - name: Global Step 1. Salesforce org login
         run: |
             chmod +x ./build/login_to_SF_org.sh
             ./build/login_to_SF_org.sh
 
 
 
-      - name: Global Step 3. Define destructive changes
+      - name: --- System Step 3 ---. Source branch checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+
+
+      - name: Global Step 2. Define positive and destructive changes
         run: |
           chmod +x ./build/get_destructive_changes.sh
           ./build/get_destructive_changes.sh
@@ -71,14 +78,15 @@ jobs:
       #workflow will swith to the target branch
       #to perform destructive changes actions
 
-      - uses: actions/checkout@v3
+      - name: --- System Step 4 ---. Target branch checkout
+        uses: actions/checkout@v3
         if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
         with:
           ref: ${{ github.event.pull_request.base.ref }}
+          
 
 
-
-      - name: Global Step 4. Deploy destructive changes without saving
+      - name: Global Step 3. Deploy destructive changes without saving
         run: |
           chmod +x ./build/deploy_destructive_changes_actions.sh
           ./build/deploy_destructive_changes_actions.sh
@@ -86,15 +94,17 @@ jobs:
 
 
       #After the destructive changes activities workflow should
-      #get back to the source branch to perform following steps    
-      - uses: actions/checkout@v3
+      #get back to the source branch to perform following steps
+      
+      - name: --- System Step 5 ---. Source branch checkout
+        uses: actions/checkout@v3
         if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
 
   
-      - name: Global Step 5. Deploy metadata to Salesforce org
+      - name: Global Step 4. Deploy metadata to Salesforce org
         run: |
           chmod +x ./build/deploy_metadata_to_sf_org.sh
           ./build/deploy_metadata_to_sf_org.sh
