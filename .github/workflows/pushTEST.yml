@@ -39,6 +39,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: --- System Step 1 ---. exec
+        uses: actions/exec
+
       - name: TEST_01
         run: |
           echo -e "--- Step 1. Output global info for the current pipeline ---\n"
