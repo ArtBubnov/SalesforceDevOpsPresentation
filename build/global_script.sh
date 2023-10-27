@@ -1,8 +1,5 @@
 #!/bin/bash
 
-hello_world () {
-   echo 'hello, world'
+test_01 () {
+   echo -e "TEST_01"
 }
-
-
-echo 'OUT OF'
