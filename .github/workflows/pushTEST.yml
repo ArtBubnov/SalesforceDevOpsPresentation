@@ -12,6 +12,7 @@ env:
   APEX_TESTS_DIRECTORY: "force-app/main/default/classes/tests"
 
 
+
   
 #  ENV_DESTRUCTIVE_DIFF_SFDX: ${{ vars.SFDX_COMMAND_META_STRING }}
 #depends on the target branch one of the following scenarios:   
@@ -41,3 +42,4 @@ jobs:
       - name: TEST_01
         run: |
           echo -e "--- Step 1. Output global info for the current pipeline ---\n"
+          sh ./build/global_script.sh test_02
