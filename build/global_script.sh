@@ -1,4 +1,3 @@
-f1() {
-        echo Hello I\'m function 1
-        echo Bye!
+function function_name {
+  echo "test"
 }
