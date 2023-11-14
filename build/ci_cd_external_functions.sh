@@ -13,7 +13,7 @@ logger () {
     echo $TARGET_BRANCH_NAME
 
 
-    echo -e "\n--- logger () function execution end.\n ---"
+    echo -e "\n--- logger () function execution end. ---\n"
 }
 
 
@@ -40,11 +40,12 @@ login_to_SF_org_short_version () {
 
 
 login_to_SF_org_full_version () {
-    echo -e "--- Logging into Salesforce Org ---\n\n\n"
+    echo -e "\n\n\n--- login_to_SF_org_full_version () function execution start. ---"
+    echo -e "--- Login into Salesforce Org ---\n\n\n"
 
 
 
-    echo -e "--- Shell script | Step 1. Define global variables for the current pipeline ---\n\n"
+    echo -e "--- Step 1. Define global variables for the current pipeline ---\n\n"
 
     echo -e "Global variables display:"
 
@@ -55,12 +56,12 @@ login_to_SF_org_full_version () {
     echo -e "PLACEHOLDER Salesforce org alias"
     #echo $SALESFORCE_ORG_ALIAS
 
-    echo -e "\n\n--- Shell script | Step 1 execution is finished ---"
+    echo -e "\n\n--- Step 1 execution is finished ---"
 
 
 
 
-    echo -e "\n\n\n--- Shell script | Step 2. Login to the target Salesforce org"
+    echo -e "\n\n\n--- Step 2. Login to the target Salesforce org"
 
     echo "Creating .key file"
     #touch access_pass.key
@@ -73,22 +74,9 @@ login_to_SF_org_full_version () {
 
     #rm access_pass.key
 
-    echo -e "\n--- Shell script | Step 2.  execution is finished"
+    echo -e "\n--- Step 2.  execution is finished"
 }
 
 
 
 
-define_destructive_changes_full_version () {
-    echo "--- Define positive and destructive changes script execution start ---\n"
-}
-
-
-
-
-
-
-
-#test_02 () {
-#   echo -e "TEST_02"
-#}
