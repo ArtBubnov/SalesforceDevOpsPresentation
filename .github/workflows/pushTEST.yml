@@ -48,6 +48,10 @@ jobs:
 
       - name: --- System Step 1 ---. Salesforce CLI install
         uses: sfdx-actions/setup-sfdx@v1
+
+      
+      - name: TEST
+        run: sudo npm sfdx --version
           
 #          sudo npm sfdx --version
 
