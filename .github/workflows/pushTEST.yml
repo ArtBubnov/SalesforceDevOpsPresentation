@@ -52,7 +52,7 @@ jobs:
       - name: TEST
         run: |
           chmod +x ./build/ci_cd_external_functions.sh
-          ./build/ci_cd_external_functions.sh && logger
+          source ./build/ci_cd_external_functions.sh && logger
 
 
 
