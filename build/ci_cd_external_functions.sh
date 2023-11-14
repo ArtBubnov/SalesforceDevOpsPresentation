@@ -1,14 +1,19 @@
 #!/bin/bash
 
 logger () {
-    echo -e "--- Step 1. Output global info for the current pipeline ---\n"
+    echo -e "\n\n\n--- logger () function execution start."
+    echo -e "Output global info for the current pipeline ---\n"
+    
+    
     echo "Event is:"
     echo -e "Pull request\n"
     echo "Pull request source branch is:"
     echo $SOURCE_BRANCH_NAME
     echo -e "\nPull request target branch is:"
     echo $TARGET_BRANCH_NAME
-    echo -e "\n--- Step 1 execution is finished --- "
+
+
+    echo -e "\n--- logger () function execution end.\n\n\n"
 }
 
 
