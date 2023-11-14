@@ -49,7 +49,7 @@ jobs:
       - name: --- System Step 1 ---. Salesforce CLI install
         run: |
           sfdx-actions/setup-sfdx@v1
-          sudo npm sfdx --version
+#          sudo npm sfdx --version
 
 
 
