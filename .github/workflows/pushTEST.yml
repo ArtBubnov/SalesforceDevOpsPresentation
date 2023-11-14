@@ -43,21 +43,20 @@ jobs:
       - name: --- System Step 1 ---. Salesforce CLI install
         uses: sfdx-actions/setup-sfdx@v1
 
-      
-      - name: TEST
-        run: sudo npm sfdx --version
-
 
       - name: --- Global Step 0. Logger ---
         run: |
           chmod +x ./build/ci_cd_external_functions.sh
           source ./build/ci_cd_external_functions.sh && logger
-          echo -e "!!!!!!!!!!"
-          sudo npm sfdx --version
-          echo -e "!!!!!!!!!!"
 
 
 
+
+
+
+
+
+          
 
 #source ./build/ci_cd_external_functions.sh && login_to_SF_org_full_version
          
