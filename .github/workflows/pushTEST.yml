@@ -43,5 +43,9 @@ jobs:
       - name: Step 1. Output global info for the current pipeline
         run: |
           chmod +x ./build/ci_cd_external_functions.sh
-          source ./build/ci_cd_external_functions.sh && login_to_SF_org_full_version
+          source ./build/ci_cd_external_functions.sh && logger
+
+
+
+#source ./build/ci_cd_external_functions.sh && login_to_SF_org_full_version
          

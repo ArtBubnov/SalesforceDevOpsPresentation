@@ -1,5 +1,18 @@
 #!/bin/bash
 
+logger () {
+    echo -e "--- Step 1. Output global info for the current pipeline ---\n"
+    echo "Event is:"
+    echo -e "Pull request\n"
+    echo "Pull request source branch is:"
+    echo $SOURCE_BRANCH_NAME
+    echo -e "\nPull request target branch is:"
+    echo $TARGET_BRANCH_NAME
+    echo -e "\n--- Step 1 execution is finished --- "
+}
+
+
+
 # function to login to the target salesforce org
 # via SFDX URL (ACCESS_KEY_SF variable)
 # the SFDX URL is nested in Github actions env variables as an obfuscated variable
