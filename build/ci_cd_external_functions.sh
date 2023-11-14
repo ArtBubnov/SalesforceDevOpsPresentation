@@ -11,6 +11,8 @@ logger () {
     echo $SOURCE_BRANCH_NAME
     echo -e "\nPull request target branch is:"
     echo $TARGET_BRANCH_NAME
+    echo -e "----------"
+    sudo npm sfdx --version
 
 
     echo -e "\n--- logger () function execution end. ---\n"
