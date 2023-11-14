@@ -50,10 +50,10 @@ jobs:
           source ./build/ci_cd_external_functions.sh && logger
 
 
-      - name: --- System Step 3 ---. Source branch checkout
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
+#      - name: --- System Step 3 ---. Source branch checkout
+#        uses: actions/checkout@v3
+#        with:
+#          ref: ${{ github.event.pull_request.head.ref }}
 
 
 
