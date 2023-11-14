@@ -221,6 +221,6 @@ positive_changes_pre_deploy_actions () {
 
 
 
-test (FLAG) {
+test ($FLAG) {
     echo "Первый параметр: $FLAG"
 }
