@@ -52,7 +52,9 @@ jobs:
         run: |
           chmod +x ./build/ci_cd_external_functions.sh
           source ./build/ci_cd_external_functions.sh && logger
-#          sudo npm sfdx --version
+          echo -e "!!!!!!!!!!"
+          sudo npm sfdx --version
+          echo -e "!!!!!!!!!!"
 
 
 
