@@ -1,7 +1,7 @@
 #!/bin/bash
 
 logger () {
-    echo -e "\n\n\n--- logger () function execution start. ---"
+    echo -e "--- logger () function execution start. ---"
     echo -e "--- Output global info for the current pipeline ---\n"
     
     
