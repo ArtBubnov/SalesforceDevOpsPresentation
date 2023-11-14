@@ -40,10 +40,8 @@ jobs:
           fetch-depth: 0
 
 
-      - name: TEST_01
+      - name: Step 1. Output global info for the current pipeline
         run: |
-          echo -e "--- Step 1. Output global info for the current pipeline ---\n"
           chmod +x ./build/ci_cd_external_functions.sh
           source ./build/ci_cd_external_functions.sh && login_to_SF_org_full_version
-          source ./build/ci_cd_external_functions.sh && test_01
          
