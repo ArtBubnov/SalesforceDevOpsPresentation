@@ -199,7 +199,7 @@ destructive_changes_pre_deploy_actions () {
 
 positive_changes_pre_deploy_actions () {
 
-
+    echo "test"
 }
 
 
