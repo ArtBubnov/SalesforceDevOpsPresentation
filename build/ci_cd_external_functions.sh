@@ -84,7 +84,7 @@ login_to_SF_org_full_version () {
 
 test () {
     #GET_DIFF=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
-    GET_DIFF=$(git diff origin/qa --name-only --diff-filter=ACMRD force-app/main/default)
+    GET_DIFF=$(git diff origin/dev..origin/qa --name-only --diff-filter=ACMRD force-app/main/default)
     #GET_DIFF=$(git branch)
     echo -e "*******"
     echo -e $GET_DIFF
