@@ -83,7 +83,7 @@ login_to_SF_org_full_version () {
 
 
 test () {
-    GET_DIFF=$(git diff dev..qa --name-only --diff-filter=ACMRD force-app/main/default)
+    GET_DIFF=$(git diff qa)
     echo -e "*******"
     echo -e $GET_DIFF
     echo -e "*******"
