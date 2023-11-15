@@ -32,6 +32,8 @@ jobs:
     name: pre_deploy_logic
     environment: dev
     runs-on: ubuntu-latest
+    outputs:
+      CONTINUE_JOBS: ${{ steps.manual-trigger.outputs.CONTINUE_JOBS }}
     steps:
 
       - name: --- System Step 0 ---. Checkout repo
