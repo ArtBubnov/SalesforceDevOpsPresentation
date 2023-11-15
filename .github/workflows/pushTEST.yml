@@ -64,6 +64,13 @@ jobs:
         with:
           RUN_NAME: "manual-step"
 
+  build:
+    needs: pre_deploy_logic
+    if: ${{ needs.pre_deploy_logic.outputs.CONTINUE_JOBS == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Runs plan
+        run: echo "It runs plan"
 
 
 
