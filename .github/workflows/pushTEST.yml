@@ -53,10 +53,14 @@ jobs:
       - name: TEST
         run: |
           chmod +x ./build/ci_cd_external_functions.sh
-          source ./build/ci_cd_external_functions.sh && test "Hello" "World"
+          source ./build/ci_cd_external_functions.sh && test "Hello"
 
-
-
+          
+      - name: manual-trigger
+        id: manual-trigger
+        uses: benhamiltonpro/manual-trigger@v1
+        with:
+          RUN_NAME: "manual-step"
 
 
 
