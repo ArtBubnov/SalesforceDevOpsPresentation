@@ -21,28 +21,7 @@ logger () {
 
 
 
-# function to login to the target salesforce org
-# via SFDX URL (ACCESS_KEY_SF variable)
-# the SFDX URL is nested in Github actions env variables as an obfuscated variable
-login_to_SF_org_short_version () {
-    echo -e "\n\n\n--- login_to_SF_org_short_version () function execution start. ---"
-    echo -e "--- Salesforce org login ---\n"
-
-
-    #touch access_pass.key
-    #echo $ACCESS_KEY_SF > access_pass.key
-    #sf org login sfdx-url --sfdx-url-file "access_pass.key" --alias ${SALESFORCE_ORG_ALIAS}
-    #rm access_pass.key
-    echo "PLACEHOLDER. SF org access granted"
-
-
-    echo -e "\n--- login_to_SF_org_short_version () function execution end.\n ---"
-}
-
-
-
-
-login_to_SF_org_full_version () {
+login_to_SF_org () {
     echo -e "\n\n\n--- login_to_SF_org_full_version () function execution start. ---"
     echo -e "--- Login into Salesforce Org ---\n\n\n"
 
@@ -148,40 +127,11 @@ get_destructive_changes () {
 
 
 
+get_apex_tests_list () {
+    echo -e "--- get_apex_tests_list () function execution start. ---"
+    echo -e "--- Define list of Apex tests to be used ---\n\n"
 
-
-destructive_changes_pre_deploy_actions () {
-    echo -e "--- Deploy destructive changes script executions start ---\n\n\n"
-
-
-    echo -e "--- Step 1. Deploy destructive changes without saving ---\n"
-
-    if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
-        then
-            #sf project delete source $ENV_DESTRUCTIVE_DIFF_SF -с --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
-            sfdx force:source:delete -c -u ${SALESFORCE_ORG_ALIAS}
-
-            echo -e "\n\n--- Step 1 execution is finished ---"
-        else
-            echo "Due to there are no destructive changes detected"
-            echo -e "Script exection will be finished with 0 code status\n"
-            echo "The workflow execution will be proceeded"
-
-            echo -e "\n--- Step 1 execution is finished ---"
-            exit 0
-    fi
-}
-
-
-
-
-positive_changes_pre_deploy_actions () {
-    echo -e "--- Predeploy actions script executions start ---\n\n\n"
     HOME_DIR=$(pwd)
-
-
-
-
 
     echo -e "\n\n\n--- Step 2. Logic execution to define the list of apex tests to be executed during deployment to the Salesforce org ---"
 
@@ -224,19 +174,154 @@ positive_changes_pre_deploy_actions () {
     echo -e "\nStep 2 execution result:"
     echo -e "\nList of apex tests to be executed:"
     echo $LIST_OF_FILES_TO_TEST_TRUNC
+    echo "ENV_APEX_TESTS_SF=$LIST_OF_FILES_TO_TEST_TRUNC" >> "$GITHUB_ENV"
+
     cd $HOME_DIR
 
     echo -e "\n--- Step 2 execution is finished ---"
 
+}
 
+
+
+
+destructive_changes_pre_deploy_actions () {
+    echo -e "--- destructive_changes_pre_deploy_actions () function execution start. ---"
+    echo -e "--- Deploy destructive changes without saving ---\n\n"
+
+
+    echo -e "--- Step 1. Deploy destructive changes without saving ---\n"
+
+    if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
+        then
+            #sf project delete source $ENV_DESTRUCTIVE_DIFF_SF -с --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
+            #sfdx force:source:delete -p "$ENV_POSITIVE_DIFF_SF" -c -u ${SALESFORCE_ORG_ALIAS}
+
+            echo -e "\n\n--- Step 1 execution is finished ---"
+        else
+            echo "Due to there are no destructive changes detected"
+            echo -e "Script exection will be finished with 0 code status\n"
+            echo "The workflow execution will be proceeded"
+
+            echo -e "\n--- Step 1 execution is finished ---"
+    fi
+}
+
+
+
+
+positive_changes_pre_deploy_actions () {
+    echo -e "--- positive_changes_pre_deploy_actions () function execution start. ---"
+    echo -e "--- Deploy positive changes without saving ---\n\n"
 
 
     echo -e "\n\n\n--- Step 3. Test deploy to the Salesforce org ---\n"
-
-    #sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l RunSpecifiedTests -r "$LIST_OF_FILES_TO_TEST_TRUNC" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
-    #sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
-    sfdx force:source:deploy -p "$ENV_POSITIVE_DIFF_SF" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
+    #sfdx force:source:deploy -p "$ENV_POSITIVE_DIFF_SF" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
 
 
     echo -e "\n--- Step 3 execution is finished ---"
+}
+
+
+
+
+destructive_changes_deploy_actions () {
+    echo -e "--- destructive_changes_deploy_actions () function execution start. ---"
+    echo -e "--- Deploy destructive changes ---\n\n"
+
+
+    echo -e "--- Step 1. Deploy destructive changes without saving ---\n"
+
+    if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
+        then
+            SALESFORCE_DEPLOY_LOG=$(sf project delete source $ENV_DESTRUCTIVE_DIFF_SF -c --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt)
+            echo $SALESFORCE_DEPLOY_LOG
+
+            
+            mapfile -t SALESFORCE_DEPLOY_LOG_ARRAY < <( echo $SALESFORCE_DEPLOY_LOG | tr ' ' '\n' | sed 's/\(.*\),/\1 /' )
+
+
+            COUNT=0
+            ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG_ARRAY[@]}
+            SALESFORCE_DEPLOY_ID=""
+            LOOP_LEN=$( expr $ARRAY_LEN - 1)
+
+            while [ $COUNT -le $LOOP_LEN ]
+            do
+                if [[ ${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]} == *"ID:"* ]];
+                then
+                    SALESFORCE_DEPLOY_ID_ARRAY_POSITION=$(( $COUNT +1))
+                    SALESFORCE_DEPLOY_ID=${SALESFORCE_DEPLOY_LOG_ARRAY[$SALESFORCE_DEPLOY_ID_ARRAY_POSITION]}
+                    COUNT=$(( $COUNT +1))
+                else   
+                    COUNT=$(( $COUNT +1))
+                fi
+            done
+
+            echo $SALESFORCE_DEPLOY_ID
+            echo "DESTRUCTIVE_CHANGES_SALESFORCE_DEPLOY_ID=$SALESFORCE_DEPLOY_ID" >> "$GITHUB_ENV"
+
+            echo -e "\n\n--- Step 1 execution is finished ---"
+        else
+            echo "Due to there are no destructive changes detected"
+            echo -e "Script exection will be finished with 0 code status\n"
+            echo "The workflow execution will be proceeded"
+
+            echo -e "\n--- Step 1 execution is finished ---"
+            exit 0
+    fi
+
+}
+
+
+
+
+positive_changes_deploy_actions () {
+    echo -e "--- positive_changes_deploy_actions () function execution start. ---"
+    echo -e "--- Deploy positive changes ---\n\n"
+
+
+    echo -e "\n\n\n--- Step 1. Deploy data to the target Salesforce org ----"
+
+    SALESFORCE_DEPLOY_LOG=$(sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN)
+
+    echo -e "\n--- Step 1 execution result ---"
+    echo "Step 1 execution result:"
+    echo "Salesforce deploy result is:"
+    echo $SALESFORCE_DEPLOY_LOG
+
+    echo -e "\n--- Step 1 execution is finished ---"
+
+
+
+
+    echo -e "\n\n\n--- Step 2. Deploy meta to the target Salesforce org deploy ID ----"
+    mapfile -t SALESFORCE_DEPLOY_LOG_ARRAY < <( echo $SALESFORCE_DEPLOY_LOG | tr ' ' '\n' | sed 's/\(.*\),/\1 /' )
+
+
+    COUNT=0
+    ARRAY_LEN=${#SALESFORCE_DEPLOY_LOG_ARRAY[@]}
+    SALESFORCE_DEPLOY_ID=""
+    LOOP_LEN=$( expr $ARRAY_LEN - 1)
+
+    while [ $COUNT -le $LOOP_LEN ]
+    do
+        if [[ ${SALESFORCE_DEPLOY_LOG_ARRAY[$COUNT]} == *"ID:"* ]];
+        then
+            SALESFORCE_DEPLOY_ID_ARRAY_POSITION=$(( $COUNT +1))
+            SALESFORCE_DEPLOY_ID=${SALESFORCE_DEPLOY_LOG_ARRAY[$SALESFORCE_DEPLOY_ID_ARRAY_POSITION]}
+            COUNT=$(( $COUNT +1))
+        else   
+            COUNT=$(( $COUNT +1))
+        fi
+    done
+
+
+    echo "POSITIVE_CHANGES_SALESFORCE_DEPLOY_ID=$SALESFORCE_DEPLOY_ID" >> "$GITHUB_ENV"
+
+    echo -e "\n--- Step 2 execution result ---"
+    echo "Step 2 execution result:"
+    echo "Salesforce org deploy ID is :"
+    echo $SALESFORCE_DEPLOY_ID
+    echo "--- Step 2 execution is finished ---"
 }
