@@ -96,10 +96,6 @@ get_positive_changes () {
     DIFF_SOURCE_BRANCH="origin/"$SOURCE_BRANCH_NAME
     DIFF_TARGET_BRANCH="origin/"$TARGET_BRANCH_NAME
 
-    echo -e "\nDiff logic execution result:"
-    GET_DIFF=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=ACMR ${SALESFORCE_META_DIRECTORY})
-
-    echo $GET_DIFF
     FILES_TO_DEPLOY=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=ACMR ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
 
@@ -121,7 +117,6 @@ get_destructive_changes () {
     echo -e "--- Define destructive changes ---\n"
 
 
-
     echo -e "\n\n--- Step 1. Logic execution to define the list of DESTRUCTIVE files to be deleted from the Salesforce org ---"
 
 
@@ -129,12 +124,8 @@ get_destructive_changes () {
     DIFF_SOURCE_BRANCH="origin/"$SOURCE_BRANCH_NAME
     DIFF_TARGET_BRANCH="origin/"$TARGET_BRANCH_NAME
 
-    #echo -e "\nDiff logic execution result:"
-    #GET_DIFF=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY})
 
-    #echo $GET_DIFF
     FILES_TO_DEPLOY=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
-
 
     if [[ ${#FILES_TO_DEPLOY} != 0 ]]
         then
@@ -167,7 +158,8 @@ destructive_changes_pre_deploy_actions () {
 
     if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
         then
-            sf project delete source $ENV_DESTRUCTIVE_DIFF_SF -с --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
+            #sf project delete source $ENV_DESTRUCTIVE_DIFF_SF -с --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
+            sfdx force:source:delete -c -u ${SALESFORCE_ORG_ALIAS}
 
             echo -e "\n\n--- Step 1 execution is finished ---"
         else
