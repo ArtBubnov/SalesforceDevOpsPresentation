@@ -135,6 +135,13 @@ get_destructive_changes () {
     echo $GET_DIFF
     FILES_TO_DEPLOY=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
+
+    echo -e "---------------"
+    echo $FILES_TO_DEPLOY
+    echo -e "---------------"
+
+
+
     mapfile -t files_array < <( git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY} )
 
     COUNT=0
