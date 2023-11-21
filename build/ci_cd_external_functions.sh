@@ -133,7 +133,7 @@ get_apex_tests_list () {
 
     HOME_DIR=$(pwd)
 
-    echo -e "\n\n\n--- Step 2. Logic execution to define the list of apex tests to be executed during deployment to the Salesforce org ---"
+    echo -e "--- Step 1. Logic execution to define the list of apex tests to be executed during deployment to the Salesforce org ---"
 
     #get to classes directory to define the list of tests to be executed
     cd $APEX_TESTS_DIRECTORY
@@ -171,14 +171,14 @@ get_apex_tests_list () {
     LIST_OF_FILES_TO_TEST_TRUNC=$((echo ${LIST_OF_FILES_TO_TEST}) | cut -c 1-$NUMBER_OF_SYMBOLS_TO_TRUNCATE )
 
 
-    echo -e "\nStep 2 execution result:"
+    echo -e "\nStep 1 execution result:"
     echo -e "\nList of apex tests to be executed:"
     echo $LIST_OF_FILES_TO_TEST_TRUNC
     echo "ENV_APEX_TESTS_SF=$LIST_OF_FILES_TO_TEST_TRUNC" >> "$GITHUB_ENV"
 
     cd $HOME_DIR
 
-    echo -e "\n--- Step 2 execution is finished ---"
+    echo -e "\n--- Step 1 execution is finished ---"
 
 }
 
