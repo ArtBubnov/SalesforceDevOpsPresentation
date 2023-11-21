@@ -129,62 +129,21 @@ get_destructive_changes () {
     DIFF_SOURCE_BRANCH="origin/"$SOURCE_BRANCH_NAME
     DIFF_TARGET_BRANCH="origin/"$TARGET_BRANCH_NAME
 
-    echo -e "\nDiff logic execution result:"
-    GET_DIFF=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY})
+    #echo -e "\nDiff logic execution result:"
+    #GET_DIFF=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY})
 
-    echo $GET_DIFF
+    #echo $GET_DIFF
     FILES_TO_DEPLOY=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
 
-    if [[ ${#TEST} != 0 ]]
+    if [[ ${#FILES_TO_DEPLOY} != 0 ]]
         then
-            echo -e "///////////TRUE///////////"
-        else
-            echo -e "///////////FALSE///////////"
-    fi
-
-
-
-
-
-
-    echo -e "---------------"
-    echo $FILES_TO_DEPLOY
-    echo -e "*********"
-    echo ${#FILES_TO_DEPLOY}
-    TEST=""
-    echo -e "+++++++++++++"
-    echo -e ${#TEST}
-    echo -e "---------------"
-
-
-
-    mapfile -t files_array < <( git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY} )
-
-    COUNT=0
-    ARRAY_LEN=${#files_array[@]}
-    LOOP_LEN=$( expr $ARRAY_LEN - 1)
-    SF_COMMAND_META_STRING=""
-
-    if [[ $ARRAY_LEN != 0 ]]
-        then
-            while [ $COUNT -le $LOOP_LEN ]
-            do
-                CURRENT_ARRAY_NODE=${files_array[$COUNT]}
-                #SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" ' 
-                SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}${CURRENT_ARRAY_NODE}', '
-                
-                COUNT=$(( $COUNT +1))
-
-            done
-
-            SF_COMMAND_META_STRING='"'${SF_COMMAND_META_STRING}'"'
-            echo "ENV_DESTRUCTIVE_DIFF_SF=$SF_COMMAND_META_STRING" >> "$GITHUB_ENV"
+            echo "ENV_DESTRUCTIVE_DIFF_SF=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
             echo "DESTRUCTIVE_CHANGES_PRESENTED=true" >> "$GITHUB_ENV"
 
             echo -e "\nStep 2 execution result"
             echo "destructive changes list is: "
-            echo $SF_COMMAND_META_STRING
+            echo $FILES_TO_DEPLOY
             echo -e "\n--- Step 2 execution is finished ---"
         else
             echo "Due to there are no destructive changes detected"
