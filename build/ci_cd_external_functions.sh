@@ -122,7 +122,7 @@ get_destructive_changes () {
 
 
 
-    echo -e "\n\n\n--- Step 1. Logic execution to define the list of DESTRUCTIVE files to be deleted from the Salesforce org ---"
+    echo -e "\n\n--- Step 1. Logic execution to define the list of DESTRUCTIVE files to be deleted from the Salesforce org ---"
 
 
     echo -e "\nFind the difference between organizations"
@@ -141,15 +141,15 @@ get_destructive_changes () {
             echo "ENV_DESTRUCTIVE_DIFF_SF=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
             echo "DESTRUCTIVE_CHANGES_PRESENTED=true" >> "$GITHUB_ENV"
 
-            echo -e "\nStep 2 execution result"
+            echo -e "\nStep 1 execution result"
             echo "destructive changes list is: "
             echo $FILES_TO_DEPLOY
-            echo -e "\n--- Step 2 execution is finished ---"
+            echo -e "\n\n\n--- Step 1 execution is finished ---"
         else
             echo "Due to there are no destructive changes detected"
             echo -e "Script exection will be finished with 0 code status\n"
             echo "The workflow execution will be proceeded"
-            echo -e "\n--- Step 2 execution is finished ---"
+            echo -e "\n\n\n--- Step 1 execution is finished ---"
             echo "DESTRUCTIVE_CHANGES_PRESENTED=false" >> "$GITHUB_ENV"
     fi
 }
