@@ -138,6 +138,8 @@ get_destructive_changes () {
 
     echo -e "---------------"
     echo $FILES_TO_DEPLOY
+    echo -e "*********"
+    echo ${#FILES_TO_DEPLOY}
     echo -e "---------------"
 
 
