@@ -26,24 +26,7 @@ login_to_SF_org () {
     echo -e "--- Login into Salesforce Org ---\n\n\n"
 
 
-
-    echo -e "--- Step 1. Define global variables for the current pipeline ---\n\n"
-
-    echo -e "Global variables display:"
-
-    echo -e "\nTarget branch name is:"
-    echo -e "PLACEHOLDER DEV"
-    #echo $TARGET_BRANCH_NAME
-    echo -e "\nSalesforce org alias is:"
-    echo -e "PLACEHOLDER Salesforce org alias"
-    #echo $SALESFORCE_ORG_ALIAS
-
-    echo -e "\n\n--- Step 1 execution is finished ---"
-
-
-
-
-    echo -e "\n\n\n--- Step 2. Login to the target Salesforce org"
+    echo -e "\n\n\n--- Step 1. Login to the target Salesforce org"
 
     echo "Creating .key file"
     #touch access_pass.key
@@ -56,7 +39,7 @@ login_to_SF_org () {
 
     #rm access_pass.key
 
-    echo -e "\n--- Step 2.  execution is finished"
+    echo -e "\n--- Step 1.  execution is finished"
 }
 
 
