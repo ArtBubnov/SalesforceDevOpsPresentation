@@ -140,7 +140,7 @@ get_destructive_changes () {
     COUNT=0
     ARRAY_LEN=${#files_array[@]}
     LOOP_LEN=$( expr $ARRAY_LEN - 1)
-    SF_COMMAND_META_STRING="--source-dir "
+    SF_COMMAND_META_STRING=""
 
     if [[ $ARRAY_LEN != 0 ]]
         then
@@ -148,7 +148,7 @@ get_destructive_changes () {
             do
                 CURRENT_ARRAY_NODE=${files_array[$COUNT]}
                 #SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" ' 
-                SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}'"'${CURRENT_ARRAY_NODE}'" '
+                SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}'"'${CURRENT_ARRAY_NODE}'", '
                 COUNT=$(( $COUNT +1))
 
             done
