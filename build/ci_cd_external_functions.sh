@@ -149,11 +149,12 @@ get_destructive_changes () {
                 CURRENT_ARRAY_NODE=${files_array[$COUNT]}
                 #SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" ' 
                 SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}${CURRENT_ARRAY_NODE}', '
-                SF_COMMAND_META_STRING='"'${SF_COMMAND_META_STRING}'"'
+                
                 COUNT=$(( $COUNT +1))
 
             done
 
+            SF_COMMAND_META_STRING='"'${SF_COMMAND_META_STRING}'"'
             echo "ENV_DESTRUCTIVE_DIFF_SF=$SF_COMMAND_META_STRING" >> "$GITHUB_ENV"
             echo "DESTRUCTIVE_CHANGES_PRESENTED=true" >> "$GITHUB_ENV"
 
