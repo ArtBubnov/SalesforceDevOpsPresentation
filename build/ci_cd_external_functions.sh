@@ -2,7 +2,7 @@
 
 logger () {
     echo -e "--- logger () function execution start. ---"
-    echo -e "--- Output global info for the current pipeline ---\n"
+    echo -e "--- Output global info for the current pipeline ---\n\n"
     
     
     echo "Event is:"
@@ -15,7 +15,7 @@ logger () {
     sudo npm sfdx --version
 
 
-    echo -e "\n--- logger () function execution end. ---\n"
+    echo -e "\n--- logger () function execution end. ---"
 }
 
 
@@ -89,7 +89,7 @@ get_positive_changes () {
 
 
 
-    echo -e "\n\n\n--- Step 1. Logic execution to define the list of POSITIVE files to be deployed to the Salesforce org ---"
+    echo -e "\n\n--- Step 1. Logic execution to define the list of POSITIVE files to be deployed to the Salesforce org ---"
 
 
     echo -e "\nFind the difference between organizations"
@@ -101,7 +101,7 @@ get_positive_changes () {
 
     echo -e "\nStep 1 execution is finished"
     echo "Step 1 execution result:"
-    echo -e "\nFiles to deploy"
+    echo -e "Files to deploy"
     echo $FILES_TO_DEPLOY
     echo "ENV_POSITIVE_DIFF_SF=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
 
