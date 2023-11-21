@@ -9,7 +9,7 @@ env:
   SALESFORCE_ORG_ALIAS: ${{ vars.SALESFORCE_ORG_ALIAS }}
   ACCESS_KEY_SF: ${{ secrets.ACCESS_KEY_SF }}
   SALESFORCE_META_DIRECTORY: "force-app/main/default"
-  APEX_TESTS_DIRECTORY: "force-app/main/default/classes/tests"
+  APEX_TESTS_DIRECTORY: "force-app/main/default/classes/testFolder"
 
 
 
