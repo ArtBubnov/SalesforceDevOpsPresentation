@@ -52,7 +52,7 @@ jobs:
           source ./build/ci_cd_external_functions.sh && logger
 
 
-      - name: TEST
+      - name: --- Global Step 0. Salesforce login ---
         run: |
           chmod +x ./build/ci_cd_external_functions.sh
           source ./build/ci_cd_external_functions.sh && login_to_SF_org_full_version
