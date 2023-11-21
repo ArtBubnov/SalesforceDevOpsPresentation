@@ -147,7 +147,8 @@ get_destructive_changes () {
             while [ $COUNT -le $LOOP_LEN ]
             do
                 CURRENT_ARRAY_NODE=${files_array[$COUNT]}
-                SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" '    
+                #SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}"--source-dir "'"'${CURRENT_ARRAY_NODE}'" ' 
+                SF_COMMAND_META_STRING=${SF_COMMAND_META_STRING}'"'${CURRENT_ARRAY_NODE}'" '   
                 COUNT=$(( $COUNT +1))
 
             done
