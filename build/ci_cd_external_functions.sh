@@ -282,6 +282,6 @@ positive_changes_pre_deploy_actions () {
 
 
 
-test () {
-    echo "Первый параметр: $1"
-}
+#test () {
+#    echo "Первый параметр: $1"
+#}
