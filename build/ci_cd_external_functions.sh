@@ -136,6 +136,18 @@ get_destructive_changes () {
     FILES_TO_DEPLOY=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
 
+    if [[ ${#FILES_TO_DEPLOY} != 0 ]]
+        then
+            echo -e "///////////TRUE///////////"
+        else
+            echo -e "///////////FALSE///////////"
+    fi
+}
+
+
+
+
+
     echo -e "---------------"
     echo $FILES_TO_DEPLOY
     echo -e "*********"
