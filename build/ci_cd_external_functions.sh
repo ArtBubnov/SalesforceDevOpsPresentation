@@ -142,7 +142,7 @@ get_destructive_changes () {
         else
             echo -e "///////////FALSE///////////"
     fi
-}
+
 
 
 
