@@ -262,26 +262,3 @@ positive_changes_pre_deploy_actions () {
 
     echo -e "\n--- Step 3 execution is finished ---"
 }
-
-
-
-
-
-
-#test () {
-#    #GET_DIFF=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
-#
-#    GET_DIFF=$(git diff dev..qa --name-only --diff-filter=ACMRD force-app/main/default)
-
-
-    #GET_DIFF=$(git branch)
-#    echo -e "*******"
-#    echo -e $GET_DIFF
-#    echo -e "*******"
-#}
-
-
-
-#test () {
-#    echo "Первый параметр: $1"
-#}

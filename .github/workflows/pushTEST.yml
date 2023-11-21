@@ -55,22 +55,10 @@ jobs:
       - name: TEST
         run: |
           chmod +x ./build/ci_cd_external_functions.sh
-          source ./build/ci_cd_external_functions.sh && test "Hello"
+          source ./build/ci_cd_external_functions.sh && login_to_SF_org_full_version
 
           
-      - name: manual-trigger
-        id: manual-trigger
-        uses: benhamiltonpro/manual-trigger@v1.0.2
-        with:
-          RUN_NAME: "manual-step"
 
-  build:
-    needs: pre_deploy_logic
-    if: ${{ needs.pre_deploy_logic.outputs.CONTINUE_JOBS == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Runs plan
-        run: echo "It runs plan"
 
 
 
