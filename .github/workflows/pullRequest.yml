@@ -47,3 +47,9 @@ jobs:
         run: |
           chmod +x ./build/ci_cd_external_functions.sh
           source ./build/ci_cd_external_functions.sh && logger
+
+
+      - name: --- Global Step 1. Salesforce login ---
+        run: |
+          chmod +x ./build/ci_cd_external_functions.sh
+          source ./build/ci_cd_external_functions.sh && login_to_SF_org

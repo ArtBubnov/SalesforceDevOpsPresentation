@@ -178,7 +178,7 @@ destructive_changes_pre_deploy_actions () {
     if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
         then
             #sf project delete source $ENV_DESTRUCTIVE_DIFF_SF -с --target-org ${SALESFORCE_ORG_ALIAS} --no-prompt
-            #sfdx force:source:delete -p "$ENV_POSITIVE_DIFF_SF" -c -u ${SALESFORCE_ORG_ALIAS}
+            sfdx force:source:delete -p "$ENV_POSITIVE_DIFF_SF" -c -u ${SALESFORCE_ORG_ALIAS}
 
             echo -e "\n\n--- Step 1 execution is finished ---"
         else
@@ -199,7 +199,7 @@ positive_changes_pre_deploy_actions () {
 
 
     echo -e "\n\n\n--- Step 3. Test deploy to the Salesforce org ---\n"
-    #sfdx force:source:deploy -p "$ENV_POSITIVE_DIFF_SF" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
+    sfdx force:source:deploy -p "$ENV_POSITIVE_DIFF_SF" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
 
 
     echo -e "\n--- Step 3 execution is finished ---"
