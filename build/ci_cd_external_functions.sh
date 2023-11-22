@@ -11,6 +11,8 @@ logger () {
     echo $SOURCE_BRANCH_NAME
     echo -e "\nPull request target branch is:"
     echo $TARGET_BRANCH_NAME
+    echo -e "Salesforce org alias that will be used is:"
+    echo $SALESFORCE_ORG_ALIAS
     echo -e "\nInstalled SFDX version is:"
     sudo npm sfdx --version
 
@@ -29,15 +31,16 @@ login_to_SF_org () {
     echo -e "\n\n\n--- Step 1. Login to the target Salesforce org"
 
     echo "Creating .key file"
-    #touch access_pass.key
+    touch access_pass.key
 
     echo -e "\nAdding access data to .key file"
-    #echo $ACCESS_KEY_SF > access_pass.key
+    echo $ACCESS_KEY_SF > access_pass.key
 
     echo -e "\nTry to login to the Salesforce org"
     #sf org login sfdx-url --sfdx-url-file "access_pass.key" --alias ${SALESFORCE_ORG_ALIAS}
+    sfdx force:auth:sfdxurl:store -f "access_pass.key" -a ${SALESFORCE_ORG_ALIAS} -d
 
-    #rm access_pass.key
+    rm access_pass.key
 
     echo -e "\n--- Step 1.  execution is finished"
 }
