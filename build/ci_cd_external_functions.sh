@@ -308,6 +308,7 @@ positive_changes_deploy_actions () {
     echo -e "\n--- Step 2 execution result ---"
     echo "Step 2 execution result:"
     echo "Salesforce org deploy ID is :"
+    echo "The step 3 has been complited"
     echo $SALESFORCE_DEPLOY_ID
     echo "--- Step 2 execution is finished ---"
 }

@@ -71,3 +71,9 @@ jobs:
         run: |
           chmod +x ./build/ci_cd_external_functions.sh
           source ./build/ci_cd_external_functions.sh && get_apex_tests_list
+
+
+#      - name: --- Global Step 3. Deploy destructive changes without saving ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && get_destructive_changes
