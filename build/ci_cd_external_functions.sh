@@ -185,7 +185,6 @@ destructive_changes_pre_deploy_actions () {
 
             echo -e "\n\n--- Step 1 execution is finished ---"
         else
-            echo "Due to there are no destructive changes detected"
             echo -e "Script exection will be finished with 0 code status\n"
             echo "The workflow execution will be proceeded"
 
