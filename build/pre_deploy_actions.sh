@@ -1,8 +1,6 @@
 echo -e "--- Predeploy actions script executions start ---\n\n\n"
 
 
-
-
 echo -e "--- Step 1. Define global variables for the current pipeline ---\n"
 
 echo -e "Global variables display:\n"
@@ -22,30 +20,7 @@ echo -e "\n--- Step 1 execution is finished ---"
 
 
 
-
-echo -e "\n\n\n--- Step 2. Logic execution to define the list of files to be deployed to the Salesforce org ---"
-
-echo -e "\nFind the difference between organizations"
-DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
-
-echo -e "\nDiff logic execution result:"
-GET_DIFF=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
-
-echo $GET_DIFF
-FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
-
-
-echo -e "\nStep 2 execution is finished"
-echo "Step 3 execution result:"
-echo -e "\nFiles to deploy"
-echo $FILES_TO_DEPLOY
-
-echo -e "\n--- Step 2 execution is finished ---"
-
-
-
-
-echo -e "\n\n\n--- Step 3. Logic execution to define the list of apex tests to be executed during deployment to the Salesforce org ---"
+echo -e "\n\n\n--- Step 2. Logic execution to define the list of apex tests to be executed during deployment to the Salesforce org ---"
 
 #get to classes directory to define the list of tests to be executed
 cd $APEX_TESTS_DIRECTORY
@@ -83,18 +58,21 @@ NUMBER_OF_SYMBOLS_TO_TRUNCATE=$( expr $LEN_OF_LIST_OF_FILES_TO_TEST - 1 )
 LIST_OF_FILES_TO_TEST_TRUNC=$((echo ${LIST_OF_FILES_TO_TEST}) | cut -c 1-$NUMBER_OF_SYMBOLS_TO_TRUNCATE )
 
 
-echo -e "\nStep 3 execution result:"
+echo -e "\nStep 2 execution result:"
 echo -e "\nList of apex tests to be executed:"
 echo $LIST_OF_FILES_TO_TEST_TRUNC
 cd $HOME_DIR
 
+echo -e "\n--- Step 2 execution is finished ---"
+
+
+
+
+echo -e "\n\n\n--- Step 3. Test deploy to the Salesforce org ---\n"
+
+#sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l RunSpecifiedTests -r "$LIST_OF_FILES_TO_TEST_TRUNC" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
+#sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
+sfdx force:source:deploy -p "$ENV_POSITIVE_DIFF_SF" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
+
+
 echo -e "\n--- Step 3 execution is finished ---"
-
-
-
-
-echo -e "\n\n\n--- Step 4. Test deploy to the Salesforce org ---\n"
-
-sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -c -l RunSpecifiedTests -r "$LIST_OF_FILES_TO_TEST_TRUNC" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
-        
-echo -e "\n--- Step 4 execution is finished ---"

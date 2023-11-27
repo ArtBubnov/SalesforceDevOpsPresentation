@@ -9,7 +9,8 @@ env:
   SALESFORCE_ORG_ALIAS: ${{ vars.SALESFORCE_ORG_ALIAS }}
   ACCESS_KEY_SF: ${{ secrets.ACCESS_KEY_SF }}
   SALESFORCE_META_DIRECTORY: "force-app/main/default"
-  APEX_TESTS_DIRECTORY: "force-app/main/default/classes/tests"
+  APEX_TESTS_DIRECTORY: "force-app/main/default/classes/testFolder"
+
 
 
   
@@ -33,64 +34,44 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-
-    - uses: sfdx-actions/setup-sfdx@v1
-
-
-
-#    - uses: actions/checkout@v3
-#      with:
-#        fetch-depth: 0
-
-#    - name: Global Step 2. Salesforce org login
-#      run: |
-#          chmod +x ./build/login_to_SF_org.sh
-#          ./build/login_to_SF_org.sh
-
-#    - name: Global Step 1. SFDX CLI version check
-#      run: |
-#          chmod +x ./build/install_dependencies.sh
-#          ./build/install_dependencies.sh
+      - name: --- System Step 0 ---. Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
 
+      - name: --- System Step 1 ---. Salesforce CLI install
+        uses: sfdx-actions/setup-sfdx@v1
 
 
-
-  second_job:
-    needs: pre_deploy_logic
-    runs-on: ubuntu-latest
-    steps:
-    - name: test
-      run: |
-        echo "test"
-
-#    - name: Global Step 3. Define destructive changes
-#      run: |
-#        chmod +x ./build/get_destructive_changes.sh
-#        ./build/get_destructive_changes.sh
+      - name: --- Global Step 0. Logger ---
+        run: |
+          chmod +x ./build/ci_cd_external_functions.sh
+          source ./build/ci_cd_external_functions.sh && logger
 
 
-#    - uses: actions/checkout@v3
-#      if: ${{ vars.DESTRUCTIVE_CHANGES_PRESENTED == true }} 
-#      with:
-#        ref: qa
+      - name: --- Global Step 1. Salesforce login ---
+        run: |
+          chmod +x ./build/ci_cd_external_functions.sh
+          source ./build/ci_cd_external_functions.sh && login_to_SF_org
+
+          
+      - name: --- Global Step 2. Get destractive meta list ---
+        run: |
+          chmod +x ./build/ci_cd_external_functions.sh
+          source ./build/ci_cd_external_functions.sh && get_destructive_changes
 
 
-
-#    - name: Global Step 4. Define destructive changes
-#      run: |
-#        chmod +x ./build/destructive_changes_pre_deploy_actions.sh
-#        ./build/destructive_changes_pre_deploy_actions.sh
-
-#    - uses: actions/checkout@v3
-#      with:
-#        ref: qa
+#      - name: --- Global Step 4. Get positive meta list ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && get_positive_changes
 
 
-#    - name: Global Step 4. Destructive changes predeploy actions
-#      run: |
-#        chmod +x ./build/desteuctive_changes_pre_deploy_actions.sh
-#        ./build/desteuctive_changes_pre_deploy_actions.sh
+#      - name: --- Global Step 5. Get apex tests list ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && get_apex_tests_list
 
 
 
@@ -98,27 +79,13 @@ jobs:
 
 
 
+#      - name: --- Global Step 3. Deploy destructive changes without saving ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && get_destructive_changes
 
 
+          
 
-
-
-
-
-
-
-
-
-
-#    - name: Global Step 1. GET DIFF
-#      run: |
-#        DIFF_BRANCH="origin/qa"
-#        mapfile -t GET_DESTRUCTIVE_DIFF_ARRAY < <( git diff --name-only --diff-filter=D ${DIFF_BRANCH} force-app/main/default )
-#        echo "ENV_DESTRUCTIVE_DIFF=$GET_DESTRUCTIVE_DIFF_ARRAY" >> "$GITHUB_ENV"
-
-
-#    - name: GLOB 2. TEST VAR
-#      run: |
-#        echo "${{ env.ENV_DESTRUCTIVE_DIFF }}" # This will output 'yellow'
-#        chmod +x ./build/get_desteuctive_changes.sh
-#        ./build/get_desteuctive_changes.sh 
+#source ./build/ci_cd_external_functions.sh && login_to_SF_org_full_version1
+         

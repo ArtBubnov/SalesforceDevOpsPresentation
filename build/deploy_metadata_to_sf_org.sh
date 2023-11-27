@@ -21,41 +21,21 @@ echo -e "\n---Step 1 execution is finished ---"
 
 
 
-echo -e "\n\n\n--- Step 2. Logic execution to define the list of files to be deployed to the Salesforce org ---"
+echo -e "\n\n\n--- Step 2. Deploy data to the target Salesforce org ----"
 
-echo -e "\nFind the difference between organizations"
-DIFF_BRANCH="origin/"$TARGET_BRANCH_NAME
+SALESFORCE_DEPLOY_LOG=$(sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN)
 
-echo -e "\nDiff logic execution result:"
-GET_DIFF=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY})
-
-echo $GET_DIFF
-FILES_TO_DEPLOY=$(git diff --name-only --diff-filter=ACMR ${DIFF_BRANCH} ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
-
-
-echo -e "\nStep 2 execution result"
-echo "Step 3 execution result:"
-echo -e "\nFiles to deploy"
-echo $FILES_TO_DEPLOY
+echo -e "\n--- Step 2 execution result ---"
+echo "Step 2 execution result:"
+echo "Salesforce deploy result is:"
+echo $SALESFORCE_DEPLOY_LOG
 
 echo -e "\n--- Step 2 execution is finished ---"
 
 
 
 
-echo -e "\n\n\n--- Step 3. Deploy data to the target Salesforce org ----"
-
-SALESFORCE_DEPLOY_LOG=$(sfdx force:source:deploy -p "$FILES_TO_DEPLOY" -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN)
-
-echo -e "\n--- Step 3 execution result ---"
-echo "Step 3 execution result:"
-echo "Salesforce deploy result is:"
-echo $SALESFORCE_DEPLOY_LOG
-
-echo -e "\n--- Step 3 execution is finished ---"
-
-
-echo -e "\n\n\n--- Step 4. Define Salesforce org deploy ID ----"
+echo -e "\n\n\n--- Step 3. Deploy meta to the target Salesforce org deploy ID ----"
 mapfile -t SALESFORCE_DEPLOY_LOG_ARRAY < <( echo $SALESFORCE_DEPLOY_LOG | tr ' ' '\n' | sed 's/\(.*\),/\1 /' )
 
 
