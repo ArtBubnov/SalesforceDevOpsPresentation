@@ -201,7 +201,11 @@ positive_changes_pre_deploy_actions () {
 
 
     echo -e "\n\n\n--- Step 3. Test deploy to the Salesforce org ---\n"
-    sfdx force:source:deploy -p "$ENV_POSITIVE_DIFF_SF" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --loglevel WARN
+    echo -e "******* TEST ***********"
+    echo $ENV_POSITIVE_DIFF_SF
+
+    echo -e "******* TEST ***********"
+    #sfdx force:source:deploy -p "$ENV_POSITIVE_DIFF_SF" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS} --SFDX_LOG_LEVEL WARN
 
 
     echo -e "\n--- Step 3 execution is finished ---"
