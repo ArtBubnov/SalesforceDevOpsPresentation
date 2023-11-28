@@ -61,7 +61,7 @@ get_positive_changes () {
     DIFF_SOURCE_BRANCH="origin/"$SOURCE_BRANCH_NAME
     DIFF_TARGET_BRANCH="origin/"$TARGET_BRANCH_NAME
 
-    FILES_TO_DEPLOY=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=ACMR ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
+    FILES_TO_DEPLOY=$(git diff ${DIFF_TARGET_BRANCH}..${DIFF_SOURCE_BRANCH} --name-only --diff-filter=ACMR ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
 
     echo -e "\nStep 1 execution is finished"
@@ -90,7 +90,7 @@ get_destructive_changes () {
     DIFF_TARGET_BRANCH="origin/"$TARGET_BRANCH_NAME
 
 
-    FILES_TO_DEPLOY=$(git diff ${DIFF_SOURCE_BRANCH}..${DIFF_TARGET_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
+    FILES_TO_DEPLOY=$(git diff ${DIFF_TARGET_BRANCH}..${DIFF_SOURCE_BRANCH} --name-only --diff-filter=D ${SALESFORCE_META_DIRECTORY} | tr '\n' ',' | sed 's/\(.*\),/\1 /')
 
     if [[ ${#FILES_TO_DEPLOY} != 0 ]]
         then
