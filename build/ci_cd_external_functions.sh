@@ -322,8 +322,8 @@ positive_changes_deploy_actions () {
 test_actions () {
     echo -e "-------------TEST------------"
     echo -e $(git checkout origin/dev)
-    echo -e $(git fetch origin/dev)
-    echo -e $(git pull origin/dev)
+    echo -e $(git fetch dev)
+    echo -e $(git pull dev)
 
     cd force-app/main/default/lwc/barcodeScanner
     ls -a
