@@ -97,11 +97,6 @@ get_destructive_changes () {
             echo "ENV_DESTRUCTIVE_DIFF_SF=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
             echo "DESTRUCTIVE_CHANGES_PRESENTED=true" >> "$GITHUB_ENV"
 
-
-            echo -e "----------- TEST ------------------"
-            echo $ENV_DESTRUCTIVE_DIFF_SF
-            echo -e "----------- TEST ------------------"
-
             echo -e "\nStep 1 execution result"
             echo "destructive changes list is: "
             echo $FILES_TO_DEPLOY
@@ -183,11 +178,13 @@ destructive_changes_pre_deploy_actions () {
 
     echo -e "--- Step 1. Deploy destructive changes without saving ---\n"
     echo -e $(git checkout origin/dev)
-
+    echo -e "----------- TEST ------------------"
+    echo $ENV_DESTRUCTIVE_DIFF_SF
+    echo -e "----------- TEST ------------------"
 
     if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
         then
-            sfdx force:source:delete -p "$ENV_POSITIVE_DIFF_SF" -c -u ${SALESFORCE_ORG_ALIAS}
+            sfdx force:source:delete -p "$ENV_DESTRUCTIVE_DIFF_SF" -c -u ${SALESFORCE_ORG_ALIAS}
 
             echo -e "\n\n--- Step 1 execution is finished ---"
         else
