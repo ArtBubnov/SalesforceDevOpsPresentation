@@ -321,6 +321,8 @@ positive_changes_deploy_actions () {
 
 test_actions () {
     echo -e "-------------TEST------------"
+    TESTER = $(git branch)
+    echo -e $TESTER
     cd force-app/main/default/lwc/barcodeScanner
     ls -a
     echo -e "-------------TEST------------\n\n\n"
