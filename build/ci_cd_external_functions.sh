@@ -201,6 +201,7 @@ positive_changes_pre_deploy_actions () {
 
 
     echo -e "\n\n\n--- Step 3. Test deploy to the Salesforce org ---\n"
+    echo -e $(git checkout origin/dev)
     echo -e "******* TEST ***********"
     echo $ENV_POSITIVE_DIFF_SF
 
@@ -336,5 +337,5 @@ test_actions () {
 
 
 
-    sfdx force:source:deploy -p "force-app/main/default/lwc/barcodeScanner/__tests__/barcodeScanner.test.js,force-app/main/default/lwc/barcodeScanner/barcodeScanner.html,force-app/main/default/lwc/barcodeScanner/barcodeScanner.js,force-app/main/default/lwc/barcodeScanner/barcodeScanner.js-meta.xml" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS}
+    #sfdx force:source:deploy -p "force-app/main/default/lwc/barcodeScanner/__tests__/barcodeScanner.test.js,force-app/main/default/lwc/barcodeScanner/barcodeScanner.html,force-app/main/default/lwc/barcodeScanner/barcodeScanner.js,force-app/main/default/lwc/barcodeScanner/barcodeScanner.js-meta.xml" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS}
 }

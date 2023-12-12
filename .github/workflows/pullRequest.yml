@@ -63,10 +63,10 @@ jobs:
           source ./build/ci_cd_external_functions.sh && login_to_SF_org
 
 
-#      - name: --- Global Step 2. Get destractive meta list ---
-#        run: |
-#          chmod +x ./build/ci_cd_external_functions.sh
-#          source ./build/ci_cd_external_functions.sh && get_destructive_changes
+      - name: --- Global Step 2. Get destractive meta list ---
+        run: |
+          chmod +x ./build/ci_cd_external_functions.sh
+          source ./build/ci_cd_external_functions.sh && get_destructive_changes
 
 
 #      - name: --- Global Step 3. Get positive meta list ---
