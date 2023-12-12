@@ -322,10 +322,16 @@ positive_changes_deploy_actions () {
 test_actions () {
     echo -e "-------------TEST------------"
     echo -e $(git checkout origin/dev)
-    #TESTER=$(git branch)
-    #echo -e $TESTER
+    echo -e $(git fetch origin/dev)
+    echo -e $(git pull origin/dev)
+
     cd force-app/main/default/lwc/barcodeScanner
     ls -a
     echo -e "-------------TEST------------\n\n\n"
+
+
+
+
+
     sfdx force:source:deploy -p "force-app/main/default/lwc/barcodeScanner/__tests__/barcodeScanner.test.js,force-app/main/default/lwc/barcodeScanner/barcodeScanner.html,force-app/main/default/lwc/barcodeScanner/barcodeScanner.js,force-app/main/default/lwc/barcodeScanner/barcodeScanner.js-meta.xml" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS}
 }
