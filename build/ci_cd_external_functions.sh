@@ -320,5 +320,5 @@ positive_changes_deploy_actions () {
 
 
 test_actions () {
-sfdx force:source:deploy -p "force-app/main/default/lwc/barcodeScanner/__tests__/barcodeScanner.test.js,force-app/main/default/lwc/barcodeScanner/barcodeScanner.html,force-app/main/default/lwc/barcodeScanner/barcodeScanner.js,force-app/main/default/lwc/barcodeScanner/barcodeScanner.js-meta.xml" -c -l NoTestRun -u test
+sfdx force:source:deploy -p "force-app/main/default/lwc/barcodeScanner/__tests__/barcodeScanner.test.js,force-app/main/default/lwc/barcodeScanner/barcodeScanner.html,force-app/main/default/lwc/barcodeScanner/barcodeScanner.js,force-app/main/default/lwc/barcodeScanner/barcodeScanner.js-meta.xml" -c -l NoTestRun -u ${SALESFORCE_ORG_ALIAS}
 }
