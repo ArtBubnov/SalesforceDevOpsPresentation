@@ -74,11 +74,11 @@ jobs:
 
       
       #SOURCE BRANCH
-      - name: --- System Step 2 ---. Source branch checkout
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
+#      - name: --- System Step 2 ---. Source branch checkout
+#        uses: actions/checkout@v3
+#        with:
+#          ref: ${{ github.event.pull_request.head.ref }}
+#          fetch-depth: 0
 
 
       - name: --- Global Step 5. Deploy destructive changes without saving ---
