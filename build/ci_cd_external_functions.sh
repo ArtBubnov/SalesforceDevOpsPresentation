@@ -177,11 +177,7 @@ destructive_changes_pre_deploy_actions () {
 
 
     echo -e "--- Step 1. Deploy destructive changes without saving ---\n"
-    echo -e $(git checkout origin/dev)
-    echo -e "----------- TEST ------------------"
-    echo $ENV_DESTRUCTIVE_DIFF_SF
-    echo -e "----------- TEST ------------------"
-
+    
     if [[ $DESTRUCTIVE_CHANGES_PRESENTED == true ]]
         then
             sfdx force:source:delete -p "$ENV_DESTRUCTIVE_DIFF_SF" -c -u ${SALESFORCE_ORG_ALIAS}
