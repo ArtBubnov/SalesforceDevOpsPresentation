@@ -89,10 +89,10 @@ jobs:
 #          fetch-depth: 0
 
 
-#      - name: --- Global Step 5. Deploy destructive changes without saving ---
-#        run: |
-#          chmod +x ./build/ci_cd_external_functions.sh
-#          source ./build/ci_cd_external_functions.sh && destructive_changes_pre_deploy_actions
+      - name: --- Global Step 5. Deploy destructive changes without saving ---
+        run: |
+          chmod +x ./build/ci_cd_external_functions.sh
+          source ./build/ci_cd_external_functions.sh && destructive_changes_pre_deploy_actions
 
 
       - name: --- Global Step 6. Deploy positive changes without saving ---
