@@ -322,13 +322,14 @@ positive_changes_deploy_actions () {
 test_actions () {
     echo -e "-------------TEST------------"
     echo -e $(git checkout origin/dev)
-
+    HOME_DIR=$(pwd)
 
     cd force-app/main/default/lwc/barcodeScanner
     ls -a
     echo -e "-------------------------"
     cd __tests__
     ls -a
+    cd $HOME_DIR
     echo -e "-------------TEST------------\n\n\n"
 
 
