@@ -97,6 +97,11 @@ get_destructive_changes () {
             echo "ENV_DESTRUCTIVE_DIFF_SF=$FILES_TO_DEPLOY" >> "$GITHUB_ENV"
             echo "DESTRUCTIVE_CHANGES_PRESENTED=true" >> "$GITHUB_ENV"
 
+
+            echo -e "----------- TEST ------------------"
+            echo $ENV_DESTRUCTIVE_DIFF_SF
+            echo -e "----------- TEST ------------------"
+
             echo -e "\nStep 1 execution result"
             echo "destructive changes list is: "
             echo $FILES_TO_DEPLOY
