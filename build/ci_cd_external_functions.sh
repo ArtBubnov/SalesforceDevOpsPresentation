@@ -326,6 +326,9 @@ test_actions () {
 
     cd force-app/main/default/lwc/barcodeScanner
     ls -a
+    echo -e "-------------------------"
+    cd __tests__
+    ls -a
     echo -e "-------------TEST------------\n\n\n"
 
 
