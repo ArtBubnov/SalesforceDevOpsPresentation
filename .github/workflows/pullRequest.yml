@@ -38,39 +38,45 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: --- TEST ---
+        run: |
+          pwd
+          ls -a
+
+
 
       - name: --- System Step 1 ---. Salesforce CLI install
         uses: sfdx-actions/setup-sfdx@v1
 
 
-      - name: --- Global Step 0. Logger ---
-        run: |
-          chmod +x ./build/ci_cd_external_functions.sh
-          source ./build/ci_cd_external_functions.sh && logger
+#      - name: --- Global Step 0. Logger ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && logger
 
 
-      - name: --- Global Step 1. Salesforce login ---
-        run: |
-          chmod +x ./build/ci_cd_external_functions.sh
-          source ./build/ci_cd_external_functions.sh && login_to_SF_org
+#      - name: --- Global Step 1. Salesforce login ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && login_to_SF_org
 
 
-      - name: --- Global Step 2. Get destractive meta list ---
-        run: |
-          chmod +x ./build/ci_cd_external_functions.sh
-          source ./build/ci_cd_external_functions.sh && get_destructive_changes
+#      - name: --- Global Step 2. Get destractive meta list ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && get_destructive_changes
 
 
-      - name: --- Global Step 3. Get positive meta list ---
-        run: |
-          chmod +x ./build/ci_cd_external_functions.sh
-          source ./build/ci_cd_external_functions.sh && get_positive_changes
+#      - name: --- Global Step 3. Get positive meta list ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && get_positive_changes
 
 
-      - name: --- Global Step 4. Get apex tests list ---
-        run: |
-          chmod +x ./build/ci_cd_external_functions.sh
-          source ./build/ci_cd_external_functions.sh && get_apex_tests_list
+#      - name: --- Global Step 4. Get apex tests list ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && get_apex_tests_list
 
       
       #SOURCE BRANCH
@@ -81,13 +87,13 @@ jobs:
 #          fetch-depth: 0
 
 
-      - name: --- Global Step 5. Deploy destructive changes without saving ---
-        run: |
-          chmod +x ./build/ci_cd_external_functions.sh
-          source ./build/ci_cd_external_functions.sh && destructive_changes_pre_deploy_actions
+#      - name: --- Global Step 5. Deploy destructive changes without saving ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && destructive_changes_pre_deploy_actions
 
 
-      - name: --- Global Step 6. Deploy positive changes without saving ---
-        run: |
-          chmod +x ./build/ci_cd_external_functions.sh
-          source ./build/ci_cd_external_functions.sh && test_actions
+#      - name: --- Global Step 6. Deploy positive changes without saving ---
+#        run: |
+#          chmod +x ./build/ci_cd_external_functions.sh
+#          source ./build/ci_cd_external_functions.sh && test_actions
